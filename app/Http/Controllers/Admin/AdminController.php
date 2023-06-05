@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class AdminController extends Controller {
-    protected string $admin;
-
-    public function __construct() {
-        $this->admin = (new Admin())->getTable();
-    }
-
     /**
      * Display a listing of the resource.
      */
     public function index() {
         $admins = Admin::paginate();
-        return view("admin.admin.view")->with("admins", $admins);
+        return view("admin.admin.view")->withAdmins($admins);
     }
 
     /**
@@ -38,7 +33,7 @@ class AdminController extends Controller {
     public function store(Request $request) {
         $this->validate($request, [
             "name" => "required|string",
-            "username" => "required|string|unique:$this->admin,username",
+            "username" => "required|string|unique:admins,username",
             "password" => "required|string|min:8",
             "confirm_password" => "required|string|min:8|same:password"
         ]);

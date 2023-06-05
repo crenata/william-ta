@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">
-                    {{ config("app.name", "Laravel") }}
+                    <img src="{{ asset("logo.png") }}" alt="Logo" width="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __("Toggle navigation") }}">
                     <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route("faq") }}">{{ __("FAQ") }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route("about") }}">{{ __("About Us") }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route("contact") }}">{{ __("Contact Us") }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route("return-policy") }}">{{ __("Return Policy") }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -57,6 +68,18 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a
                                         class="dropdown-item"
+                                        href="{{ route("account.index") }}"
+                                    >
+                                        {{ __("Account") }}
+                                    </a>
+                                    <a
+                                        class="dropdown-item"
+                                        href="{{ route("address.index") }}"
+                                    >
+                                        {{ __("Addresses") }}
+                                    </a>
+                                    <a
+                                        class="dropdown-item"
                                         href="{{ route("logout") }}"
                                         onclick="
                                             event.preventDefault();
@@ -80,6 +103,25 @@
         <main class="py-4">
             @yield("content")
         </main>
+
+        <footer class="shadow py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{ asset("logo.png") }}" alt="Logo" class="w-50">
+                    </div>
+                    <div class="col-3">
+                        <p class="m-0">Samping Divisi I Kostrad Blok G 128 RT.04 RW.01 Kel. Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat</p>
+                    </div>
+                    <div class="col-3 text-end">
+                        <a href="tel:+6285217906821">0852-1790-6821</a>
+                    </div>
+                    <div class="col-3 text-end">
+                        <a href="https://www.instagram.com/vijipifurniture">@vijipifurniture</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
