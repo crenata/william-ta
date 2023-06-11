@@ -86,6 +86,18 @@
                                     </a>
                                     <a
                                         class="dropdown-item"
+                                        href="{{ route("wishlist.index") }}"
+                                    >
+                                        {{ __("Wishlists") }}
+                                    </a>
+                                    <a
+                                        class="dropdown-item"
+                                        href="{{ route("cart.index") }}"
+                                    >
+                                        {{ __("Carts") }}
+                                    </a>
+                                    <a
+                                        class="dropdown-item"
                                         href="{{ route("logout") }}"
                                         onclick="
                                             event.preventDefault();

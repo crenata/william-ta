@@ -35,8 +35,19 @@
                 <h5 class="m-0 fw-semibold">Stock : {{ number_format($product->stock) }}</h5>
             </div>
 
-            <form method="POST" action="{{ route("admin.store") }}">
+            <form method="POST" id="product-form" action="{{ route("cart.store") }}">
                 @csrf
+                <input
+                    id="product_id"
+                    type="number"
+                    class="d-none"
+                    name="product_id"
+                    value="{{ $product->id }}"
+                    autocomplete="product_id"
+                    autofocus
+                    min="1"
+                    required
+                />
 
                 <div class="row mt-3">
                     <div class="col-12 col-md-3">
@@ -50,6 +61,7 @@
                             autocomplete="quantity"
                             autofocus
                             min="1"
+                            required
                         />
                         @error("quantity")
                         <span class="invalid-feedback" role="alert">
@@ -59,9 +71,29 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3">
-                    {{ __("Buy") }}
-                </button>
+                <div class="mt-3">
+                    <a href="{{ route("wishlist.show", $product->id) }}" class="btn btn-secondary">
+                        {{ __("Wishlist") }}
+                    </a>
+                    <button
+                        onclick="
+                            document.getElementById('product-form').setAttribute('action', {{ route("cart.store") }});
+                            document.getElementById('product-form').submit();
+                        "
+                        class="btn btn-info ms-3"
+                    >
+                        {{ __("Cart") }}
+                    </button>
+                    <button
+                        onclick="
+                            document.getElementById('product-form').setAttribute('action', {{ route("buy") }});
+                            document.getElementById('product-form').submit();
+                        "
+                        class="btn btn-primary ms-3"
+                    >
+                        {{ __("Buy") }}
+                    </button>
+                </div>
             </form>
         </div>
     </div>

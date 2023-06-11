@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get("/", [\App\Http\Controllers\HomeController::class, "index"])->name("home");
+Route::get("/home", function () {
+    return redirect()->route("home");
+});
 Route::get("custom", [\App\Http\Controllers\HomeController::class, "custom"])->name("custom");
 
 Route::get("faq", function () {
@@ -41,7 +44,10 @@ Route::get("product/{id}", [\App\Http\Controllers\User\ProductController::class,
 Route::middleware("auth")->group(function () {
     Route::get("account", [\App\Http\Controllers\User\AccountController::class, "index"])->name("account.index");
     Route::put("account", [\App\Http\Controllers\User\AccountController::class, "update"])->name("account.update");
+    Route::post("buy", [\App\Http\Controllers\User\AccountController::class, "update"])->name("buy");
     Route::resource("address", \App\Http\Controllers\User\AddressController::class);
+    Route::resource("wishlist", \App\Http\Controllers\User\WishlistController::class);
+    Route::resource("cart", \App\Http\Controllers\User\CartController::class);
 });
 Route::prefix("admin")->group(function () {
     Route::get("/", [\App\Http\Controllers\Auth\LoginController::class, "showLoginFormAdmin"])->name("admin.login");
