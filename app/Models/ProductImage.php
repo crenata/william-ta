@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model {
+class ProductImage extends Model {
     use HasFactory, SoftDeletes;
 
     /**
@@ -15,15 +15,18 @@ class Category extends Model {
      * @var array<int, string>
      */
     protected $fillable = [
-        "name",
+        "product_id",
         "image",
-        "can_custom",
         "created_at",
         "updated_at",
         "deleted_at"
     ];
 
     public function getImageAttribute() {
-        return env("APP_URL") . "/storage/categories/" . $this->attributes["image"];
+        return env("APP_URL") . "/storage/products/" . $this->attributes["image"];
+    }
+
+    public function product() {
+        return $this->belongsTo(Product::class, "product_id");
     }
 }

@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get("/", function () {
-    return view("welcome");
-});
+Route::get("/", [\App\Http\Controllers\HomeController::class, "index"])->name("home");
+Route::get("custom", [\App\Http\Controllers\HomeController::class, "custom"])->name("custom");
 
 Route::get("faq", function () {
     return view("faq");
@@ -36,7 +34,10 @@ Route::get("return-policy", function () {
 
 Auth::routes();
 
-Route::get("home", [\App\Http\Controllers\HomeController::class, "index"])->name("home");
+Route::get("products", [\App\Http\Controllers\User\ProductController::class, "index"])->name("products");
+Route::get("products/{id}", [\App\Http\Controllers\User\ProductController::class, "index"])->name("products.category");
+Route::get("product/{id}", [\App\Http\Controllers\User\ProductController::class, "show"])->name("product");
+
 Route::middleware("auth")->group(function () {
     Route::get("account", [\App\Http\Controllers\User\AccountController::class, "index"])->name("account.index");
     Route::put("account", [\App\Http\Controllers\User\AccountController::class, "update"])->name("account.update");
@@ -51,5 +52,6 @@ Route::prefix("admin")->group(function () {
         });
         Route::resource("admin", \App\Http\Controllers\Admin\AdminController::class);
         Route::resource("category", \App\Http\Controllers\Admin\CategoryController::class);
+        Route::resource("product", \App\Http\Controllers\Admin\ProductController::class);
     });
 });

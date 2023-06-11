@@ -71,10 +71,10 @@ class AddressController extends Controller {
             "address" => "required|string"
         ]);
 
-        $address = UserAddress::where("user_id", auth()->id())->findOrFail($id);
-        $address->name = $request->name;
-        $address->address = $request->address;
-        $address->save();
+        UserAddress::where("user_id", auth()->id())->findOrFail($id)->update([
+            "name" => $request->name,
+            "address" => $request->address
+        ]);
 
         return redirect()->route("address.index")->withStatus("Successfully edited.");
     }

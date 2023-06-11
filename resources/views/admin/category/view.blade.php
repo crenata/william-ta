@@ -23,7 +23,7 @@
                 <th>Name</th>
                 <th>Category</th>
                 <th>Can Custom?</th>
-                <th>Action</th>
+                <th class="text-end">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -40,12 +40,12 @@
                             {{ $category->can_custom ? "checked" : "" }}
                         />
                     </td>
-                    <td valign="middle">
+                    <td valign="middle" class="text-end">
                         <div class="dropdown">
                             <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ __("Action") }}
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{ route("category.edit", $category->id) }}">{{ __("Edit") }}</a></li>
                                 <form method="POST" action="{{ route("category.destroy", $category->id) }}">
                                     @csrf

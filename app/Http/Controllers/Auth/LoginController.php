@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -30,8 +29,6 @@ class LoginController extends Controller {
      */
     protected string $redirectTo = RouteServiceProvider::HOME;
 
-    protected string $adminTable;
-
     /**
      * Create a new controller instance.
      *
@@ -40,8 +37,6 @@ class LoginController extends Controller {
     public function __construct() {
         $this->middleware("guest")->except("logout");
         $this->middleware("guest:admin")->except("logout");
-
-        $this->adminTable = (new Admin())->getTable();
     }
 
     public function showLoginFormAdmin() {
@@ -50,7 +45,7 @@ class LoginController extends Controller {
 
     public function loginAdmin(Request $request) {
         $this->validate($request, [
-            "username" => "required|string|exists:$this->adminTable,username",
+            "username" => "required|string|exists:admins,username",
             "password" => "required|string|min:8"
         ], [
             "username.exists" => "These credentials do not match our records."
