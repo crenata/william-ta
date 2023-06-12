@@ -16,9 +16,9 @@
                     autocomplete="categoryId"
                     onchange="location = this.options[this.selectedIndex].value"
                 >
-                    <option value="{{ route("products") }}">Choose Category</option>
+                    <option value="{{ route(Route::is("products") || Route::is("products.category") ? "products" : "offers") }}">Choose Category</option>
                     @foreach($categories as $category)
-                        <option value="{{ route("products.category", $category->id) }}" {{ $category->id === old("categoryId", $categoryId) ? "selected" : "" }}>
+                        <option value="{{ route((Route::is("products") || Route::is("products.category") ? "products" : "offers") . ".category", $category->id) }}" {{ $category->id === old("categoryId", $categoryId) ? "selected" : "" }}>
                             {{ $category->name }}
                         </option>
                     @endforeach
@@ -28,7 +28,7 @@
 
         <div class="row mt-4">
             @foreach($products as $key => $product)
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 {{ $key > 0 ? "mt-3 mt-md-0" : "" }}">
                     <a href="{{ route("product", $product->id) }}" class="card text-decoration-none text-body">
                         <img src="{{ $product->images[0]->image }}" class="card-img-top" alt="{{ $product->name }}">
                         <div class="card-body">

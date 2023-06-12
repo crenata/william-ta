@@ -11,7 +11,7 @@
                 <tr>
                     <td class="text-end">Whatsapp</td>
                     <td style="width: 2px">:</td>
-                    <td class="text-start"><a href="tel:+6285217906821">0852-1790-6821</a></td>
+                    <td class="text-start"><a href="https://wa.me/6285217906821">0852-1790-6821</a></td>
                 </tr>
                 <tr>
                     <td class="text-end">Alamat</td>

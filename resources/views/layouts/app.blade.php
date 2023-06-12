@@ -15,10 +15,22 @@
 
     <!-- Scripts -->
     @vite(["resources/sass/app.scss", "resources/js/app.js"])
+
+    <style>
+        .app-content {
+            margin-top: 5rem;
+            margin-bottom: 18rem;
+        }
+        @media (min-width: 768px) {
+            .app-content {
+                margin-bottom: 10rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">
                     <img src="{{ asset("logo.png") }}" alt="Logo" width="100">
@@ -32,6 +44,9 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route("products") }}">{{ __("Products") }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route("offers") }}">{{ __("Promo") }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route("custom") }}">{{ __("Custom") }}</a>
@@ -118,23 +133,23 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 app-content">
             @yield("content")
         </main>
 
-        <footer class="shadow py-4">
+        <footer class="shadow bg-white fixed-bottom py-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-12 col-md-3">
                         <img src="{{ asset("logo.png") }}" alt="Logo" class="w-50">
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-3 mt-3 mt-md-0">
                         <p class="m-0">Samping Divisi I Kostrad Blok G 128 RT.04 RW.01 Kel. Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat</p>
                     </div>
-                    <div class="col-3 text-end">
-                        <a href="tel:+6285217906821">0852-1790-6821</a>
+                    <div class="col-12 col-md-3 text-start text-md-end mt-3 mt-md-0">
+                        <a href="https://wa.me/6285217906821">0852-1790-6821</a>
                     </div>
-                    <div class="col-3 text-end">
+                    <div class="col-12 col-md-3 text-start text-md-end mt-3 mt-md-0">
                         <a href="https://www.instagram.com/vijipifurniture">@vijipifurniture</a>
                     </div>
                 </div>

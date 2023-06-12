@@ -77,7 +77,7 @@
                     </a>
                     <button
                         onclick="
-                            document.getElementById('product-form').setAttribute('action', {{ route("cart.store") }});
+                            document.getElementById('product-form').setAttribute('action', '{{ route("cart.store") }}');
                             document.getElementById('product-form').submit();
                         "
                         class="btn btn-info ms-3"
@@ -86,7 +86,7 @@
                     </button>
                     <button
                         onclick="
-                            document.getElementById('product-form').setAttribute('action', {{ route("buy") }});
+                            document.getElementById('product-form').setAttribute('action', '{{ route("buy") }}');
                             document.getElementById('product-form').submit();
                         "
                         class="btn btn-primary ms-3"

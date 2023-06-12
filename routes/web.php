@@ -39,12 +39,14 @@ Auth::routes();
 
 Route::get("products", [\App\Http\Controllers\User\ProductController::class, "index"])->name("products");
 Route::get("products/{id}", [\App\Http\Controllers\User\ProductController::class, "index"])->name("products.category");
+Route::get("offers", [\App\Http\Controllers\User\ProductController::class, "offer"])->name("offers");
+Route::get("offers/{id}", [\App\Http\Controllers\User\ProductController::class, "offer"])->name("offers.category");
 Route::get("product/{id}", [\App\Http\Controllers\User\ProductController::class, "show"])->name("product");
 
 Route::middleware("auth")->group(function () {
     Route::get("account", [\App\Http\Controllers\User\AccountController::class, "index"])->name("account.index");
     Route::put("account", [\App\Http\Controllers\User\AccountController::class, "update"])->name("account.update");
-    Route::post("buy", [\App\Http\Controllers\User\AccountController::class, "update"])->name("buy");
+    Route::post("buy", [\App\Http\Controllers\User\ProductController::class, "buy"])->name("buy");
     Route::resource("address", \App\Http\Controllers\User\AddressController::class);
     Route::resource("wishlist", \App\Http\Controllers\User\WishlistController::class);
     Route::resource("cart", \App\Http\Controllers\User\CartController::class);
