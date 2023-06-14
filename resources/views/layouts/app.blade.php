@@ -233,6 +233,15 @@
         let appChat = document.getElementById("app-chat");
         let inputMessage = document.getElementById("input-message");
         let btnMessage = document.getElementById("button-message");
+        const answer = message => {
+            return `
+                <div class="mt-2 d-flex">
+                    <div class="app-chat-content bg-info rounded p-2">
+                        <p class="m-0">${message}</p>
+                    </div>
+                </div>
+            `;
+        };
         const send = () => {
             let message = inputMessage.value;
             if (message) {
@@ -255,30 +264,12 @@
                 }).then(response => response.json())
                 .then(response => {
                     if (response?.answer) {
-                        appChat.insertAdjacentHTML("afterbegin", `
-                            <div class="mt-2 d-flex">
-                                <div class="app-chat-content bg-info rounded p-2">
-                                    <p class="m-0">${response.answer.name}</p>
-                                </div>
-                            </div>
-                        `);
+                        appChat.insertAdjacentHTML("afterbegin", answer(response.answer.name));
                     } else {
-                        appChat.insertAdjacentHTML("afterbegin", `
-                            <div class="mt-2 d-flex">
-                                <div class="app-chat-content bg-info rounded p-2">
-                                    <p class="m-0">Hmm... maaf saya ga ngerti!</p>
-                                </div>
-                            </div>
-                        `);
+                        appChat.insertAdjacentHTML("afterbegin", answer("Hmm... maaf saya ga ngerti!"));
                     }
                 }).catch(error => {
-                    appChat.insertAdjacentHTML("afterbegin", `
-                        <div class="mt-2 d-flex">
-                            <div class="app-chat-content bg-info rounded p-2">
-                                <p class="m-0">Lost Connection...</p>
-                            </div>
-                        </div>
-                    `);
+                    appChat.insertAdjacentHTML("afterbegin", answer("Lost Connection..."));
                 });
             }
         };
