@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post("update", [\App\Http\Controllers\User\ProductController::class, "update"])->name("update");
+Route::post("chat", [\App\Http\Controllers\User\ChatController::class, "chat"])->name("chat");

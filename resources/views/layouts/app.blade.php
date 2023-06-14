@@ -21,9 +21,54 @@
             margin-top: 5rem;
             margin-bottom: 18rem;
         }
+        .whatsapp-bottom {
+            width: 70px;
+            left: 1rem;
+            bottom: 18.5rem;
+        }
+        .chat-bottom {
+            left: calc(100vw - 70px - 1rem);
+            bottom: 18.5rem;
+        }
+        .chat-box-bottom {
+            background-color: #4a5568;
+            width: 20rem;
+            height: 24rem;
+            left: calc(100vw - 20rem - 1rem);
+            bottom: 18.5rem;
+        }
+        .app-chat {
+            padding: 1.5rem 0;
+            height: 20rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .app-chat-content {
+            max-width: 75%;
+        }
         @media (min-width: 768px) {
             .app-content {
                 margin-bottom: 10rem;
+            }
+            .whatsapp-bottom {
+                left: 2rem;
+                bottom: 8.5rem;
+            }
+            .chat-bottom {
+                left: calc(100vw - 70px - 2rem);
+                bottom: 8.5rem;
+            }
+            .chat-box-bottom {
+                width: 20rem;
+                height: 30rem;
+                left: calc(100vw - 20rem - 2rem);
+                bottom: 8.5rem;
+            }
+            .app-chat {
+                padding: 1rem 0;
+                height: 25.5rem;
             }
         }
     </style>
@@ -155,6 +200,95 @@
                 </div>
             </div>
         </footer>
+
+        <a href="https://wa.me/6285217906821" class="fixed-bottom whatsapp-bottom">
+            <img src="{{ asset("whatsapp.png") }}" alt="Whatsapp" width="70">
+        </a>
+
+        <a href="javascript:void(0)" class="fixed-bottom chat-bottom" onclick="document.getElementById('chat-box').classList.toggle('d-none')">
+            <img src="{{ asset("question-mark.png") }}" alt="Whatsapp" width="70">
+        </a>
+
+        <div class="fixed-bottom chat-box-bottom d-none" id="chat-box">
+            <div class="position-relative h-100">
+                <div class="bg-info p-2 text-end">
+                    <button class="btn-close" onclick="document.getElementById('chat-box').classList.toggle('d-none')"></button>
+                </div>
+                <div class="app-chat px-2" id="app-chat"></div>
+                <div class="position-absolute bottom-0 w-100">
+                    <div class="input-group">
+                        <input type="text" id="input-message" class="form-control rounded-0" placeholder="Type message..." aria-describedby="button-message">
+                        <button class="btn btn-info rounded-0" id="button-message">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        let appChat = document.getElementById("app-chat");
+        let inputMessage = document.getElementById("input-message");
+        let btnMessage = document.getElementById("button-message");
+        const send = () => {
+            let message = inputMessage.value;
+            if (message) {
+                inputMessage.value = "";
+                appChat.insertAdjacentHTML("afterbegin", `
+                    <div class="mt-2 d-flex justify-content-end">
+                        <div class="app-chat-content bg-info rounded p-2">
+                            <p class="m-0">${message}</p>
+                        </div>
+                    </div>
+                `);
+                fetch("/api/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: message
+                    })
+                }).then(response => response.json())
+                .then(response => {
+                    if (response?.answer) {
+                        appChat.insertAdjacentHTML("afterbegin", `
+                            <div class="mt-2 d-flex">
+                                <div class="app-chat-content bg-info rounded p-2">
+                                    <p class="m-0">${response.answer.name}</p>
+                                </div>
+                            </div>
+                        `);
+                    } else {
+                        appChat.insertAdjacentHTML("afterbegin", `
+                            <div class="mt-2 d-flex">
+                                <div class="app-chat-content bg-info rounded p-2">
+                                    <p class="m-0">Hmm... maaf saya ga ngerti!</p>
+                                </div>
+                            </div>
+                        `);
+                    }
+                }).catch(error => {
+                    appChat.insertAdjacentHTML("afterbegin", `
+                        <div class="mt-2 d-flex">
+                            <div class="app-chat-content bg-info rounded p-2">
+                                <p class="m-0">Lost Connection...</p>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+        };
+        btnMessage.onclick = send;
+        inputMessage.addEventListener("keypress", event => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                send();
+            }
+        })
+    </script>
 </body>
 </html>
