@@ -41,7 +41,6 @@
                             <label for="product_id">{{ __("Product") }}</label>
                             <select
                                 id="product_id"
-                                type="text"
                                 class="form-select @error("product_id") is-invalid @enderror"
                                 name="product_id"
                                 required

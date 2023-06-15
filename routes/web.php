@@ -50,6 +50,7 @@ Route::middleware("auth")->group(function () {
     Route::resource("address", \App\Http\Controllers\User\AddressController::class);
     Route::resource("wishlist", \App\Http\Controllers\User\WishlistController::class);
     Route::resource("cart", \App\Http\Controllers\User\CartController::class);
+    Route::resource("transaction", \App\Http\Controllers\User\TransactionController::class)->names("transaction-user");
 });
 Route::prefix("admin")->group(function () {
     Route::get("/", [\App\Http\Controllers\Auth\LoginController::class, "showLoginFormAdmin"])->name("admin.login");
@@ -61,5 +62,6 @@ Route::prefix("admin")->group(function () {
         Route::resource("admin", \App\Http\Controllers\Admin\AdminController::class);
         Route::resource("category", \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource("product", \App\Http\Controllers\Admin\ProductController::class);
+        Route::resource("transaction", \App\Http\Controllers\Admin\TransactionController::class);
     });
 });

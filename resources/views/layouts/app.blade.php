@@ -158,6 +158,12 @@
                                     </a>
                                     <a
                                         class="dropdown-item"
+                                        href="{{ route("transaction-user.index") }}"
+                                    >
+                                        {{ __("Transactions") }}
+                                    </a>
+                                    <a
+                                        class="dropdown-item"
                                         href="{{ route("logout") }}"
                                         onclick="
                                             event.preventDefault();
@@ -279,7 +285,7 @@
                 event.preventDefault();
                 send();
             }
-        })
+        });
     </script>
 </body>
 </html>

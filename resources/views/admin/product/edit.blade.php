@@ -15,7 +15,6 @@
                         <label for="category_id">{{ __("Category") }}</label>
                         <select
                             id="category_id"
-                            type="text"
                             class="form-select @error("category_id") is-invalid @enderror"
                             name="category_id"
                             required

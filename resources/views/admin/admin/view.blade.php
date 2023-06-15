@@ -17,38 +17,40 @@
             </a>
         </div>
 
-        <table class="table mt-4">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Username</th>
-                <th class="text-end">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($admins as $admin)
+        <div class="table-responsive mt-4">
+            <table class="table">
+                <thead>
                 <tr>
-                    <td valign="middle">{{ $admin->name }}</td>
-                    <td valign="middle">{{ $admin->username }}</td>
-                    <td valign="middle" class="text-end">
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ __("Action") }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ route("admin.edit", $admin->id) }}">{{ __("Edit") }}</a></li>
-                                <form method="POST" action="{{ route("admin.destroy", $admin->id) }}">
-                                    @csrf
-                                    @method("DELETE")
-                                    <li><button class="dropdown-item" type="submit">{{ __("Delete") }}</button></li>
-                                </form>
-                            </ul>
-                        </div>
-                    </td>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th class="text-end">Action</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($admins as $admin)
+                    <tr>
+                        <td valign="middle">{{ $admin->name }}</td>
+                        <td valign="middle">{{ $admin->username }}</td>
+                        <td valign="middle" class="text-end">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ __("Action") }}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="{{ route("admin.edit", $admin->id) }}">{{ __("Edit") }}</a></li>
+                                    <form method="POST" action="{{ route("admin.destroy", $admin->id) }}">
+                                        @csrf
+                                        @method("DELETE")
+                                        <li><button class="dropdown-item" type="submit">{{ __("Delete") }}</button></li>
+                                    </form>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
 
         {{ $admins->links() }}
     </div>

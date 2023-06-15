@@ -17,48 +17,50 @@
             </a>
         </div>
 
-        <table class="table mt-4">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Can Custom?</th>
-                <th class="text-end">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($categories as $category)
+        <div class="table-responsive mt-4">
+            <table class="table">
+                <thead>
                 <tr>
-                    <td valign="middle">{{ $category->name }}</td>
-                    <td valign="middle">{{ $category->image }}</td>
-                    <td valign="middle">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            name="can_custom"
-                            id="can_custom"
-                            {{ $category->can_custom ? "checked" : "" }}
-                        />
-                    </td>
-                    <td valign="middle" class="text-end">
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ __("Action") }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ route("category.edit", $category->id) }}">{{ __("Edit") }}</a></li>
-                                <form method="POST" action="{{ route("category.destroy", $category->id) }}">
-                                    @csrf
-                                    @method("DELETE")
-                                    <li><button class="dropdown-item" type="submit">{{ __("Delete") }}</button></li>
-                                </form>
-                            </ul>
-                        </div>
-                    </td>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Can Custom?</th>
+                    <th class="text-end">Action</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($categories as $category)
+                    <tr>
+                        <td valign="middle">{{ $category->name }}</td>
+                        <td valign="middle">{{ $category->image }}</td>
+                        <td valign="middle">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="can_custom"
+                                id="can_custom"
+                                {{ $category->can_custom ? "checked" : "" }}
+                            />
+                        </td>
+                        <td valign="middle" class="text-end">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ __("Action") }}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="{{ route("category.edit", $category->id) }}">{{ __("Edit") }}</a></li>
+                                    <form method="POST" action="{{ route("category.destroy", $category->id) }}">
+                                        @csrf
+                                        @method("DELETE")
+                                        <li><button class="dropdown-item" type="submit">{{ __("Delete") }}</button></li>
+                                    </form>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
 
         {{ $categories->links() }}
     </div>

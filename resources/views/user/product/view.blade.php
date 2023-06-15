@@ -10,7 +10,6 @@
                 <label for="categoryId">{{ __("Category") }}</label>
                 <select
                     id="categoryId"
-                    type="text"
                     class="form-select"
                     name="categoryId"
                     autocomplete="categoryId"

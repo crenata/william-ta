@@ -44,10 +44,13 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("product.index") }}">{{ __("Product") }}</a>
+                                <a class="nav-link" href="{{ route("transaction.index") }}">{{ __("Transactions") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("category.index") }}">{{ __("Category") }}</a>
+                                <a class="nav-link" href="{{ route("product.index") }}">{{ __("Products") }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route("category.index") }}">{{ __("Categories") }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route("admin.index") }}">{{ __("Manage Admin") }}</a>
