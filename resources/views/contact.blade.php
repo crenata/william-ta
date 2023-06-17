@@ -6,7 +6,7 @@
         <div class="mt-4 text-center">
             <img src="{{ asset("logo.png") }}" alt="Logo">
             <h5 class="mt-3 mb-0">Kami senang menerima pesanan dari anda. Silahkan menghubungi kami!</h5>
-            <div class="table-responsive mt-4">
+            <div class="table-responsive mt-4" style="height: 75vh;">
                 <table class="table table-borderless">
                     <tbody>
                     <tr>

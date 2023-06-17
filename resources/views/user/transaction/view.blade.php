@@ -14,10 +14,11 @@
             <h4 class="">{{ __("Transactions") }}</h4>
         </div>
 
-        <div class="table-responsive mt-4">
+        <div class="table-responsive mt-4" style="height: 75vh;">
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Address</th>
                     <th>Name</th>
                     <th>Invoice Number</th>
                     <th class="text-end">Quantity</th>
@@ -30,6 +31,7 @@
                 <tbody>
                 @foreach($transactions as $transaction)
                     <tr>
+                        <td valign="middle">{{ $transaction->userAddress->name }}</td>
                         <td valign="middle">
                             <a href="{{ route("product", $transaction->product->id) }}" class="text-decoration-none text-body">{{ $transaction->product->name }}</a>
                         </td>

@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionHistory;
 use App\Models\TransactionImage;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -48,8 +49,9 @@ class ProductController extends Controller {
      * @param string $id
      */
     public function show(string $id) {
+        $userAddresses = UserAddress::where("user_id", auth()->id())->get();
         $product = Product::with("category", "images")->findOrFail($id);
-        return view("user.product.show")->withProduct($product);
+        return view("user.product.show")->withProduct($product)->withUserAddresses($userAddresses);
     }
 
     /**
@@ -59,11 +61,13 @@ class ProductController extends Controller {
      */
     public function buy(Request $request) {
         $this->validate($request, [
+            "user_address_id" => "required|numeric|exists:user_addresses,id",
             "product_id" => "required|numeric|exists:products,id",
             "quantity" => "required|numeric|min:1"
         ]);
 
         return DB::transaction(function () use ($request) {
+            $userAddress = UserAddress::findOrFail($request->user_address_id);
             $product = Product::with("images")->findOrFail($request->product_id);
             $grossAmount = empty($product->offer_price) ? $product->price : $product->offer_price;
 
@@ -90,6 +94,7 @@ class ProductController extends Controller {
 
             $transaction = Transaction::create([
                 "user_id" => auth()->id(),
+                "user_address_id" => $userAddress->id,
                 "product_id" => $product->id,
                 "name" => $product->name,
                 "description" => $product->description,

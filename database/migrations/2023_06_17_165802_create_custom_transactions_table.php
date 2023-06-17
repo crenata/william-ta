@@ -9,17 +9,18 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('custom_transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("user_address_id");
             $table->unsignedBigInteger("product_id");
-            $table->string("name");
-            $table->longText("description");
-            $table->unsignedBigInteger("quantity");
             $table->string("invoice_number");
-            $table->unsignedBigInteger("gross_amount");
-            $table->string("snap_url");
+            $table->unsignedBigInteger("gross_amount")->nullable();
+            $table->string("snap_url")->nullable();
+            $table->string("size");
+            $table->string("color");
+            $table->string("material");
+            $table->unsignedBigInteger("quantity");
             $table->timestamps();
             $table->softDeletes();
 
@@ -33,6 +34,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('custom_transactions');
     }
 };

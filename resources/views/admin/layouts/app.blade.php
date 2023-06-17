@@ -47,6 +47,9 @@
                                 <a class="nav-link" href="{{ route("transaction.index") }}">{{ __("Transactions") }}</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route("custom.index") }}">{{ __("Custom") }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route("product.index") }}">{{ __("Products") }}</a>
                             </li>
                             <li class="nav-item">

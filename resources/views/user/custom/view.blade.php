@@ -1,4 +1,4 @@
-@extends("admin.layouts.app")
+@extends("layouts.app")
 
 @section("content")
 <div class="container">
@@ -11,15 +11,13 @@
         @endif
 
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="">{{ __("Transactions") }}</h4>
+            <h4 class="">{{ __("Custom Transactions") }}</h4>
         </div>
 
         <div class="table-responsive mt-4" style="height: 75vh;">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>User</th>
-                    <th>Phone</th>
                     <th>Address</th>
                     <th>Name</th>
                     <th>Invoice Number</th>
@@ -33,9 +31,7 @@
                 <tbody>
                 @foreach($transactions as $transaction)
                     <tr>
-                        <td valign="middle">{{ $transaction->user->name }}</td>
-                        <td valign="middle">{{ $transaction->user->phone }}</td>
-                        <td valign="middle">{{ $transaction->userAddress->address }}</td>
+                        <td valign="middle">{{ $transaction->userAddress->name }}</td>
                         <td valign="middle">
                             <a href="{{ route("product", $transaction->product->id) }}" class="text-decoration-none text-body">{{ $transaction->product->name }}</a>
                         </td>
@@ -58,15 +54,6 @@
                                             data-bs-target="#transaction-detail-modal"
                                             data-tx="{{ $transaction }}"
                                         >{{ __("Track") }}</a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            class="dropdown-item transaction-status"
-                                            href="javascript:void(0)"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#transaction-status-modal"
-                                            data-tx="{{ $transaction }}"
-                                        >{{ __("Edit Status") }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -99,65 +86,12 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="transaction-status-modal" tabindex="-1" aria-labelledby="transaction-status-modal-label" aria-hidden="true">
-            <div class="modal-dialog">
-                <form method="POST" action="{{ route("transaction.store") }}" class="modal-content">
-                    @csrf
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="transaction-status-modal-label">Change Status</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input
-                            id="transaction_id"
-                            type="number"
-                            class="form-control d-none"
-                            name="transaction_id"
-                            value=""
-                            required
-                            autocomplete="transaction_id"
-                            autofocus
-                        />
-
-                        <div class="">
-                            <label for="status">{{ __("Status") }}</label>
-                            <select
-                                id="status"
-                                class="form-select @error("status") is-invalid @enderror"
-                                name="status"
-                                required
-                                autocomplete="status"
-                                autofocus
-                            >
-                                <option id="current-status">Choose Status</option>
-                                @foreach($statuses as $key => $status)
-                                    <option value="{{ $status }}">{{ $key }}</option>
-                                @endforeach
-                            </select>
-                            @error("status")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 
     <script>
         let title = document.getElementById("transaction-detail-modal-label");
         let tracking = document.getElementById("transaction-detail-tracking");
-        let transactionId = document.getElementById("transaction_id");
-        let status = document.getElementById("status");
-        let currentStatus = document.getElementById("current-status");
         let transactions = document.getElementsByClassName("transaction-detail");
-        let statuses = document.getElementsByClassName("transaction-status");
         const getStatus = status => {
             switch (status) {
                 case {{ \App\Constants\MidtransStatusConstant::SETTLEMENT }}:
@@ -194,42 +128,6 @@
                     return "Status tidak diketahui";
             }
         };
-        const getStatusName = status => {
-            switch (status) {
-                case {{ \App\Constants\MidtransStatusConstant::SETTLEMENT }}:
-                    return "Settlement";
-                case {{ \App\Constants\MidtransStatusConstant::DENY }}:
-                    return "Deny";
-                case {{ \App\Constants\MidtransStatusConstant::PENDING }}:
-                    return "Pending";
-                case {{ \App\Constants\MidtransStatusConstant::CANCEL }}:
-                    return "Cancel";
-                case {{ \App\Constants\MidtransStatusConstant::REFUND }}:
-                    return "Refund";
-                case {{ \App\Constants\MidtransStatusConstant::PARTIAL_REFUND }}:
-                    return "Partial Refund";
-                case {{ \App\Constants\MidtransStatusConstant::EXPIRE }}:
-                    return "Expire";
-                case {{ \App\Constants\MidtransStatusConstant::FAILURE }}:
-                    return "Failure";
-                case {{ \App\Constants\MidtransStatusConstant::PROCESSED }}:
-                    return "Processed";
-                case {{ \App\Constants\MidtransStatusConstant::DELIVERY }}:
-                    return "Delivery";
-                case {{ \App\Constants\MidtransStatusConstant::ARRIVED }}:
-                    return "Arrived";
-                case {{ \App\Constants\MidtransStatusConstant::REQUEST_RETURN }}:
-                    return "Request Return";
-                case {{ \App\Constants\MidtransStatusConstant::RETURN_REJECTED }}:
-                    return "Return Rejected";
-                case {{ \App\Constants\MidtransStatusConstant::PROCESS_RETURN }}:
-                    return "Process Return";
-                case {{ \App\Constants\MidtransStatusConstant::RETURNED }}:
-                    return "Returned";
-                default:
-                    return "Unknown";
-            }
-        };
         for (let i = 0; i < transactions.length; i++) {
             let tx = transactions[i];
             tx.onclick = function () {
@@ -244,14 +142,6 @@
                         </tr>
                     `);
                 });
-            }
-        }
-        for (let i = 0; i < statuses.length; i++) {
-            let sts = statuses[i];
-            sts.onclick = function () {
-                let data = JSON.parse(this.getAttribute("data-tx"));
-                transactionId.value = data.id;
-                currentStatus.textContent = getStatusName(data.latest_history.status);
             }
         }
     </script>

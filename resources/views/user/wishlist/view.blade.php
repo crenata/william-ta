@@ -14,7 +14,7 @@
             <h4 class="">{{ __("Manage Wishlist") }}</h4>
         </div>
 
-        <div class="table-responsive mt-4">
+        <div class="table-responsive mt-4" style="height: 75vh;">
             <table class="table">
                 <thead>
                 <tr>

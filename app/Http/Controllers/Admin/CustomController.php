@@ -4,31 +4,31 @@ namespace App\Http\Controllers\Admin;
 
 use App\Constants\MidtransStatusConstant;
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
-use App\Models\TransactionHistory;
+use App\Models\CustomTransaction;
+use App\Models\CustomTransactionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TransactionController extends Controller {
+class CustomController extends Controller {
     /**
      * Display a listing of the resource.
      */
     public function index() {
-        $detailIds = DB::table("transaction_histories as detail_mx")
-            ->selectRaw("max(detail_mx.id) as detail_id, detail_mx.transaction_id")
-            ->groupBy("detail_mx.transaction_id")
+        $detailIds = DB::table("custom_transaction_histories as detail_mx")
+            ->selectRaw("max(detail_mx.id) as detail_id, detail_mx.custom_transaction_id")
+            ->groupBy("detail_mx.custom_transaction_id")
             ->toSql();
-        $detailData = DB::table("transaction_histories as detail_data")
+        $detailData = DB::table("custom_transaction_histories as detail_data")
             ->selectRaw("detail_data.id, detail_data.status")
             ->toSql();
-        $transactions = Transaction::with("latestHistory", "histories", "user", "userAddress")
-            ->select("transactions.*")
+        $transactions = CustomTransaction::with("latestHistory", "histories", "user", "userAddress")
+            ->select("custom_transactions.*")
             ->leftJoinSub(
                 $detailIds,
                 "detail_max",
-                "transactions.id",
+                "custom_transactions.id",
                 "=",
-                "detail_max.transaction_id"
+                "detail_max.custom_transaction_id"
             )
             ->leftJoinSub(
                 $detailData,
@@ -37,7 +37,7 @@ class TransactionController extends Controller {
                 "=",
                 "detail_max.detail_id"
             )
-            ->orderByDesc("transactions.id")
+            ->orderByDesc("custom_transactions.id")
             ->paginate();
 
         $statuses = [];
@@ -63,7 +63,7 @@ class TransactionController extends Controller {
             )] = $status;
         }
 
-        return view("admin.transaction.view")->withTransactions($transactions)->withStatuses($statuses);
+        return view("admin.custom.view")->withTransactions($transactions)->withStatuses($statuses);
     }
 
     /**
@@ -74,13 +74,13 @@ class TransactionController extends Controller {
      */
     public function store(Request $request) {
         $this->validate($request, [
-            "transaction_id" => "required|numeric|exists:transactions,id"
+            "custom_transaction_id" => "required|numeric|exists:custom_transactions,id"
         ]);
 
         if (in_array($request->status, MidtransStatusConstant::values())) {
-            $transaction = Transaction::findOrFail($request->transaction_id);
-            TransactionHistory::create([
-                "transaction_id" => $transaction->id,
+            $transaction = CustomTransaction::findOrFail($request->custom_transaction_id);
+            CustomTransactionHistory::create([
+                "custom_transaction_id" => $transaction->id,
                 "status" => $request->status
             ]);
         }

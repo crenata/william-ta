@@ -32,7 +32,7 @@
 
         <div class="mt-5">
             <h3 class="m-0 text-center fw-bold">Pemesanan Custom</h3>
-            <form method="POST" action="{{ route("product.store") }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route("custom-user.store") }}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mt-3">
@@ -49,10 +49,36 @@
                             >
                                 <option>Choose Product</option>
                                 @foreach($products as $product)
-                                    <option value="{{ $product->id }}" {{ $product->id === old("product_id") ? "selected" : "" }}>{{ $product->name }}</option>
+                                    <option value="{{ $product->id }}" data-product="{{ $product }}" {{ $product->id === old("product_id") ? "selected" : "" }}>{{ $product->name }}</option>
                                 @endforeach
                             </select>
                             @error("product_id")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
+                            <div class="mt-2">
+                                <img src="{{ asset("logo.png") }}" id="product-image" alt="Image" class="w-100" style="object-fit: contain; height: 13.75rem;">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label for="user_address_id">{{ __("Address") }}</label>
+                            <select
+                                id="user_address_id"
+                                class="form-select @error("user_address_id") is-invalid @enderror"
+                                name="user_address_id"
+                                required
+                                autocomplete="user_address_id"
+                                autofocus
+                            >
+                                <option>Choose Address</option>
+                                @foreach($userAddresses as $user_address)
+                                    <option value="{{ $user_address->id }}" {{ $user_address->id === old("user_address_id") ? "selected" : "" }}>{{ $user_address->name }}</option>
+                                @endforeach
+                            </select>
+                            @error("user_address_id")
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -70,6 +96,7 @@
                                 required
                                 autocomplete="model"
                                 autofocus
+                                placeholder="Modern Minimalis"
                             />
                             @error("model")
                             <span class="invalid-feedback" role="alert">
@@ -77,8 +104,9 @@
                             </span>
                             @enderror
                         </div>
-
-                        <div class="mt-3">
+                    </div>
+                    <div class="col-12 col-md-6 mt-3 mt-md-0">
+                        <div class="">
                             <label for="size">{{ __("Size") }}</label>
                             <input
                                 id="size"
@@ -89,6 +117,7 @@
                                 required
                                 autocomplete="size"
                                 autofocus
+                                placeholder="10cm x 20cm x 30cm"
                             />
                             @error("size")
                             <span class="invalid-feedback" role="alert">
@@ -108,6 +137,7 @@
                                 required
                                 autocomplete="color"
                                 autofocus
+                                placeholder="Dark Brown"
                             />
                             @error("color")
                             <span class="invalid-feedback" role="alert">
@@ -127,48 +157,9 @@
                                 required
                                 autocomplete="material"
                                 autofocus
+                                placeholder="Kayu Mahoni"
                             />
                             @error("material")
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="">
-                            <label for="type">{{ __("Type") }}</label>
-                            <input
-                                id="type"
-                                type="text"
-                                class="form-control @error("type") is-invalid @enderror"
-                                name="type"
-                                value="{{ old("type") }}"
-                                required
-                                autocomplete="type"
-                                autofocus
-                            />
-                            @error("type")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="mt-3">
-                            <label for="images">{{ __("Images") }}</label>
-                            <input
-                                id="images"
-                                type="file"
-                                class="form-control @error("images") is-invalid @enderror"
-                                name="images[]"
-                                value="{{ old("images") }}"
-                                required
-                                autocomplete="images"
-                                accept="image/*"
-                                multiple
-                            />
-                            @error("images")
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -217,7 +208,7 @@
                             <label for="estimate_price">{{ __("Estimate Price") }}</label>
                             <input
                                 id="estimate_price"
-                                type="number"
+                                type="text"
                                 class="form-control @error("estimate_price") is-invalid @enderror"
                                 name="estimate_price"
                                 value="{{ old("estimate_price") }}"
@@ -241,5 +232,31 @@
                 </div>
             </form>
         </div>
+
+        <script>
+            let estimate = document.getElementById("estimate");
+            let estimatePrice = document.getElementById("estimate_price");
+            let productImage = document.getElementById("product-image");
+            let quantity = document.getElementById("quantity");
+            let product = document.getElementById("product_id");
+            let data = null;
+            const setData = (qty) => {
+                productImage.setAttribute("src", data.images[0].image);
+                if (qty) {
+                    estimate.value = `${data.duration * qty || 1} ${data.duration_type}`;
+                    estimatePrice.value = `Rp${new Intl.NumberFormat().format(data.start_price * qty || 1)} - Rp${new Intl.NumberFormat().format(data.end_price * qty || 1)}`;
+                } else {
+                    estimate.value = `${data.duration} ${data.duration_type}`;
+                    estimatePrice.value = `Rp${new Intl.NumberFormat().format(data.start_price)} - Rp${new Intl.NumberFormat().format(data.end_price)}`;
+                }
+            };
+            product.addEventListener("change", function () {
+                data = JSON.parse(this.options[this.selectedIndex].getAttribute("data-product"));
+                setData();
+            });
+            quantity.addEventListener("keyup", function (event) {
+                setData(event.target.value);
+            });
+        </script>
     </div>
 @endsection

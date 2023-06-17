@@ -17,7 +17,6 @@ Route::get("/", [\App\Http\Controllers\HomeController::class, "index"])->name("h
 Route::get("/home", function () {
     return redirect()->route("home");
 });
-Route::get("custom", [\App\Http\Controllers\HomeController::class, "custom"])->name("custom");
 
 Route::get("faq", function () {
     return view("faq");
@@ -37,6 +36,7 @@ Route::get("return-policy", function () {
 
 Auth::routes();
 
+Route::get("product-custom", [\App\Http\Controllers\HomeController::class, "custom"])->name("product.custom");
 Route::get("products", [\App\Http\Controllers\User\ProductController::class, "index"])->name("products");
 Route::get("products/{id}", [\App\Http\Controllers\User\ProductController::class, "index"])->name("products.category");
 Route::get("offers", [\App\Http\Controllers\User\ProductController::class, "offer"])->name("offers");
@@ -51,6 +51,7 @@ Route::middleware("auth")->group(function () {
     Route::resource("wishlist", \App\Http\Controllers\User\WishlistController::class);
     Route::resource("cart", \App\Http\Controllers\User\CartController::class);
     Route::resource("transaction", \App\Http\Controllers\User\TransactionController::class)->names("transaction-user");
+    Route::resource("custom", \App\Http\Controllers\User\CustomController::class)->names("custom-user");
 });
 Route::prefix("admin")->group(function () {
     Route::get("/", [\App\Http\Controllers\Auth\LoginController::class, "showLoginFormAdmin"])->name("admin.login");
@@ -63,5 +64,6 @@ Route::prefix("admin")->group(function () {
         Route::resource("category", \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource("product", \App\Http\Controllers\Admin\ProductController::class);
         Route::resource("transaction", \App\Http\Controllers\Admin\TransactionController::class);
+        Route::resource("custom", \App\Http\Controllers\Admin\CustomController::class);
     });
 });

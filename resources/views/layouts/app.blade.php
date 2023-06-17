@@ -94,7 +94,7 @@
                             <a class="nav-link" href="{{ route("offers") }}">{{ __("Promo") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("custom") }}">{{ __("Custom") }}</a>
+                            <a class="nav-link" href="{{ route("product.custom") }}">{{ __("Custom") }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route("faq") }}">{{ __("FAQ") }}</a>

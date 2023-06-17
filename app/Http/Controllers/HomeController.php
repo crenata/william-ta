@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller {
@@ -19,8 +20,9 @@ class HomeController extends Controller {
     }
 
     public function custom() {
+        $userAddresses = UserAddress::where("user_id", auth()->id())->get();
         $categories = Category::where("can_custom", true)->limit(4)->get();
-        $products = Product::orderBy("name")->get();
-        return view("custom")->withCategories($categories)->withProducts($products);
+        $products = Product::with("images")->orderBy("name")->get();
+        return view("custom")->withCategories($categories)->withProducts($products)->withUserAddresses($userAddresses);
     }
 }

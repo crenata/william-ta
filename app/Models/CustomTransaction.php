@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Transaction extends Model {
+class CustomTransaction extends Model {
     use HasFactory, SoftDeletes;
 
     /**
@@ -18,12 +18,13 @@ class Transaction extends Model {
         "user_id",
         "user_address_id",
         "product_id",
-        "name",
-        "description",
-        "quantity",
         "invoice_number",
         "gross_amount",
         "snap_url",
+        "size",
+        "color",
+        "material",
+        "quantity",
         "created_at",
         "updated_at",
         "deleted_at"
@@ -42,14 +43,14 @@ class Transaction extends Model {
     }
 
     public function images() {
-        return $this->hasMany(TransactionImage::class, "transaction_id");
+        return $this->hasMany(CustomTransactionImage::class, "custom_transaction_id");
     }
 
     public function histories() {
-        return $this->hasMany(TransactionHistory::class, "transaction_id");
+        return $this->hasMany(CustomTransactionHistory::class, "custom_transaction_id");
     }
 
     public function latestHistory() {
-        return $this->hasOne(TransactionHistory::class, "transaction_id")->orderByDesc("id");
+        return $this->hasOne(CustomTransactionHistory::class, "custom_transaction_id")->orderByDesc("id");
     }
 }
