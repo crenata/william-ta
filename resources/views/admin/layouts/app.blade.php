@@ -56,6 +56,12 @@
                                 <a class="nav-link" href="{{ route("category.index") }}">{{ __("Categories") }}</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route("province.index") }}">{{ __("Provinces") }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route("city.index") }}">{{ __("Cities") }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route("admin.index") }}">{{ __("Manage Admin") }}</a>
                             </li>
                             <li class="nav-item dropdown">

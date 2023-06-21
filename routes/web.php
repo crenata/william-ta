@@ -65,5 +65,7 @@ Route::prefix("admin")->group(function () {
         Route::resource("product", \App\Http\Controllers\Admin\ProductController::class);
         Route::resource("transaction", \App\Http\Controllers\Admin\TransactionController::class);
         Route::resource("custom", \App\Http\Controllers\Admin\CustomController::class);
+        Route::resource("province", \App\Http\Controllers\Admin\ProvinceController::class);
+        Route::resource("city", \App\Http\Controllers\Admin\CityController::class);
     });
 });

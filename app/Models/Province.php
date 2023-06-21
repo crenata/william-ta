@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserAddress extends Model {
+class Province extends Model {
     use HasFactory, SoftDeletes;
 
     /**
@@ -15,20 +15,9 @@ class UserAddress extends Model {
      * @var array<int, string>
      */
     protected $fillable = [
-        "user_id",
-        "city_id",
         "name",
-        "address",
         "created_at",
         "updated_at",
         "deleted_at"
     ];
-
-    public function user() {
-        return $this->belongsTo(User::class, "user_id");
-    }
-
-    public function city() {
-        return $this->belongsTo(City::class, "city_id");
-    }
 }

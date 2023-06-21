@@ -11,6 +11,28 @@
                     @csrf
 
                     <div class="">
+                        <label for="city_id">{{ __("City") }}</label>
+                        <select
+                            id="city_id"
+                            class="form-select @error("city_id") is-invalid @enderror"
+                            name="city_id"
+                            required
+                            autocomplete="city_id"
+                            autofocus
+                        >
+                            <option>Choose City</option>
+                            @foreach($cities as $city)
+                                <option value="{{ $city->id }}" {{ $city->id === old("city_id") ? "selected" : "" }}>{{ $city->name }}</option>
+                            @endforeach
+                        </select>
+                        @error("city_id")
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="mt-3">
                         <label for="name">{{ __("Name") }}</label>
                         <input
                             id="name"

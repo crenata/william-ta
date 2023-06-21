@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class AddressController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        $addresses = UserAddress::where("user_id", auth()->id())->paginate();
+        $addresses = UserAddress::with("city")->where("user_id", auth()->id())->paginate();
         return view("user.address.view")->withAddresses($addresses);
     }
 
@@ -19,7 +20,8 @@ class AddressController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create() {
-        return view("user.address.add");
+        $cities = City::all();
+        return view("user.address.add")->withCities($cities);
     }
 
     /**
@@ -30,12 +32,14 @@ class AddressController extends Controller {
      */
     public function store(Request $request) {
         $this->validate($request, [
+            "city_id" => "required|numeric|exists:cities,id",
             "name" => "required|string",
             "address" => "required|string"
         ]);
 
         UserAddress::create([
             "user_id" => auth()->id(),
+            "city_id" => $request->city_id,
             "name" => $request->name,
             "address" => $request->address
         ]);
@@ -57,7 +61,8 @@ class AddressController extends Controller {
      */
     public function edit(string $id) {
         $address = UserAddress::where("user_id", auth()->id())->findOrFail($id);
-        return view("user.address.edit")->withAddress($address);
+        $cities = City::all();
+        return view("user.address.edit")->withAddress($address)->withCities($cities);
     }
 
     /**
@@ -67,12 +72,14 @@ class AddressController extends Controller {
      */
     public function update(Request $request, string $id) {
         $this->validate($request, [
+            "city_id" => "required|numeric|exists:cities,id",
             "name" => "required|string",
             "address" => "required|string"
         ]);
 
         UserAddress::where("user_id", auth()->id())->findOrFail($id)->update([
             "name" => $request->name,
+            "city_id" => $request->city_id,
             "address" => $request->address
         ]);
 
