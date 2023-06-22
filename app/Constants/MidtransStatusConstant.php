@@ -26,4 +26,5 @@ class MidtransStatusConstant {
     const RETURN_REJECTED = 17;
     const PROCESS_RETURN = 18;
     const RETURNED = 19;
+    const PRICE_SUBMITTED = 20;
 }

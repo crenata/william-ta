@@ -55,6 +55,14 @@
                                             data-tx="{{ $transaction }}"
                                         >{{ __("Track") }}</a>
                                     </li>
+                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::PRICE_SUBMITTED)
+                                        <li>
+                                            <a
+                                                class="dropdown-item"
+                                                href="{{ route("custom-user.show", $transaction->id) }}"
+                                            >{{ __("Pay") }}</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </td>
@@ -124,6 +132,8 @@
                     return "Pengajuan pengembalian diproses";
                 case {{ \App\Constants\MidtransStatusConstant::RETURNED }}:
                     return "Pengembalian selesai";
+                case {{ \App\Constants\MidtransStatusConstant::PRICE_SUBMITTED }}:
+                    return "Harga telah diinput";
                 default:
                     return "Status tidak diketahui";
             }

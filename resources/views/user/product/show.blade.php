@@ -2,6 +2,13 @@
 
 @section("content")
 <div class="container">
+    @if (session("status"))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session("status") }}
+            <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-12 col-md-4">
             <img
@@ -50,8 +57,7 @@
                 />
 
                 <div class="row mt-3">
-                    <div class="col-12 col-md-3">
-
+                    <div class="col-12 col-md-4">
                         <div class="">
                             <label for="user_address_id">{{ __("Address") }}</label>
                             <select
@@ -63,8 +69,8 @@
                                 autofocus
                             >
                                 <option>Choose Address</option>
-                                @foreach($userAddresses as $user_address)
-                                    <option value="{{ $user_address->id }}" {{ $user_address->id === old("user_address_id") ? "selected" : "" }}>{{ $user_address->name }}</option>
+                                @foreach($userAddresses as $userAddress)
+                                    <option value="{{ $userAddress->id }}" {{ $userAddress->id === old("user_address_id") ? "selected" : "" }}>{{ $userAddress->name }} (Rp{{ number_format($userAddress->city->fee) }})</option>
                                 @endforeach
                             </select>
                             @error("user_address_id")
@@ -111,13 +117,25 @@
                     </button>
                     <button
                         onclick="
+                            buy({{ $product }}, document.getElementById('quantity').value);
                             document.getElementById('product-form').setAttribute('action', '{{ route("buy") }}');
                             document.getElementById('product-form').submit();
-                        "
+                            "
                         class="btn btn-primary ms-3"
                     >
                         {{ __("Buy") }}
                     </button>
+                </div>
+                <div class="mt-3">
+                    <a href="https://twitter.com/intent/tweet?text={{ url()->current() }}">
+                        <i class="fa-brands fa-square-twitter fa-2xl"></i>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" class="ms-3">
+                        <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                    </a>
+                    <a href="https://wa.me/?text={{ url()->current() }}" class="ms-3">
+                        <i class="fa-brands fa-square-whatsapp fa-2xl"></i>
+                    </a>
                 </div>
             </form>
         </div>

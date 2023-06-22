@@ -55,6 +55,14 @@
                                             data-tx="{{ $transaction }}"
                                         >{{ __("Track") }}</a>
                                     </li>
+                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::PENDING)
+                                        <li>
+                                            <a
+                                                class="dropdown-item"
+                                                href="{{ $transaction->snap_url }}"
+                                            >{{ __("Pay") }}</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </td>

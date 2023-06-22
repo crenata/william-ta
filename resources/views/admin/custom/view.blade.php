@@ -59,15 +59,28 @@
                                             data-tx="{{ $transaction }}"
                                         >{{ __("Track") }}</a>
                                     </li>
-                                    <li>
-                                        <a
-                                            class="dropdown-item transaction-status"
-                                            href="javascript:void(0)"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#transaction-status-modal"
-                                            data-tx="{{ $transaction }}"
-                                        >{{ __("Edit Status") }}</a>
-                                    </li>
+                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::SETTLEMENT)
+                                        <li>
+                                            <a
+                                                class="dropdown-item transaction-status"
+                                                href="javascript:void(0)"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#transaction-status-modal"
+                                                data-tx="{{ $transaction }}"
+                                            >{{ __("Edit Status") }}</a>
+                                        </li>
+                                    @endif
+                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::PENDING)
+                                        <li>
+                                            <a
+                                                class="dropdown-item transaction-price"
+                                                href="javascript:void(0)"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#transaction-price-modal"
+                                                data-tx="{{ $transaction }}"
+                                            >{{ __("Input Price") }}</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </td>
@@ -101,7 +114,7 @@
         </div>
         <div class="modal fade" id="transaction-status-modal" tabindex="-1" aria-labelledby="transaction-status-modal-label" aria-hidden="true">
             <div class="modal-dialog">
-                <form method="POST" action="{{ route("transaction.store") }}" class="modal-content">
+                <form method="POST" action="{{ route("custom.store") }}" class="modal-content">
                     @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="transaction-status-modal-label">Change Status</h1>
@@ -148,6 +161,44 @@
                 </form>
             </div>
         </div>
+        <div class="modal fade" id="transaction-price-modal" tabindex="-1" aria-labelledby="transaction-price-modal-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <form method="POST" action="{{ route("custom.update", ":id") }}" id="form-price" class="modal-content">
+                    @csrf
+                    @method("PUT")
+
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="transaction-price-modal-label">Input Price</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <label for="price">{{ __("Price") }}</label>
+                            <input
+                                id="price"
+                                type="number"
+                                class="form-control @error("price") is-invalid @enderror"
+                                name="price"
+                                value="{{ old("price") }}"
+                                autocomplete="price"
+                                autofocus
+                                min="1"
+                                required
+                            />
+                            @error("price")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -155,9 +206,12 @@
         let tracking = document.getElementById("transaction-detail-tracking");
         let transactionId = document.getElementById("transaction_id");
         let status = document.getElementById("status");
+        let formPrice = document.getElementById("form-price");
+        let price = document.getElementById("price");
         let currentStatus = document.getElementById("current-status");
         let transactions = document.getElementsByClassName("transaction-detail");
         let statuses = document.getElementsByClassName("transaction-status");
+        let prices = document.getElementsByClassName("transaction-price");
         const getStatus = status => {
             switch (status) {
                 case {{ \App\Constants\MidtransStatusConstant::SETTLEMENT }}:
@@ -190,6 +244,8 @@
                     return "Pengajuan pengembalian diproses";
                 case {{ \App\Constants\MidtransStatusConstant::RETURNED }}:
                     return "Pengembalian selesai";
+                case {{ \App\Constants\MidtransStatusConstant::PRICE_SUBMITTED }}:
+                    return "Harga telah diinput";
                 default:
                     return "Status tidak diketahui";
             }
@@ -226,6 +282,8 @@
                     return "Process Return";
                 case {{ \App\Constants\MidtransStatusConstant::RETURNED }}:
                     return "Returned";
+                case {{ \App\Constants\MidtransStatusConstant::PRICE_SUBMITTED }}:
+                    return "Price Submitted";
                 default:
                     return "Unknown";
             }
@@ -252,6 +310,13 @@
                 let data = JSON.parse(this.getAttribute("data-tx"));
                 transactionId.value = data.id;
                 currentStatus.textContent = getStatusName(data.latest_history.status);
+            }
+        }
+        for (let i = 0; i < prices.length; i++) {
+            let sts = prices[i];
+            sts.onclick = function () {
+                let data = JSON.parse(this.getAttribute("data-tx"));
+                formPrice.setAttribute("action", "{{ route("custom.update", ":id") }}".replace(":id", data.id));
             }
         }
     </script>

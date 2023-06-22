@@ -13,8 +13,24 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <!-- Scripts -->
     @vite(["resources/sass/app.scss", "resources/js/app.js"])
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+        integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <style>
         .app-content {
@@ -164,6 +180,12 @@
                                     </a>
                                     <a
                                         class="dropdown-item"
+                                        href="{{ route("custom-user.index") }}"
+                                    >
+                                        {{ __("Custom Transactions") }}
+                                    </a>
+                                    <a
+                                        class="dropdown-item"
                                         href="{{ route("logout") }}"
                                         onclick="
                                             event.preventDefault();
@@ -286,6 +308,29 @@
                 send();
             }
         });
+
+        window.socket = new WebSocket("ws://localhost:{{ env("WEBSOCKET_PORT") }}");
+        window.socket.onopen = (event) => {
+            console.log("onopen", event);
+        };
+        window.socket.onclose = (event) => {
+            console.log("onclose", event);
+        };
+        window.socket.onerror = (event) => {
+            console.log("onerror", event);
+        };
+        window.socket.onmessage = (event) => {
+            console.log("onmessage", event);
+            let data = JSON.parse(event?.data);
+            Toastify({
+                text: `Someone has bought ${data.name} ${new Intl.NumberFormat().format(data.quantity)}x at a price of Rp${new Intl.NumberFormat().format(data.quantity * (data.offer_price || data.price))}`,
+                duration: 3000
+            }).showToast();
+        };
+
+        function buy(data, quantity) {
+            window.socket.send(JSON.stringify({...data, quantity}));
+        }
     </script>
 </body>
 </html>

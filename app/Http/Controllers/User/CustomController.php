@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Constants\MidtransStatusConstant;
+use App\Helpers\MidtransHelper;
 use App\Http\Controllers\Controller;
 use App\Models\CustomTransaction;
 use App\Models\CustomTransactionHistory;
@@ -46,7 +47,7 @@ class CustomController extends Controller {
             ->orderByDesc("custom_transactions.id")
             ->paginate();
 
-        return view("user.transaction.view")->withTransactions($transactions);
+        return view("user.custom.view")->withTransactions($transactions);
     }
 
     /**
@@ -66,7 +67,7 @@ class CustomController extends Controller {
         ]);
 
         return DB::transaction(function () use ($request) {
-            $userAddress = UserAddress::findOrFail($request->user_address_id);
+            $userAddress = UserAddress::with("city")->findOrFail($request->user_address_id);
             $product = Product::with("images")->findOrFail($request->product_id);
 
             $now = Carbon::now();
@@ -82,6 +83,7 @@ class CustomController extends Controller {
                 "user_address_id" => $userAddress->id,
                 "product_id" => $product->id,
                 "invoice_number" => $invoiceNumber,
+                "gross_amount" => $userAddress->city->fee,
                 "size" => $request->size,
                 "color" => $request->color,
                 "material" => $request->material,
@@ -100,5 +102,21 @@ class CustomController extends Controller {
 
             return redirect()->route("custom-user.index")->withStatus("Successfully added.");
         });
+    }
+
+    /**
+     * Display the specified resource.
+     * @param string $id
+     */
+    public function show(string $id) {
+        $transaction = CustomTransaction::findOrFail($id);
+
+        if (empty($transaction->snap_url)) {
+            $midtrans = MidtransHelper::getSnapUrl($transaction->gross_amount, $transaction->invoice_number);
+            $transaction->snap_url = $midtrans->snap_url;
+            $transaction->save();
+        }
+
+        return redirect($transaction->snap_url);
     }
 }

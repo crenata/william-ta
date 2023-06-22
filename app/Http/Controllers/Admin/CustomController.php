@@ -86,4 +86,26 @@ class CustomController extends Controller {
         }
         return back()->withStatus("Successfully edited.");
     }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param string $id
+     */
+    public function update(Request $request, string $id) {
+        $this->validate($request, [
+            "price" => "required|numeric|min:1"
+        ]);
+
+        return DB::transaction(function () use ($request, $id) {
+            $transaction = CustomTransaction::findOrFail($id);
+            $transaction->gross_amount += $request->price;
+            $transaction->save();
+            CustomTransactionHistory::create([
+                "custom_transaction_id" => $transaction->id,
+                "status" => MidtransStatusConstant::PRICE_SUBMITTED
+            ]);
+            return back()->withStatus("Successfully added.");
+        });
+    }
 }
