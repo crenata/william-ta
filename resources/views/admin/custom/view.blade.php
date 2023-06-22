@@ -122,13 +122,13 @@
                     </div>
                     <div class="modal-body">
                         <input
-                            id="transaction_id"
+                            id="custom_transaction_id"
                             type="number"
                             class="form-control d-none"
-                            name="transaction_id"
+                            name="custom_transaction_id"
                             value=""
                             required
-                            autocomplete="transaction_id"
+                            autocomplete="custom_transaction_id"
                             autofocus
                         />
 
@@ -204,7 +204,7 @@
     <script>
         let title = document.getElementById("transaction-detail-modal-label");
         let tracking = document.getElementById("transaction-detail-tracking");
-        let transactionId = document.getElementById("transaction_id");
+        let transactionId = document.getElementById("custom_transaction_id");
         let status = document.getElementById("status");
         let formPrice = document.getElementById("form-price");
         let price = document.getElementById("price");
