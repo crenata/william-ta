@@ -2,9 +2,9 @@
 
 @section("content")
     <div class="container">
-        <h3 class="m-0 text-center fw-bold">Contact Us</h3>
+        <h2 class="m-0 text-center fw-bold">Contact Us</h2>
         <div class="mt-4 text-center">
-            <img src="{{ asset("logo.png") }}" alt="Logo">
+        <img src="{{ asset("about.jpg") }}" alt="Logo" width="100%" height="500">
             <h5 class="mt-3 mb-0">Kami senang menerima pesanan dari anda. Silahkan menghubungi kami!</h5>
             <div class="table-responsive mt-4" style="height: 75vh;">
                 <table class="table table-borderless">

@@ -2,31 +2,35 @@
 
 @section("content")
     <div class="container">
-        <h3 class="m-0 text-center fw-bold">Mengapa Memilih Kami?</h3>
+        <img src="{{ asset("tentang.jpg") }}" alt="Logo" width="100%">
+        <br>
+        <br>
+        <br>
+        <h2 class="m-0 text-center fw-bold">Mengapa Memilih Kami?</h2>
         <ul class="mt-4">
             <li>
-                <h5 class="m-0">Desain Terkini (Up to Date)</h5>
+                <h4 class="m-0">Desain Terkini (Up to Date)</h4>
                 <p class="m-0">Desain 3D custome made, dengan model klasik, modern serta minimalis.</p>
             </li>
             <li class="mt-2">
-                <h5 class="m-0">Bahan Baku Terbaik (Raw Material)</h5>
+                <h4 class="m-0">Bahan Baku Terbaik (Raw Material)</h4>
                 <p class="m-0">Menggunakan bahan baku, pelengkap, dan aksesoris kualitas terbaik.</p>
             </li>
             <li class="mt-2">
-                <h5 class="m-0">Tenaga Profesional</h5>
+                <h4 class="m-0">Tenaga Profesional</h4>
                 <p class="m-0">Berpengalaman di bidang Furniture lebih dari 18 tahun.</p>
             </li>
             <li class="mt-2">
-                <h5 class="m-0">Harga terjangkau dan kompetitif</h5>
+                <h4 class="m-0">Harga terjangkau dan kompetitif</h4>
                 <p class="m-0">Kami berikan harga terbaik sesuai dengan bahan baku serta kualitas produk.</p>
             </li>
             <li class="mt-2">
-                <h5 class="m-0">Delivery Service</h5>
+                <h4 class="m-0">Delivery Service</h4>
                 <p class="m-0">Kami mengutamakan kualitas produk serta ketepatan pengiriman (delivery) produk ke
                     customer.</p>
             </li>
             <li class="mt-2">
-                <h5 class="m-0">After Sales Service</h5>
+                <h4 class="m-0">After Sales Service</h4>
                 <p class="m-0">Produk bergaransi dan kami menerima complain, kritik serta saran demi perbaikan produk
                     serta pelayanan lebih baik kepada customer setia kami.</p>
             </li>
@@ -41,11 +45,11 @@
                             <div class="carousel-item {{ $key === 0 ? "active" : "" }}">
                                 <div class="col-md-3 px-3">
                                     <a href="{{ route("product", $product->id) }}" class="card text-decoration-none text-body">
-                                        <img src="{{ $product->images[0]->image }}" class="card-img-top" alt="{{ $product->name }}">
+                                        <img src="{{ $product->images[0]->image }}" class="card-img-top" style="max-height: 200px" alt="{{ $product->name }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
-                                            <p class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp{{ number_format($product->price) }}</p>
-                                            <p class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp{{ number_format($product->offer_price) }}</p>
+                                            <p class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</p>
+                                            <p class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp {{ number_format($product->offer_price) }}</p>
                                         </div>
                                     </a>
                                 </div>
@@ -62,7 +66,7 @@
                     </a>
                 </div>
             </div>
-
+            <br>
             <div class="mt-4">
                 <h3 class="m-0 text-center fw-bold">New Products</h3>
                 <div id="new-products-carousel" class="carousel slide multi-carousel mt-4" data-bs-ride="carousel">
@@ -71,11 +75,11 @@
                             <div class="carousel-item {{ $key === 0 ? "active" : "" }}">
                                 <div class="col-md-3 px-3">
                                     <a href="{{ route("product", $product->id) }}" class="card text-decoration-none text-body">
-                                        <img src="{{ $product->images[0]->image }}" class="card-img-top" alt="{{ $product->name }}">
+                                        <img src="{{ $product->images[0]->image }}" class="card-img-top" style="max-height: 200px" alt="{{ $product->name }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->name }}</h5>
-                                            <p class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp{{ number_format($product->price) }}</p>
-                                            <p class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp{{ number_format($product->offer_price) }}</p>
+                                            <p class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</p>
+                                            <p class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp {{ number_format($product->offer_price) }}</p>
                                         </div>
                                     </a>
                                 </div>
@@ -93,26 +97,11 @@
                 </div>
             </div>
         </div>
-
+        <br>
         <div class="mt-5">
-            <div class="mt-4">
-                <h3 class="m-0 text-center fw-bold">Kelebihan Furniture Custom Made :</h3>
-                <ul class="mt-4">
-                    <li>Model dan style fleksibel sesuai dengan selera serta keinginan.</li>
-                    <li>Sesuai kebutuhan, keinginan, ukuran serta space ruangan yang ada.</li>
-                    <li>Bahan baku (raw material) terbaik sesuai dengan pilihan.</li>
-                </ul>
-            </div>
-
-            <div class="mt-4">
-                <h3 class="m-0 text-center fw-bold">Kekurangan Furniture Custom Made :</h3>
-                <ul class="mt-4">
-                    <li>Membutuhkan waktu produksi lebih lama.</li>
-                    <li>Harga relatif sedikit lebih mahal.</li>
-                </ul>
-            </div>
+        <img src="{{ asset("kelebihan.jpg") }}" alt="Logo" width="100%">
         </div>
-
+        <br>
         <div class="mt-5">
             <div class="mt-4">
                 <h3 class="m-0 text-center fw-bold">Workshop {{ config("app.name") }}</h3>

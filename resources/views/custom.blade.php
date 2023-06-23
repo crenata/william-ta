@@ -12,22 +12,7 @@
         </div>
 
         <div class="mt-5">
-            <div class="mt-4">
-                <h3 class="m-0 text-center fw-bold">Kelebihan Furniture Custom Made :</h3>
-                <ul class="mt-4">
-                    <li>Model dan style fleksibel sesuai dengan selera serta keinginan.</li>
-                    <li>Sesuai kebutuhan, keinginan, ukuran serta space ruangan yang ada.</li>
-                    <li>Bahan baku (raw material) terbaik sesuai dengan pilihan.</li>
-                </ul>
-            </div>
-
-            <div class="mt-4">
-                <h3 class="m-0 text-center fw-bold">Kekurangan Furniture Custom Made :</h3>
-                <ul class="mt-4">
-                    <li>Membutuhkan waktu produksi lebih lama.</li>
-                    <li>Harga relatif sedikit lebih mahal.</li>
-                </ul>
-            </div>
+        <img src="{{ asset("kelebihan.jpg") }}" alt="Logo" width="100%">
         </div>
 
         <div class="mt-5">

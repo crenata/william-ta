@@ -3,7 +3,7 @@
 @section("content")
 <div class="container">
     <div class="">
-        <h3 class="m-0 text-center fw-bold">All Products</h3>
+        <h2 class="m-0 text-center fw-bold">All Products</h2>
 
         <div class="row mt-3">
             <div class="col-12 col-md-3">
@@ -29,11 +29,11 @@
             @foreach($products as $key => $product)
                 <div class="col-12 col-md-3 {{ $key > 0 ? "mt-3 mt-md-0" : "" }}">
                     <a href="{{ route("product", $product->id) }}" class="card text-decoration-none text-body">
-                        <img src="{{ $product->images[0]->image }}" class="card-img-top" alt="{{ $product->name }}">
+                        <img src="{{ $product->images[0]->image }}" class="card-img-top" style="max-height: 150px" alt="{{ $product->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
-                            <p class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp{{ number_format($product->price) }}</p>
-                            <p class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp{{ number_format($product->offer_price) }}</p>
+                            <p class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</p>
+                            <p class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp {{ number_format($product->offer_price) }}</p>
                         </div>
                     </a>
                 </div>

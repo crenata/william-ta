@@ -18,10 +18,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">
-                    <img src="{{ asset("logo.png") }}" alt="Logo" width="100">
+                    <img src="{{ asset("logo.png") }}" alt="Logo" width="120">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __("Toggle navigation") }}">
                     <span class="navbar-toggler-icon"></span>
@@ -95,6 +95,29 @@
         <main class="py-4">
             @yield("content")
         </main>
-    </div>
+        <footer class="shadow bg-dark text-white py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <img src="{{ asset("logo.png") }}" alt="Logo" width="200">
+                    </div>
+                    <div class="col-12 col-md-3 mt-3 mt-md-0">
+                        <h4>Alamat Workshop</h4>
+                        <br>
+                        <p class="m-0">Samping Divisi I Kostrad Blok G 128 RT.04 RW.01 Kel. Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat</p>
+                    </div>
+                    <div class="col-12 col-md-3 text-start text-md-end mt-3 mt-md-0">
+                        <h4>Hubungi Kami</h4>
+                        <br>
+                        <a href="https://wa.me/6285217906821">0852-1790-6821</a>
+                    </div>
+                    <div class="col-12 col-md-3 text-start text-md-end mt-3 mt-md-0">
+                        <h4>Ikuti Kami</h4>
+                        <br>
+                        <a href="https://www.instagram.com/vijipifurniture">@vijipifurniture</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 </body>
 </html>

@@ -35,8 +35,8 @@
                     <tr>
                         <td valign="middle">{{ $product->category->name }}</td>
                         <td valign="middle">{{ $product->name }}</td>
-                        <td valign="middle" class="text-end">Rp{{ number_format($product->price) }}</td>
-                        <td valign="middle" class="text-end">Rp{{ number_format($product->offer_price) }}</td>
+                        <td valign="middle" class="text-end">Rp {{ number_format($product->price) }}</td>
+                        <td valign="middle" class="text-end">Rp {{ number_format($product->offer_price) }}</td>
                         <td valign="middle" class="text-end">{{ number_format($product->stock) }}</td>
                         <td valign="middle" class="text-end">{{ number_format($product->total_purchased) }}</td>
                         <td valign="middle" class="text-end">
