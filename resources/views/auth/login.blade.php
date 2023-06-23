@@ -65,6 +65,11 @@
                                     </a>
                                 @endif
                             </div>
+                            <div class="mt-3">
+                                <a href="{{ route("admin.login") }}">
+                                    {{ __("Login as Admin?") }}
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -15,10 +15,16 @@
 
     <!-- Scripts -->
     @vite(["resources/sass/app.scss", "resources/js/app.js"])
+
+    <style>
+        .nav-admin .nav-link:hover {
+            background-color: #729f89;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm nav-admin">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">
                     <img src="{{ asset("logo.png") }}" alt="Logo" width="120">
@@ -39,33 +45,33 @@
                         @guest
                             @if (Route::has("admin.login"))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route("login") }}">{{ __("Login") }}</a>
+                                    <a class="nav-link text-white" href="{{ route("login") }}">{{ __("Login") }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("transaction.index") }}">{{ __("Transactions") }}</a>
+                                <a class="nav-link text-white" href="{{ route("transaction.index") }}">{{ __("Transactions") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("custom.index") }}">{{ __("Custom") }}</a>
+                                <a class="nav-link text-white" href="{{ route("custom.index") }}">{{ __("Custom") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("product.index") }}">{{ __("Products") }}</a>
+                                <a class="nav-link text-white" href="{{ route("product.index") }}">{{ __("Products") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("category.index") }}">{{ __("Categories") }}</a>
+                                <a class="nav-link text-white" href="{{ route("category.index") }}">{{ __("Categories") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("province.index") }}">{{ __("Provinces") }}</a>
+                                <a class="nav-link text-white" href="{{ route("province.index") }}">{{ __("Provinces") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("city.index") }}">{{ __("Cities") }}</a>
+                                <a class="nav-link text-white" href="{{ route("city.index") }}">{{ __("Cities") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route("admin.index") }}">{{ __("Manage Admin") }}</a>
+                                <a class="nav-link text-white" href="{{ route("admin.index") }}">{{ __("Manage Admin") }}</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 

@@ -3,7 +3,7 @@
 @section("content")
 <div class="container">
     <div class="">
-        <h2 class="m-0 text-center fw-bold">All Products</h2>
+        <h2 class="m-0 text-center fw-bold">All {{ empty($category) ? (Route::is("products") ? "Products" : "Promo") : $category->name }}</h2>
 
         <div class="row mt-3">
             <div class="col-12 col-md-3">

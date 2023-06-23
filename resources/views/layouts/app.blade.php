@@ -40,18 +40,25 @@
         .whatsapp-bottom {
             width: 70px;
             left: 1rem;
-            bottom: 18.5rem;
+            bottom: 1rem;
         }
         .chat-bottom {
             left: calc(100vw - 70px - 1rem);
-            bottom: 18.5rem;
+            bottom: 1rem;
+            background-color: #228B22;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .chat-box-bottom {
-            background-color: #4a5568;
+            background-color: #FFFFFF;
             width: 20rem;
             height: 24rem;
             left: calc(100vw - 20rem - 1rem);
-            bottom: 18.5rem;
+            bottom: 1rem;
         }
         .app-chat {
             padding: 1.5rem 0;
@@ -64,23 +71,29 @@
         .app-chat-content {
             max-width: 75%;
         }
+        .nav-user .nav-link:hover {
+            background-color: #729f89;
+        }
+        .bgc-87CEFA {
+            background-color: #87CEFA;
+        }
+        .bgc-32CD32 {
+            background-color: #32CD32;
+        }
         @media (min-width: 768px) {
             .app-content {
                 margin-bottom: 10rem;
             }
             .whatsapp-bottom {
                 left: 2rem;
-                bottom: 8.5rem;
             }
             .chat-bottom {
                 left: calc(100vw - 70px - 2rem);
-                bottom: 8.5rem;
             }
             .chat-box-bottom {
                 width: 20rem;
                 height: 30rem;
                 left: calc(100vw - 20rem - 2rem);
-                bottom: 8.5rem;
             }
             .app-chat {
                 padding: 1rem 0;
@@ -91,7 +104,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm fixed-top">
+        <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm fixed-top nav-user">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">
                     <img src="{{ asset("logo.png") }}" alt="Logo" width="120">
@@ -104,25 +117,25 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("products") }}">{{ __("Products") }}</a>
+                            <a class="nav-link text-white" href="{{ route("products") }}">{{ __("Products") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("offers") }}">{{ __("Promo") }}</a>
+                            <a class="nav-link text-white" href="{{ route("offers") }}">{{ __("Promo") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("product.custom") }}">{{ __("Custom") }}</a>
+                            <a class="nav-link text-white" href="{{ route("product.custom") }}">{{ __("Custom") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("faq") }}">{{ __("FAQ") }}</a>
+                            <a class="nav-link text-white" href="{{ route("faq") }}">{{ __("FAQ") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("about") }}">{{ __("About Us") }}</a>
+                            <a class="nav-link text-white" href="{{ route("about") }}">{{ __("About Us") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("contact") }}">{{ __("Contact Us") }}</a>
+                            <a class="nav-link text-white" href="{{ route("contact") }}">{{ __("Contact Us") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("return-policy") }}">{{ __("Return Policy") }}</a>
+                            <a class="nav-link text-white" href="{{ route("return-policy") }}">{{ __("Return Policy") }}</a>
                         </li>
                     </ul>
 
@@ -132,18 +145,18 @@
                         @guest
                             @if (Route::has("login"))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route("login") }}">{{ __("Login") }}</a>
+                                    <a class="nav-link text-white" href="{{ route("login") }}">{{ __("Login") }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has("register"))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route("register") }}">{{ __("Register") }}</a>
+                                    <a class="nav-link text-white" href="{{ route("register") }}">{{ __("Register") }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -240,15 +253,22 @@
         </a>
 
         <a href="javascript:void(0)" class="fixed-bottom chat-bottom" onclick="document.getElementById('chat-box').classList.toggle('d-none')">
-            <img src="{{ asset("question-mark.png") }}" alt="Whatsapp" width="70">
+            <img src="{{ asset("logo.png") }}" alt="Chat" width="70">
         </a>
 
         <div class="fixed-bottom chat-box-bottom d-none" id="chat-box">
             <div class="position-relative h-100">
-                <div class="bg-info p-2 text-end">
+                <div class="px-2 py-1 d-flex align-items-center justify-content-between bgc-32CD32">
+                    <img src="{{ asset("logo.png") }}" alt="Chat" width="80">
                     <button class="btn-close" onclick="document.getElementById('chat-box').classList.toggle('d-none')"></button>
                 </div>
-                <div class="app-chat px-2" id="app-chat"></div>
+                <div class="app-chat px-2" id="app-chat">
+                    <div class="mt-2 d-flex">
+                        <div class="app-chat-content bgc-32CD32 rounded p-2">
+                            <p class="m-0">Selamat datang di Vijipi Furnite! Ada yang bisa kami bantu?</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="position-absolute bottom-0 w-100">
                     <div class="input-group">
                         <input type="text" id="input-message" class="form-control rounded-0" placeholder="Type message..." aria-describedby="button-message">
@@ -270,7 +290,7 @@
         const answer = message => {
             return `
                 <div class="mt-2 d-flex">
-                    <div class="app-chat-content bg-info rounded p-2">
+                    <div class="app-chat-content bgc-32CD32 rounded p-2">
                         <p class="m-0">${message}</p>
                     </div>
                 </div>
@@ -282,7 +302,7 @@
                 inputMessage.value = "";
                 appChat.insertAdjacentHTML("afterbegin", `
                     <div class="mt-2 d-flex justify-content-end">
-                        <div class="app-chat-content bg-info rounded p-2">
+                        <div class="app-chat-content bgc-87CEFA rounded p-2">
                             <p class="m-0">${message}</p>
                         </div>
                     </div>

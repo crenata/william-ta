@@ -26,10 +26,11 @@ class ProductController extends Controller {
      */
     public function index(string $id = null) {
         $categories = Category::all();
+        $category = Category::find($id);
         $products = Product::with("category")->whereNull("offer_price");
         if (!empty($id)) $products = $products->where("category_id", $id);
-        $products = $products->paginate();
-        return view("user.product.view")->withCategories($categories)->withProducts($products)->withCategoryId((int) $id);
+        $products = $products->paginate(12);
+        return view("user.product.view")->withCategories($categories)->withCategory($category)->withProducts($products)->withCategoryId((int) $id);
     }
 
     /**
@@ -39,10 +40,11 @@ class ProductController extends Controller {
      */
     public function offer(string $id = null) {
         $categories = Category::all();
+        $category = Category::find($id);
         $products = Product::with("category")->whereNotNull("offer_price");
         if (!empty($id)) $products = $products->where("category_id", $id);
-        $products = $products->paginate();
-        return view("user.product.view")->withCategories($categories)->withProducts($products)->withCategoryId((int) $id);
+        $products = $products->paginate(12);
+        return view("user.product.view")->withCategories($categories)->withCategory($category)->withProducts($products)->withCategoryId((int) $id);
     }
 
     /**
