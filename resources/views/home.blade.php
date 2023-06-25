@@ -1,9 +1,10 @@
 @extends("layouts.app")
 
 @section("content")
-    <div class="">
+    
+        <img src="{{ asset("tentang.jpg") }}" alt="Logo" width="100%" height="600px">
+    
         <div class="container">
-            <img src="{{ asset("tentang.jpg") }}" alt="Logo" width="100%">
             <h2 class="mt-3 mb-0 text-center fw-bold">Mengapa Memilih Kami?</h2>
             <ul class="mt-4">
                 <li>
@@ -107,7 +108,7 @@
         </div>
 
         <div class="mt-5">
-            <img src="{{ asset("kelebihan.jpg") }}" alt="Logo" width="100%">
+            <img src="{{ asset("kelebihan.jpg") }}" alt="Logo" width="100%" height="600px">
         </div>
 
         <div class="container">

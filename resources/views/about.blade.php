@@ -1,10 +1,11 @@
 @extends("layouts.app")
 
 @section("content")
+<img src="{{ asset("about.jpg") }}" alt="Logo" width="100%" height="500">
     <div class="container">
+        <br>
         <h2 class="m-0 text-center fw-bold">About Us</h2>
         <div class="mt-4 text-center">
-            <img src="{{ asset("about.jpg") }}" alt="Logo" width="100%" height="500">
             <h5 class="mt-3 mb-0 px-5">Vijipi Furniture adalah Merk Furniture dan Aksesoris di Indonesia, di mana kami memproduksi produk-produk furniture dan Aksesoris yang berkualitas bagi keluarga Indonesia.</h5>
             <p class="mt-3 mb-0">Produk Vijipi didesain dan dikembangkan oleh tenaga yang berpengalaman dibidangnya sehingga menghasilkan produk berkualitas bagi kebutuhan konsumen.</p>
         </div>
