@@ -110,19 +110,30 @@
                     <div class="col-12 col-md-3 mt-3 mt-md-0">
                         <h4>Alamat Workshop</h4>
                         <br>
-                        <p class="m-0">Samping Divisi I Kostrad Blok G 128 RT.04 RW.01 Kel. Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat</p>
+                        <p class="m-0">Samping Divisi I Kostrad Blok G <br> 128 RT.04 RW.01 Kel. Kalibaru,<br> Kec. Cilodong, Kota Depok,<br> Jawa Barat</p>
                     </div>
-                    <div class="col-12 col-md-3 text-start text-md-end mt-3 mt-md-0">
+                    <div class="col-12 col-md-3 mt-3 mt-md-0">
                         <h4>Hubungi Kami</h4>
                         <br>
+                        <p class="m-0">
                         <a href="https://wa.me/6285217906821">0852-1790-6821</a>
+                        </p>
                     </div>
-                    <div class="col-12 col-md-3 text-start text-md-end mt-3 mt-md-0">
+                    <div class="col-12 col-md-3 mt-3 mt-md-0">
                         <h4>Ikuti Kami</h4>
                         <br>
+                        <p class="m-0">
                         <a href="https://www.instagram.com/vijipifurniture">@vijipifurniture</a>
+                        </p>
                     </div>
                 </div>
+            </div>
+            <!-- Copyright -->
+            <br>
+            <br>
+            <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.025);">
+                © 2023 Copyright:
+                <a>Vijipi Furniture</a>
             </div>
         </footer>
 </body>

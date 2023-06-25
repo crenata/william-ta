@@ -29,17 +29,17 @@
             @foreach($products as $key => $product)
                 <div class="col-12 col-md-3 {{ $key > 0 ? "mt-3 mt-md-0" : "" }}">
                     <a href="{{ route("product", $product->id) }}" class="card text-decoration-none text-body">
-                        <img src="{{ $product->images[0]->image }}" class="card-img-top" style="max-height: 150px" alt="{{ $product->name }}">
+                        <img src="{{ $product->images[0]->image }}" class="card-img-top" style="max-height: 200px" alt="{{ $product->name }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $product->name }}</h5>
-                            <p class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</p>
-                            <p class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp {{ number_format($product->offer_price) }}</p>
+                            <h4 class="card-title">{{ $product->name }}</h4>
+                            <h5 class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</h5>
+                            <h4 class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp {{ number_format($product->offer_price) }}</h4>
                         </div>
                     </a>
                 </div>
             @endforeach
         </div>
-
+        <br>
         {{ $products->links() }}
     </div>
 </div>
