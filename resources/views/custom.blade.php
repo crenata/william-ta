@@ -6,7 +6,7 @@
         <div class="row mt-4">
             @foreach($categories as $category)
                 <div class="col-12 col-md-3">
-                    <img src="{{ $category->image }}" alt="Category" class="w-100" style="height: 12rem; object-fit: cover;">
+                    <img src="{{ $category->image }}" alt="Category" class="w-100" style="height: 19rem; object-fit: cover;">
                 </div>
             @endforeach
         </div>
