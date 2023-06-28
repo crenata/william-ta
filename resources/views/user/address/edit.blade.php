@@ -12,6 +12,29 @@
                     @method("PUT")
 
                     <div class="">
+                        <label for="province_id">{{ __("Province") }}</label>
+                        <select
+                            id="province_id"
+                            class="form-select @error("province_id") is-invalid @enderror"
+                            name="province_id"
+                            required
+                            autocomplete="province_id"
+                            autofocus
+                            onchange="location = this.options[this.selectedIndex].value"
+                        >
+                            <option value="{{ route("address.edit", $address->id) }}">Choose Province</option>
+                            @foreach($provinces as $province)
+                                <option value="{{ route("address.edit", $address->id) }}?province={{ $province->id }}" {{ $province->id === old("province_id", empty($provinceId) ? $address->city->province->id : $provinceId) ? "selected" : "" }}>{{ $province->name }}</option>
+                            @endforeach
+                        </select>
+                        @error("province_id")
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="mt-3">
                         <label for="city_id">{{ __("City") }}</label>
                         <select
                             id="city_id"
@@ -21,7 +44,7 @@
                             autocomplete="city_id"
                             autofocus
                         >
-                            <option>Choose City</option>
+                            <option>{{ empty($cities) ? "Choose Province First" : "Choose City" }}</option>
                             @foreach($cities as $city)
                                 <option value="{{ $city->id }}" {{ $city->id === old("city_id", $address->city_id) ? "selected" : "" }}>{{ $city->name }}</option>
                             @endforeach

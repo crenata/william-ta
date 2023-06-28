@@ -24,11 +24,12 @@ class ProductController extends Controller {
      * @param string $id
      * @return mixed
      */
-    public function index(string $id = null) {
+    public function index(Request $request, string $id = null) {
         $categories = Category::all();
         $category = Category::find($id);
         $products = Product::with("category")->whereNull("offer_price");
         if (!empty($id)) $products = $products->where("category_id", $id);
+        if (!empty($request->search)) $products = $products->whereRaw("lower(name) like lower('%{$request->search}%')");
         $products = $products->paginate(12);
         return view("user.product.view")->withCategories($categories)->withCategory($category)->withProducts($products)->withCategoryId((int) $id);
     }
@@ -53,7 +54,7 @@ class ProductController extends Controller {
      */
     public function show(string $id) {
         $userAddresses = UserAddress::with("city")->where("user_id", auth()->id())->get();
-        $product = Product::with("category", "images")->findOrFail($id);
+        $product = Product::with("category", "images", "reviews.user", "reviews.attachments")->findOrFail($id);
         return view("user.product.show")->withProduct($product)->withUserAddresses($userAddresses);
     }
 

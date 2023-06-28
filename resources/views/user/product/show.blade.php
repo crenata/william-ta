@@ -117,7 +117,9 @@
                     </button>
                     <button
                         onclick="
-                            buy({{ $product }}, document.getElementById('quantity').value);
+                            @auth()
+                            buy({{ $product }}, document.getElementById('quantity').value, '{{ auth()->user()->name }}');
+                            @endauth
                             document.getElementById('product-form').setAttribute('action', '{{ route("buy") }}');
                             document.getElementById('product-form').submit();
                             "
@@ -145,5 +147,29 @@
         <h3 class="m-0 fw-bold">Description :</h3>
         <p class="m-0">{{ $product->description }}</p>
     </div>
+
+        <div class="mt-4">
+            <h3 class="m-0 fw-bold">Reviews :</h3>
+            @foreach($product->reviews as $review)
+                <div class="border rounded p-3 mt-3">
+                    <p class="m-0 fw-bold">{{ $review->user->name }}</p>
+                    <p class="m-0">{{ $review->review }}</p>
+                    <div class="row mt-3">
+                        @foreach($review->attachments as $attachment)
+                            <div class="col-12 col-md-2">
+                                @if(in_array(strtolower(pathinfo($attachment->attachment, PATHINFO_EXTENSION)), ["png", "jpg", "jpeg"]))
+                                    <img src="{{ $attachment->attachment }}" alt="Attachment" class="w-100">
+                                @else
+                                    <video width="100%" controls>
+                                        <source src="{{ $attachment->attachment }}" type="video/{{ pathinfo($attachment->attachment, PATHINFO_EXTENSION) }}">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
+        </div>
 </div>
 @endsection

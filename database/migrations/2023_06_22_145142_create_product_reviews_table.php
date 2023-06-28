@@ -14,12 +14,16 @@ return new class extends Migration
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("transaction_id")->nullable();
+            $table->unsignedBigInteger("custom_transaction_id")->nullable();
             $table->unsignedBigInteger("product_id");
             $table->longText("review");
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
+            $table->foreign("transaction_id")->references("id")->on("transactions")->onDelete("cascade");
+            $table->foreign("custom_transaction_id")->references("id")->on("custom_transactions")->onDelete("cascade");
             $table->foreign("product_id")->references("id")->on("products")->onDelete("cascade");
         });
     }

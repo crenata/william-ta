@@ -22,7 +22,10 @@ class HomeController extends Controller {
     public function custom() {
         $userAddresses = UserAddress::where("user_id", auth()->id())->get();
         $categories = Category::where("can_custom", true)->limit(4)->get();
-        $products = Product::with("images")->orderBy("name")->get();
+        $products = Product::with("images")
+            ->whereRelation("category", "can_custom", "=", true)
+            ->orderBy("name")
+            ->get();
         return view("custom")->withCategories($categories)->withProducts($products)->withUserAddresses($userAddresses);
     }
 }

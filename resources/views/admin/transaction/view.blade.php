@@ -59,17 +59,15 @@
                                             data-tx="{{ $transaction }}"
                                         >{{ __("Track") }}</a>
                                     </li>
-                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::SETTLEMENT)
-                                        <li>
-                                            <a
-                                                class="dropdown-item transaction-status"
-                                                href="javascript:void(0)"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#transaction-status-modal"
-                                                data-tx="{{ $transaction }}"
-                                            >{{ __("Edit Status") }}</a>
-                                        </li>
-                                    @endif
+                                    <li>
+                                        <a
+                                            class="dropdown-item transaction-status"
+                                            href="javascript:void(0)"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#transaction-status-modal"
+                                            data-tx="{{ $transaction }}"
+                                        >{{ __("Edit Status") }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>

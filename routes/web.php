@@ -50,6 +50,7 @@ Route::middleware("auth")->group(function () {
     Route::resource("address", \App\Http\Controllers\User\AddressController::class);
     Route::resource("wishlist", \App\Http\Controllers\User\WishlistController::class);
     Route::resource("cart", \App\Http\Controllers\User\CartController::class);
+    Route::resource("review", \App\Http\Controllers\User\ReviewController::class);
     Route::resource("transaction", \App\Http\Controllers\User\TransactionController::class)->names("transaction-user");
     Route::resource("custom", \App\Http\Controllers\User\CustomController::class)->names("custom-user");
 });

@@ -16,6 +16,8 @@ class ProductReview extends Model {
      */
     protected $fillable = [
         "user_id",
+        "transaction_id",
+        "custom_transaction_id",
         "product_id",
         "review",
         "created_at",
@@ -27,7 +29,19 @@ class ProductReview extends Model {
         return $this->belongsTo(User::class, "user_id");
     }
 
+    public function transaction() {
+        return $this->belongsTo(Transaction::class, "transaction_id");
+    }
+
+    public function customTransaction() {
+        return $this->belongsTo(CustomTransaction::class, "custom_transaction_id");
+    }
+
     public function product() {
         return $this->belongsTo(Product::class, "product_id");
+    }
+
+    public function attachments() {
+        return $this->hasMany(ProductReviewAttachment::class, "product_review_id");
     }
 }

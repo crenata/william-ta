@@ -21,6 +21,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Province</th>
                     <th>City</th>
                     <th>Name</th>
                     <th>Address</th>
@@ -30,6 +31,7 @@
                 <tbody>
                 @foreach($addresses as $address)
                     <tr>
+                        <td valign="middle">{{ $address->city->province->name }}</td>
                         <td valign="middle">{{ $address->city->name }}</td>
                         <td valign="middle">{{ $address->name }}</td>
                         <td valign="middle">{{ $address->address }}</td>

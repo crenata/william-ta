@@ -63,6 +63,17 @@
                                             >{{ __("Pay") }}</a>
                                         </li>
                                     @endif
+                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::ARRIVED && !$transaction->is_reviewed)
+                                        <li>
+                                            <a
+                                                class="dropdown-item review"
+                                                href="javascript:void(0)"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#review-modal"
+                                                data-tx="{{ $transaction }}"
+                                            >{{ __("Review") }}</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </td>
@@ -94,12 +105,81 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="review-modal" tabindex="-1" aria-labelledby="review-modal-label" aria-hidden="true">
+            <form method="POST" action="{{ route("review.store") }}" enctype="multipart/form-data" class="modal-dialog">
+                @csrf
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Review</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input
+                            id="transaction_id"
+                            type="number"
+                            class="form-control d-none"
+                            name="transaction_id"
+                            value=""
+                            required
+                            autocomplete="transaction_id"
+                            autofocus
+                        />
+
+                        <div class="">
+                            <label for="review">{{ __("Review") }}</label>
+                            <input
+                                id="review"
+                                type="text"
+                                class="form-control @error("review") is-invalid @enderror"
+                                name="review"
+                                value="{{ old("review") }}"
+                                required
+                                autocomplete="review"
+                                autofocus
+                            />
+                            @error("review")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mt-3">
+                            <label for="attachments">{{ __("Attachments") }}</label>
+                            <input
+                                id="attachments"
+                                type="file"
+                                class="form-control @error("attachments") is-invalid @enderror"
+                                name="attachments[]"
+                                value=""
+                                required
+                                autocomplete="attachments"
+                                accept="image/*,video/*"
+                                multiple
+                            />
+                            @error("attachments")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
         let title = document.getElementById("transaction-detail-modal-label");
         let tracking = document.getElementById("transaction-detail-tracking");
         let transactions = document.getElementsByClassName("transaction-detail");
+        let reviews = document.getElementsByClassName("review");
+        let transactionId = document.getElementById("transaction_id");
         const getStatus = status => {
             switch (status) {
                 case {{ \App\Constants\MidtransStatusConstant::SETTLEMENT }}:
@@ -150,6 +230,13 @@
                         </tr>
                     `);
                 });
+            }
+        }
+        for (let i = 0; i < reviews.length; i++) {
+            let review = reviews[i];
+            review.onclick = function () {
+                let data = JSON.parse(this.getAttribute("data-tx"));
+                transactionId.value = data.id;
             }
         }
     </script>

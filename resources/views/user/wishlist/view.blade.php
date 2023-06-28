@@ -18,6 +18,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Name</th>
                     <th class="text-end">Action</th>
                 </tr>
@@ -25,6 +26,9 @@
                 <tbody>
                 @foreach($wishlists as $wishlist)
                     <tr>
+                        <td valign="middle">
+                            <img src="{{ $wishlist->product->images[0]->image }}" alt="" width="40" height="40" style="object-fit: cover;">
+                        </td>
                         <td valign="middle">
                             <a href="{{ route("product", $wishlist->product->id) }}" class="text-decoration-none text-body">{{ $wishlist->product->name }}</a>
                         </td>

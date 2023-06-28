@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Province;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 
@@ -12,16 +13,21 @@ class AddressController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
-        $addresses = UserAddress::with("city")->where("user_id", auth()->id())->paginate();
+        $addresses = UserAddress::with("city.province")->where("user_id", auth()->id())->paginate();
         return view("user.address.view")->withAddresses($addresses);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {
-        $cities = City::all();
-        return view("user.address.add")->withCities($cities);
+    public function create(Request $request) {
+        $provinces = Province::all();
+        $cities = [];
+        if (!empty($request->province)) $cities = City::where("province_id", $request->province)->get();
+        return view("user.address.add")
+            ->withProvinces($provinces)
+            ->withProvinceId((int) $request->province)
+            ->withCities($cities);
     }
 
     /**
@@ -59,10 +65,16 @@ class AddressController extends Controller {
      * Show the form for editing the specified resource.
      * @param string $id
      */
-    public function edit(string $id) {
-        $address = UserAddress::where("user_id", auth()->id())->findOrFail($id);
-        $cities = City::all();
-        return view("user.address.edit")->withAddress($address)->withCities($cities);
+    public function edit(Request $request, string $id) {
+        $address = UserAddress::with("city.province")->where("user_id", auth()->id())->findOrFail($id);
+        $provinceId = $address->city->province->id;
+        $provinces = Province::all();
+        $cities = City::where("province_id", empty($request->province) ? $provinceId : $request->province)->get();
+        return view("user.address.edit")
+            ->withAddress($address)
+            ->withProvinces($provinces)
+            ->withProvinceId((int) $request->province)
+            ->withCities($cities);
     }
 
     /**

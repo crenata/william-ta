@@ -29,6 +29,10 @@ class Transaction extends Model {
         "deleted_at"
     ];
 
+    public function getIsReviewedAttribute() {
+        return $this->hasOne(ProductReview::class, "transaction_id")->exists();
+    }
+
     public function user() {
         return $this->belongsTo(User::class, "user_id");
     }

@@ -9,9 +9,16 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class StorageHelper extends Controller {
-    public static function save(Request $request, $field = "file", $directory = "root") {
+    public static function save(Request $request, $field = "file", $directory = "root", $customFilename = null) {
         if ($request->hasFile($field)) {
-            $file = Carbon::now()->format("Y-m-d-H-i") . "-$directory-" . Str::random(12) . "." . $request->file($field)->getClientOriginalExtension();
+            $file = Carbon::now()->format("Y-m-d-H-i") .
+                "-" .
+                basename($directory) .
+                "-" .
+                Str::random(12) .
+                "." .
+                $request->file($field)->getClientOriginalExtension();
+            if (!empty($customFilename) && is_string($customFilename)) $file = $customFilename;
             Storage::disk("public")->putFileAs($directory, $request->file($field), $file);
             return $file;
         } else if (!empty($request->input($field))) {

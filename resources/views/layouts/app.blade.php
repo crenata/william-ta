@@ -139,6 +139,11 @@
                         </li>
                     </ul>
 
+                    <form class="d-flex" role="search" action="{{ route("products") }}" method="GET">
+                        <input class="form-control me-2" type="search" name="search" placeholder="Search">
+                        <button class="btn btn-info" type="submit">Search</button>
+                    </form>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -254,7 +259,7 @@
             <br>
             <br>
             <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.025);">
-                © 2023 Copyright:
+                &copy; 2023 Copyright:
                 <a>Vijipi Furniture</a>
             </div>
         </footer>
@@ -360,13 +365,13 @@
             console.log("onmessage", event);
             let data = JSON.parse(event?.data);
             Toastify({
-                text: `Someone has bought ${data.name} ${new Intl.NumberFormat().format(data.quantity)}x at a price of Rp${new Intl.NumberFormat().format(data.quantity * (data.offer_price || data.price))}`,
+                text: `${data.username} has bought ${data.name} ${new Intl.NumberFormat().format(data.quantity)}x at a price of Rp${new Intl.NumberFormat().format(data.quantity * (data.offer_price || data.price))}`,
                 duration: 20000
             }).showToast();
         };
 
-        function buy(data, quantity) {
-            window.socket.send(JSON.stringify({...data, quantity}));
+        function buy(data, quantity, username) {
+            window.socket.send(JSON.stringify({...data, quantity, username}));
         }
     </script>
 </body>
