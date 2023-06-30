@@ -34,14 +34,12 @@ class CityController extends Controller {
     public function store(Request $request) {
         $this->validate($request, [
             "province_id" => "required|numeric|exists:provinces,id",
-            "name" => "required|string",
-            "fee" => "required|numeric|min:1"
+            "name" => "required|string"
         ]);
 
         City::create([
             "province_id" => $request->province_id,
-            "name" => $request->name,
-            "fee" => $request->fee
+            "name" => $request->name
         ]);
 
         return redirect()->route("city.index")->withStatus("Successfully added.");
@@ -73,14 +71,12 @@ class CityController extends Controller {
     public function update(Request $request, string $id) {
         $this->validate($request, [
             "province_id" => "required|numeric|exists:provinces,id",
-            "name" => "required|string",
-            "fee" => "required|numeric|min:1"
+            "name" => "required|string"
         ]);
 
         $city = City::findOrFail($id);
         $city->province_id = $request->province_id;
         $city->name = $request->name;
-        $city->fee = $request->fee;
         $city->save();
 
         return redirect()->route("city.index")->withStatus("Successfully edited.");
@@ -91,8 +87,8 @@ class CityController extends Controller {
      * @param string $id
      */
     public function destroy(string $id) {
-        $used = UserAddress::with("city")
-            ->whereRelation("city", "id", "=", $id)
+        $used = UserAddress::with("area.city")
+            ->whereRelation("area.city", "id", "=", $id)
             ->exists();
         if ($used) return redirect()->route("city.index")->withStatus("City is used by user.");
 

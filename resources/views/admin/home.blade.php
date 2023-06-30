@@ -2,33 +2,29 @@
 
 @section("content")
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">{{ __("Dashboard") }}</div>
+    <canvas id="chart" class="w-100"></canvas>
 
-                <div class="card-body">
-                    @if (session("status"))
-                        <div class="alert alert-success" role="alert">
-                            {{ session("status") }}
-                        </div>
-                    @endif
+    <script>
+        const ctx = document.getElementById('chart');
 
-                    {{ __("You are logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: {!! json_encode($labels) !!},
+                datasets: [{
+                    label: "# of Transactions",
+                    data: {!! json_encode($data) !!},
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 @endsection

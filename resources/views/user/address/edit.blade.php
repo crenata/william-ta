@@ -24,7 +24,7 @@
                         >
                             <option value="{{ route("address.edit", $address->id) }}">Choose Province</option>
                             @foreach($provinces as $province)
-                                <option value="{{ route("address.edit", $address->id) }}?province={{ $province->id }}" {{ $province->id === old("province_id", empty($provinceId) ? $address->city->province->id : $provinceId) ? "selected" : "" }}>{{ $province->name }}</option>
+                                <option value="{{ route("address.edit", $address->id) }}?province={{ $province->id }}" {{ $province->id === old("province_id", empty($provinceId) ? $address->area->city->province->id : $provinceId) ? "selected" : "" }}>{{ $province->name }}</option>
                             @endforeach
                         </select>
                         @error("province_id")
@@ -43,13 +43,36 @@
                             required
                             autocomplete="city_id"
                             autofocus
+                            onchange="location = this.options[this.selectedIndex].value"
                         >
                             <option>{{ empty($cities) ? "Choose Province First" : "Choose City" }}</option>
                             @foreach($cities as $city)
-                                <option value="{{ $city->id }}" {{ $city->id === old("city_id", $address->city_id) ? "selected" : "" }}>{{ $city->name }}</option>
+                                <option value="{{ route("address.edit", $address->id) }}?province={{ $provinceId }}&city={{ $city->id }}" {{ $city->id === old("city_id", $address->area->city_id) ? "selected" : "" }}>{{ $city->name }}</option>
                             @endforeach
                         </select>
                         @error("city_id")
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="mt-3">
+                        <label for="area_id">{{ __("Area") }}</label>
+                        <select
+                            id="area_id"
+                            class="form-select @error("area_id") is-invalid @enderror"
+                            name="area_id"
+                            required
+                            autocomplete="area_id"
+                            autofocus
+                        >
+                            <option>{{ empty($areas) ? "Choose City First" : "Choose Area" }}</option>
+                            @foreach($areas as $area)
+                                <option value="{{ $area->id }}" {{ $area->id === old("area_id", $address->area->id) ? "selected" : "" }}>{{ $area->name }}</option>
+                            @endforeach
+                        </select>
+                        @error("area_id")
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -93,6 +116,28 @@
                         @enderror
                     </div>
 
+                    <div id="map" class="w-100 mt-3" style="height: 400px;"></div>
+
+                    <input
+                        id="latitude"
+                        type="text"
+                        class="form-control d-none"
+                        name="latitude"
+                        value=""
+                        required
+                        autocomplete="latitude"
+                    />
+
+                    <input
+                        id="longitude"
+                        type="text"
+                        class="form-control d-none"
+                        name="longitude"
+                        value=""
+                        required
+                        autocomplete="longitude"
+                    />
+
                     <div class="mt-3 text-center">
                         <a href="{{ route("address.index") }}" class="btn btn-secondary">
                             {{ __("Cancel") }}
@@ -105,5 +150,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(function() {
+            $("#map").locationpicker({
+                location: {
+                    latitude: {{ $address->latitude }},
+                    longitude: {{ $address->longitude }}
+                },
+                radius: 0,
+                inputBinding: {
+                    latitudeInput: $("#latitude"),
+                    longitudeInput: $("#longitude")
+                },
+                enableAutocomplete: true
+            });
+        });
+    </script>
 </div>
 @endsection

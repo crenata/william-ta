@@ -1,13 +1,13 @@
-@extends("layouts.app")
+@extends("admin.layouts.app")
 
 @section("content")
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
-            <h4 class="">{{ __("Manage Address") }}</h4>
+            <h4 class="">{{ __("Manage Area") }}</h4>
 
             <div class="mt-4">
-                <form method="POST" action="{{ route("address.store") }}">
+                <form method="POST" action="{{ route("area.store") }}">
                     @csrf
 
                     <div class="">
@@ -21,9 +21,9 @@
                             autofocus
                             onchange="location = this.options[this.selectedIndex].value"
                         >
-                            <option value="{{ route("address.create") }}">Choose Province</option>
+                            <option value="{{ route("area.create") }}">Choose Province</option>
                             @foreach($provinces as $province)
-                                <option value="{{ route("address.create", ["province" => $province->id]) }}" {{ $province->id === old("province_id", $provinceId) ? "selected" : "" }}>{{ $province->name }}</option>
+                                <option value="{{ route("area.create", ["province" => $province->id]) }}" {{ $province->id === old("province_id", $provinceId) ? "selected" : "" }}>{{ $province->name }}</option>
                             @endforeach
                         </select>
                         @error("province_id")
@@ -42,36 +42,13 @@
                             required
                             autocomplete="city_id"
                             autofocus
-                            onchange="location = this.options[this.selectedIndex].value"
                         >
                             <option>{{ empty($cities) ? "Choose Province First" : "Choose City" }}</option>
                             @foreach($cities as $city)
-                                <option value="{{ url()->full() }}&city={{ $city->id }}" {{ $city->id === old("city_id", $cityId) ? "selected" : "" }}>{{ $city->name }}</option>
+                                <option value="{{ $city->id }}" {{ $city->id === old("city_id") ? "selected" : "" }}>{{ $city->name }}</option>
                             @endforeach
                         </select>
                         @error("city_id")
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <div class="mt-3">
-                        <label for="area_id">{{ __("Area") }}</label>
-                        <select
-                            id="area_id"
-                            class="form-select @error("area_id") is-invalid @enderror"
-                            name="area_id"
-                            required
-                            autocomplete="area_id"
-                            autofocus
-                        >
-                            <option>{{ empty($areas) ? "Choose City First" : "Choose Area" }}</option>
-                            @foreach($areas as $area)
-                                <option value="{{ $area->id }}" {{ $area->id === old("area_id") ? "selected" : "" }}>{{ $area->name }}</option>
-                            @endforeach
-                        </select>
-                        @error("area_id")
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -98,47 +75,26 @@
                     </div>
 
                     <div class="mt-3">
-                        <label for="address">{{ __("Address") }}</label>
+                        <label for="fee">{{ __("Fee") }}</label>
                         <input
-                            id="address"
-                            type="text"
-                            class="form-control @error("address") is-invalid @enderror"
-                            name="address"
-                            value="{{ old("address") }}"
+                            id="fee"
+                            type="number"
+                            class="form-control @error("fee") is-invalid @enderror"
+                            name="fee"
+                            value="{{ old("fee") }}"
                             required
-                            autocomplete="address"
+                            autocomplete="fee"
+                            autofocus
                         />
-                        @error("address")
+                        @error("fee")
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
 
-                    <div id="map" class="w-100 mt-3" style="height: 400px;"></div>
-
-                    <input
-                        id="latitude"
-                        type="text"
-                        class="form-control d-none"
-                        name="latitude"
-                        value=""
-                        required
-                        autocomplete="latitude"
-                    />
-
-                    <input
-                        id="longitude"
-                        type="text"
-                        class="form-control d-none"
-                        name="longitude"
-                        value=""
-                        required
-                        autocomplete="longitude"
-                    />
-
                     <div class="mt-3 text-center">
-                        <a href="{{ route("address.index") }}" class="btn btn-secondary">
+                        <a href="{{ route("area.index") }}" class="btn btn-secondary">
                             {{ __("Cancel") }}
                         </a>
                         <button type="submit" class="btn btn-primary ms-3">
@@ -149,22 +105,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(function() {
-            $("#map").locationpicker({
-                location: {
-                    latitude: -6.177007,
-                    longitude: 106.827115
-                },
-                radius: 0,
-                inputBinding: {
-                    latitudeInput: $("#latitude"),
-                    longitudeInput: $("#longitude")
-                },
-                enableAutocomplete: true
-            });
-        });
-    </script>
 </div>
 @endsection

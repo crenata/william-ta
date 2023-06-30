@@ -13,6 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Scripts -->
     @vite(["resources/sass/app.scss", "resources/js/app.js"])
 
@@ -50,6 +52,9 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route("admin.home") }}">{{ __("Dashboard") }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route("transaction.index") }}">{{ __("Transactions") }}</a>
                             </li>
                             <li class="nav-item">
@@ -66,6 +71,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route("city.index") }}">{{ __("Cities") }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route("area.index") }}">{{ __("Areas") }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route("admin.index") }}">{{ __("Manage Admin") }}</a>

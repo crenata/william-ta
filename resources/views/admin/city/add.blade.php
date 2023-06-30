@@ -51,25 +51,6 @@
                         @enderror
                     </div>
 
-                    <div class="mt-3">
-                        <label for="fee">{{ __("Fee") }}</label>
-                        <input
-                            id="fee"
-                            type="number"
-                            class="form-control @error("fee") is-invalid @enderror"
-                            name="fee"
-                            value="{{ old("fee") }}"
-                            required
-                            autocomplete="fee"
-                            autofocus
-                        />
-                        @error("fee")
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
                     <div class="mt-3 text-center">
                         <a href="{{ route("city.index") }}" class="btn btn-secondary">
                             {{ __("Cancel") }}

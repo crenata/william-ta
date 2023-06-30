@@ -23,7 +23,6 @@
                 <tr>
                     <th>Province</th>
                     <th>Name</th>
-                    <th>Fee</th>
                     <th class="text-end">Action</th>
                 </tr>
                 </thead>
@@ -32,7 +31,6 @@
                     <tr>
                         <td valign="middle">{{ $city->province->name }}</td>
                         <td valign="middle">{{ $city->name }}</td>
-                        <td valign="middle">Rp{{ number_format($city->fee) }}</td>
                         <td valign="middle" class="text-end">
                             <div class="dropdown">
                                 <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,16 @@ Route::get("return-policy", function () {
 })->name("return-policy");
 
 Auth::routes();
+Route::get("email/verify", function () {
+    return view("auth.verify-email");
+})->middleware("auth")->name("verification.notice");
+Route::get("email/verify/{id}/{hash}", function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect()->route("home")->withStatus("Please verify email first!");
+})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify', function () {
+    return redirect()->route("home")->withStatus("Please verify email first!");
+})->middleware('auth')->name('verification.notice');
 
 Route::get("product-custom", [\App\Http\Controllers\HomeController::class, "custom"])->name("product.custom");
 Route::get("products", [\App\Http\Controllers\User\ProductController::class, "index"])->name("products");
@@ -43,7 +54,7 @@ Route::get("offers", [\App\Http\Controllers\User\ProductController::class, "offe
 Route::get("offers/{id}", [\App\Http\Controllers\User\ProductController::class, "offer"])->name("offers.category");
 Route::get("product/{id}", [\App\Http\Controllers\User\ProductController::class, "show"])->name("product");
 
-Route::middleware("auth")->group(function () {
+Route::middleware(["auth", "verified"])->group(function () {
     Route::get("account", [\App\Http\Controllers\User\AccountController::class, "index"])->name("account.index");
     Route::put("account", [\App\Http\Controllers\User\AccountController::class, "update"])->name("account.update");
     Route::post("buy", [\App\Http\Controllers\User\ProductController::class, "buy"])->name("buy");
@@ -58,9 +69,7 @@ Route::prefix("admin")->group(function () {
     Route::get("/", [\App\Http\Controllers\Auth\LoginController::class, "showLoginFormAdmin"])->name("admin.login");
     Route::post("/", [\App\Http\Controllers\Auth\LoginController::class, "loginAdmin"]);
     Route::middleware("auth:admin")->group(function () {
-        Route::get("dashboard", function () {
-            return view("admin.home");
-        });
+        Route::get("dashboard", [\App\Http\Controllers\Admin\DashboardController::class, "index"])->name("admin.home");
         Route::resource("admin", \App\Http\Controllers\Admin\AdminController::class);
         Route::resource("category", \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource("product", \App\Http\Controllers\Admin\ProductController::class);
@@ -68,5 +77,6 @@ Route::prefix("admin")->group(function () {
         Route::resource("custom", \App\Http\Controllers\Admin\CustomController::class);
         Route::resource("province", \App\Http\Controllers\Admin\ProvinceController::class);
         Route::resource("city", \App\Http\Controllers\Admin\CityController::class);
+        Route::resource("area", \App\Http\Controllers\Admin\AreaController::class);
     });
 });

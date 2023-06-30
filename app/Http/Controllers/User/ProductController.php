@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Constants\MidtransStatusConstant;
 use App\Helpers\MidtransHelper;
 use App\Http\Controllers\Controller;
+use App\Jobs\Invoice;
 use App\Models\Category;
 use App\Models\CustomTransaction;
 use App\Models\CustomTransactionHistory;
@@ -53,7 +54,7 @@ class ProductController extends Controller {
      * @param string $id
      */
     public function show(string $id) {
-        $userAddresses = UserAddress::with("city")->where("user_id", auth()->id())->get();
+        $userAddresses = UserAddress::with("area.city.province")->where("user_id", auth()->id())->get();
         $product = Product::with("category", "images", "reviews.user", "reviews.attachments")->findOrFail($id);
         return view("user.product.show")->withProduct($product)->withUserAddresses($userAddresses);
     }
@@ -71,11 +72,11 @@ class ProductController extends Controller {
         ]);
 
         return DB::transaction(function () use ($request) {
-            $userAddress = UserAddress::with("city")->findOrFail($request->user_address_id);
+            $userAddress = UserAddress::with("area")->findOrFail($request->user_address_id);
             $product = Product::with("images")->findOrFail($request->product_id);
             if (($product->stock - $request->quantity) >= 0) {
                 $grossAmount = empty($product->offer_price) ? $product->price : $product->offer_price;
-                $grossAmount += $userAddress->city->fee;
+                $grossAmount += $userAddress->area->fee;
 
                 $midtrans = MidtransHelper::getSnapUrl($grossAmount);
 
@@ -116,10 +117,10 @@ class ProductController extends Controller {
 
         return DB::transaction(function () use ($request) {
             $status = MidtransStatusConstant::getValueByName(strtoupper($request->transaction_status));
-            $transaction = Transaction::where("invoice_number", $request->order_id)->first();
+            $transaction = Transaction::with("user")->where("invoice_number", $request->order_id)->first();
 
             if (empty($transaction->id)) {
-                $transaction = CustomTransaction::where("invoice_number", $request->order_id)->first();
+                $transaction = CustomTransaction::with("user")->where("invoice_number", $request->order_id)->first();
                 if (!empty($transaction->id)) {
                     CustomTransactionHistory::create([
                         "custom_transaction_id" => $transaction->id,
@@ -131,12 +132,14 @@ class ProductController extends Controller {
                     "transaction_id" => $transaction->id,
                     "status" => $status
                 ]);
+            }
 
-                if ($status === MidtransStatusConstant::SETTLEMENT) {
-                    $product = Product::findOrFail($transaction->product_id);
-                    $product->stock--;
-                    $product->save();
-                }
+            if ($status === MidtransStatusConstant::SETTLEMENT) {
+                $product = Product::findOrFail($transaction->product_id);
+                $product->stock--;
+                $product->save();
+
+                dispatch(new Invoice($transaction));
             }
 
             return response()->json([

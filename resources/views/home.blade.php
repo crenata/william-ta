@@ -1,9 +1,19 @@
 @extends("layouts.app")
 
 @section("content")
-    
+    <div class="container">
+        @auth()
+            @if (!auth()->user()->email_verified_at)
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Please verify email first!
+                    <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        @endauth
+    </div>
+
         <img src="{{ asset("tentang.jpg") }}" alt="Logo" width="100%" height="600px">
-    
+
         <div class="container">
             <h2 class="mt-3 mb-0 text-center fw-bold">Mengapa Memilih Kami?</h2>
             <ul class="mt-4">

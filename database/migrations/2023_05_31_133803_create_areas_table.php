@@ -9,14 +9,15 @@ return new class extends Migration  {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("province_id");
+            $table->unsignedBigInteger("city_id");
             $table->string("name");
+            $table->unsignedBigInteger("fee");
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign("province_id")->references("id")->on("provinces")->onDelete("cascade");
+            $table->foreign("city_id")->references("id")->on("cities")->onDelete("cascade");
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration  {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('areas');
     }
 };

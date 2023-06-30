@@ -82,8 +82,8 @@ class ProvinceController extends Controller {
      * @param string $id
      */
     public function destroy(string $id) {
-        $used = UserAddress::with("city.province")
-            ->whereRelation("city.province", "id", "=", $id)
+        $used = UserAddress::with("area.city.province")
+            ->whereRelation("area.city.province", "id", "=", $id)
             ->exists();
         if ($used) return redirect()->route("province.index")->withStatus("Province is used by user.");
 

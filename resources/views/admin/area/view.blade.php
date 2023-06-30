@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("admin.layouts.app")
 
 @section("content")
 <div class="container">
@@ -11,8 +11,8 @@
         @endif
 
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="">{{ __("Manage Address") }}</h4>
-            <a class="btn btn-sm btn-primary" href="{{ route("address.create") }}">
+            <h4 class="">{{ __("Manage Area") }}</h4>
+            <a class="btn btn-sm btn-primary" href="{{ route("area.create") }}">
                 {{ __("Add") }}
             </a>
         </div>
@@ -23,28 +23,26 @@
                 <tr>
                     <th>Province</th>
                     <th>City</th>
-                    <th>Area</th>
                     <th>Name</th>
-                    <th>Address</th>
+                    <th>Fee</th>
                     <th class="text-end">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($addresses as $address)
+                @foreach($areas as $area)
                     <tr>
-                        <td valign="middle">{{ $address->area->city->province->name }}</td>
-                        <td valign="middle">{{ $address->area->city->name }}</td>
-                        <td valign="middle">{{ $address->area->name }}</td>
-                        <td valign="middle">{{ $address->name }}</td>
-                        <td valign="middle">{{ $address->address }}</td>
+                        <td valign="middle">{{ $area->city->province->name }}</td>
+                        <td valign="middle">{{ $area->city->name }}</td>
+                        <td valign="middle">{{ $area->name }}</td>
+                        <td valign="middle">Rp{{ number_format($area->fee) }}</td>
                         <td valign="middle" class="text-end">
                             <div class="dropdown">
                                 <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ __("Action") }}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="{{ route("address.edit", $address->id) }}">{{ __("Edit") }}</a></li>
-                                    <form method="POST" action="{{ route("address.destroy", $address->id) }}">
+                                    <li><a class="dropdown-item" href="{{ route("area.edit", $area->id) }}">{{ __("Edit") }}</a></li>
+                                    <form method="POST" action="{{ route("area.destroy", $area->id) }}">
                                         @csrf
                                         @method("DELETE")
                                         <li><button class="dropdown-item" type="submit">{{ __("Delete") }}</button></li>
@@ -58,7 +56,7 @@
             </table>
         </div>
 
-        {{ $addresses->links() }}
+        {{ $areas->links() }}
     </div>
 </div>
 @endsection

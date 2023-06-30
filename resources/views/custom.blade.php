@@ -60,7 +60,7 @@
                             >
                                 <option>Choose Address</option>
                                 @foreach($userAddresses as $userAddress)
-                                    <option value="{{ $userAddress->id }}" {{ $userAddress->id === old("user_address_id") ? "selected" : "" }}>{{ $userAddress->name }} (Rp{{ number_format($userAddress->city->fee) }})</option>
+                                    <option value="{{ $userAddress->id }}" {{ $userAddress->id === old("user_address_id") ? "selected" : "" }}>{{ $userAddress->name }} (Rp{{ number_format($userAddress->area->fee) }})</option>
                                 @endforeach
                             </select>
                             @error("user_address_id")
