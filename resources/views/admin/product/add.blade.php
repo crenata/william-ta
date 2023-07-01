@@ -92,12 +92,8 @@
                         <label for="description">{{ __("Description") }}</label>
                         <textarea
                             id="description"
-                            rows="4"
-                            class="form-control @error("description") is-invalid @enderror"
                             name="description"
-                            required
                             autocomplete="description"
-                            autofocus
                         >{{ old("description") }}</textarea>
                         @error("description")
                         <span class="invalid-feedback" role="alert">
@@ -232,5 +228,9 @@
             </div>
         </div>
     </div>
+
+    <script>
+        ClassicEditor.create(document.querySelector("#description"));
+    </script>
 </div>
 @endsection

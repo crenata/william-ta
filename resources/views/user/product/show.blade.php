@@ -145,7 +145,7 @@
 
     <div class="mt-4">
         <h3 class="m-0 fw-bold">Description :</h3>
-        <p class="m-0">{{ $product->description }}</p>
+        <p class="m-0">{!! $product->description !!}</p>
     </div>
 
         <div class="mt-4">
