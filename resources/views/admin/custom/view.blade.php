@@ -55,6 +55,15 @@
                                             class="dropdown-item transaction-detail"
                                             href="javascript:void(0)"
                                             data-bs-toggle="modal"
+                                            data-bs-target="#transaction-location-modal"
+                                            data-tx="{{ $transaction }}"
+                                        >{{ __("View Location") }}</a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item transaction-detail"
+                                            href="javascript:void(0)"
+                                            data-bs-toggle="modal"
                                             data-bs-target="#transaction-detail-modal"
                                             data-tx="{{ $transaction }}"
                                         >{{ __("Track") }}</a>
@@ -110,7 +119,23 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="transaction-status-modal" tabindex="-1" aria-labelledby="transaction-status-modal-label" aria-hidden="true">
+            <div class="modal fade" id="transaction-location-modal" tabindex="-1" aria-labelledby="transaction-location-modal-label" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Location</h1>
+                            <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="map-container">
+                            <div id="map" class="w-100" style="height: 400px;"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="transaction-status-modal" tabindex="-1" aria-labelledby="transaction-status-modal-label" aria-hidden="true">
             <div class="modal-dialog">
                 <form method="POST" action="{{ route("custom.store") }}" class="modal-content">
                     @csrf
@@ -299,6 +324,20 @@
                             <td>${getStatus(value.status)}</td>
                         </tr>
                     `);
+                });
+
+                document.getElementById("map").remove();
+                let map = document.createElement("div");
+                map.id = "map";
+                map.style.height = "32rem";
+                document.getElementById("map-container").appendChild(map);
+                $("#map").locationpicker({
+                    location: {
+                        latitude: data.user_address.latitude,
+                        longitude: data.user_address.longitude
+                    },
+                    radius: 0,
+                    enableAutocomplete: true
                 });
             }
         }

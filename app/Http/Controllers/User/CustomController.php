@@ -67,7 +67,7 @@ class CustomController extends Controller {
         ]);
 
         return DB::transaction(function () use ($request) {
-            $userAddress = UserAddress::with("city")->findOrFail($request->user_address_id);
+            $userAddress = UserAddress::with("area")->findOrFail($request->user_address_id);
             $product = Product::with("images")->findOrFail($request->product_id);
 
             $now = Carbon::now();
@@ -83,7 +83,7 @@ class CustomController extends Controller {
                 "user_address_id" => $userAddress->id,
                 "product_id" => $product->id,
                 "invoice_number" => $invoiceNumber,
-                "gross_amount" => $userAddress->city->fee,
+                "gross_amount" => $userAddress->area->fee,
                 "size" => $request->size,
                 "color" => $request->color,
                 "material" => $request->material,

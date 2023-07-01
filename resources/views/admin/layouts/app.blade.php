@@ -15,6 +15,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env("MAPS_API_KEY") }}&sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
+
     <!-- Scripts -->
     @vite(["resources/sass/app.scss", "resources/js/app.js"])
 
