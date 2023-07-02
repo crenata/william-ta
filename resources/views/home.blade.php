@@ -2,6 +2,12 @@
 
 @section("content")
     <div class="container">
+        @if (session("status"))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session("status") }}
+                <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         @auth()
             @if (!auth()->user()->email_verified_at)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">

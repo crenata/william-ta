@@ -39,6 +39,17 @@ class LoginController extends Controller {
         $this->middleware("guest:admin")->except("logout");
     }
 
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user) {
+        return redirect()->intended("/")->withStatus("Selamat Datang, $user->name!");
+    }
+
     public function showLoginFormAdmin() {
         return view("admin.auth.login");
     }
