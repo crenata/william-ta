@@ -13,6 +13,20 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset("style.css") }}" />
+    <link rel="stylesheet" href="{{ asset("font-awesome.min.css") }}" />
+    <link rel="stylesheet" href="{{ asset("themify-icons.css") }}" />
+    <link rel="stylesheet" href="{{ asset("flaticon.css") }}" />
+    <link rel="stylesheet" href="{{ asset("owl.carousel.min.css") }}" />
+    <link rel="stylesheet" href="{{ asset("simpleLightbox.css") }}" />
+    <link rel="stylesheet" href="{{ asset("nice-select.css") }}" />
+    <link rel="stylesheet" href="{{ asset("animate.css") }}" />
+    <link rel="stylesheet" href="{{ asset("jquery-ui.css") }}" />
+    <!-- main css -->
+    <link rel="stylesheet" href="{{ asset("style1.css") }}" />
+    <link rel="stylesheet" href="{{ asset("responsive.css") }}" />
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -108,125 +122,143 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm fixed-top nav-user">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url("/") }}">
-                    <img src="{{ asset("logo.png") }}" alt="Logo" width="120">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __("Toggle navigation") }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("products") }}">{{ __("Products") }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("offers") }}">{{ __("Promo") }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("product.custom") }}">{{ __("Custom") }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("faq") }}">{{ __("FAQ") }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("about") }}">{{ __("About Us") }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("contact") }}">{{ __("Contact Us") }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("return-policy") }}">{{ __("Return Policy") }}</a>
-                        </li>
-                    </ul>
-
-                    <form class="d-flex" role="search" action="{{ route("products") }}" method="GET">
-                        <input class="form-control me-2" type="search" name="search" placeholder="Search">
-                        <button class="btn btn-info" type="submit">Search</button>
-                    </form>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has("login"))
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route("login") }}">{{ __("Login") }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has("register"))
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route("register") }}">{{ __("Register") }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("account.index") }}"
-                                    >
-                                        {{ __("Account") }}
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("address.index") }}"
-                                    >
-                                        {{ __("Addresses") }}
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("wishlist.index") }}"
-                                    >
-                                        {{ __("Wishlists") }}
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("cart.index") }}"
-                                    >
-                                        {{ __("Carts") }}
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("transaction-user.index") }}"
-                                    >
-                                        {{ __("Transactions") }}
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("custom-user.index") }}"
-                                    >
-                                        {{ __("Custom Transactions") }}
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("logout") }}"
-                                        onclick="
-                                            event.preventDefault();
-                                            document.getElementById('logout-form').submit();
-                                        "
-                                    >
-                                        {{ __("Logout") }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route("logout") }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+    <header class="header_area">
+    <div class="top_menu">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="float-left">
+              <p>Phone: +01 256 25 235</p>
+              <p>email: info@eiser.com</p>
             </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="float-right">
+              <ul class="right_side">
+                <li>
+                  <a href="cart.html">
+                    gift card
+                  </a>
+                </li>
+                <li>
+                  <a href="tracking.html">
+                    track order
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main_menu">
+      
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <a class="navbar-brand logo_h" href="index.html">
+            <img src="{{ asset("logo.png") }}" width="163" />
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
+            <div class="row w-100 mr-0">
+              <div class="col-lg-7 pr-0">
+                <ul class="nav navbar-nav center_nav pull-right">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item submenu dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">Shop</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="category.html">Shop Category</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="single-product.html">Product Details</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="checkout.html">Product Checkout</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Shopping Cart</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item submenu dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">Blog</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="single-blog.html">Blog Details</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item submenu dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">Pages</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="tracking.html">Tracking</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="elements.html">Elements</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-lg-5 pr-0">
+                <ul class="nav navbar-nav navbar-right right_nav pull-right">
+                  <li class="nav-item">
+                    <a href="#" class="icons">
+                      <i class="ti-search" aria-hidden="true"></i>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="#" class="icons">
+                      <i class="ti-shopping-cart"></i>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="#" class="icons">
+                      <i class="ti-user" aria-hidden="true"></i>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="#" class="icons">
+                      <i class="ti-heart" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </nav>
+      </div>
+    </div>
+  </header>
 
         <main class="py-4 app-content">
             @yield("content")
@@ -378,5 +410,21 @@
             window.socket.send(JSON.stringify({...data, quantity, username}));
         }
     </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset("stellar.js") }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.js" integrity="sha512-X1tKd7cMiYWKVDmFHSn+z1Y+BdrNG6Qvrhj3emg0ZOMsAuzug4ET9PmOFBgYyvcjI1hHGxhkQ1IXhOd9obYeFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha512-NqYds8su6jivy1/WLoW8x1tZMRD7/1ZfhWG/jcRQLOzV1k1rIODCpMgoBnar5QXshKJGV7vi0LXLNXPoFsM5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" integrity="sha512-kfs3Dt9u9YcOiIt4rNcPUzdyNNO9sVGQPiZsub7ywg6lRW5KuK1m145ImrFHe3LMWXHndoKo2YRXWy8rnOcSKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset("isotope-min.js") }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxchimp/1.3.0/jquery.ajaxchimp.min.js" integrity="sha512-5yj5elY9u6clGe9/97bj3jJlw8+O9XSv/tbme8m/LR8cKnnT5+rR8qHW/UYQ/MozLg3cvTHeYIpM5kRktASSbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js" integrity="sha512-+/4Q+xH9jXbMNJzNt2eMrYv/Zs2rzr4Bu2thfvzlshZBvH1g+VGP55W8b6xfku0c0KknE7qlbBPhDPrHFbgK4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset("mail-script.js") }}"></script>
+    <script src="{{ asset("theme.js") }}"></script>
 </body>
 </html>
