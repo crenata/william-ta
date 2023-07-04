@@ -18,9 +18,6 @@
     <link rel="stylesheet" href="{{ asset("font-awesome.min.css") }}" />
     <link rel="stylesheet" href="{{ asset("themify-icons.css") }}" />
     <link rel="stylesheet" href="{{ asset("flaticon.css") }}" />
-    <link rel="stylesheet" href="{{ asset("owl.carousel.min.css") }}" />
-    <link rel="stylesheet" href="{{ asset("simpleLightbox.css") }}" />
-    <link rel="stylesheet" href="{{ asset("nice-select.css") }}" />
     <link rel="stylesheet" href="{{ asset("animate.css") }}" />
     <link rel="stylesheet" href="{{ asset("jquery-ui.css") }}" />
     <!-- main css -->
@@ -133,7 +130,7 @@
             </div>
           </div>
           <div class="col-lg-5">
-            <div class="float-right">
+            <div class="text-end">
               <ul class="right_side">
                 <li>
                   <a href="cart.html">
@@ -157,7 +154,7 @@
       </div>
     </div>
     <div class="main_menu">
-      
+
         <nav class="navbar navbar-expand-lg navbar-light w-100">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -411,20 +408,6 @@
         }
     </script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset("stellar.js") }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.js" integrity="sha512-X1tKd7cMiYWKVDmFHSn+z1Y+BdrNG6Qvrhj3emg0ZOMsAuzug4ET9PmOFBgYyvcjI1hHGxhkQ1IXhOd9obYeFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha512-NqYds8su6jivy1/WLoW8x1tZMRD7/1ZfhWG/jcRQLOzV1k1rIODCpMgoBnar5QXshKJGV7vi0LXLNXPoFsM5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" integrity="sha512-kfs3Dt9u9YcOiIt4rNcPUzdyNNO9sVGQPiZsub7ywg6lRW5KuK1m145ImrFHe3LMWXHndoKo2YRXWy8rnOcSKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset("isotope-min.js") }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxchimp/1.3.0/jquery.ajaxchimp.min.js" integrity="sha512-5yj5elY9u6clGe9/97bj3jJlw8+O9XSv/tbme8m/LR8cKnnT5+rR8qHW/UYQ/MozLg3cvTHeYIpM5kRktASSbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js" integrity="sha512-+/4Q+xH9jXbMNJzNt2eMrYv/Zs2rzr4Bu2thfvzlshZBvH1g+VGP55W8b6xfku0c0KknE7qlbBPhDPrHFbgK4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset("mail-script.js") }}"></script>
-    <script src="{{ asset("theme.js") }}"></script>
 </body>
 </html>
