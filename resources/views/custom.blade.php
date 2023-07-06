@@ -1,12 +1,33 @@
 @extends("layouts.app")
 
 @section("content")
+<!-- Start Hero Section -->
+<div class="hero">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-5">
+						<div class="intro-excerpt">
+							<h1>Custom <span class="d-block">Products</span></h1>
+							<br><br><br><br><br><br>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="hero-img-wrap">
+							<img src="{{ asset("sofa4.png") }}" class="img-fluid">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Hero Section -->
+<br>
     <div class="container">
-        <h3 class="m-0 text-center fw-bold">Produk apa saja yang bisa di custom?</h3>
+        <h2 class="m-0 text-center fw-bold">Produk apa saja yang bisa di custom?</h2>
         <div class="row mt-4">
             @foreach($categories as $category)
                 <div class="col-12 col-md-3">
                     <img src="{{ $category->image }}" alt="Category" class="w-100" style="height: 19rem; object-fit: cover;">
+                    <h3 class="text-center fw-bold">{{ $category->name }}</h3>
                 </div>
             @endforeach
         </div>
@@ -16,7 +37,7 @@
         </div>
 
         <div class="mt-5">
-            <h3 class="m-0 text-center fw-bold">Pemesanan Custom</h3>
+            <h2 class="m-0 text-center fw-bold">Pemesanan Custom</h2>
             <form method="POST" action="{{ route("custom-user.store") }}" enctype="multipart/form-data">
                 @csrf
 
@@ -44,7 +65,7 @@
                             @enderror
 
                             <div class="mt-2">
-                                <img src="{{ asset("logo.png") }}" id="product-image" alt="Image" class="w-100" style="object-fit: contain; height: 13.75rem;">
+                                <img src="{{ asset("logo.png") }}" id="product-image" alt="Image" class="w-100" style="object-fit: contain; height: 19rem;">
                             </div>
                         </div>
 
@@ -81,7 +102,7 @@
                                 required
                                 autocomplete="model"
                                 autofocus
-                                placeholder="Modern Minimalis"
+                                placeholder="Contoh : Modern Minimalis"
                             />
                             @error("model")
                             <span class="invalid-feedback" role="alert">
@@ -102,7 +123,7 @@
                                 required
                                 autocomplete="size"
                                 autofocus
-                                placeholder="10cm x 20cm x 30cm"
+                                placeholder="Contoh : 10cm x 20cm x 30cm"
                             />
                             @error("size")
                             <span class="invalid-feedback" role="alert">
@@ -122,7 +143,7 @@
                                 required
                                 autocomplete="color"
                                 autofocus
-                                placeholder="Dark Brown"
+                                placeholder="Contoh : Dark Brown"
                             />
                             @error("color")
                             <span class="invalid-feedback" role="alert">
@@ -142,7 +163,7 @@
                                 required
                                 autocomplete="material"
                                 autofocus
-                                placeholder="Kayu Mahoni"
+                                placeholder="Contoh : Kayu Mahoni"
                             />
                             @error("material")
                             <span class="invalid-feedback" role="alert">
@@ -162,6 +183,7 @@
                                 required
                                 autocomplete="quantity"
                                 autofocus
+                                placeholder="Minimal 1"
                             />
                             @error("quantity")
                             <span class="invalid-feedback" role="alert">
@@ -171,7 +193,7 @@
                         </div>
 
                         <div class="mt-3">
-                            <label for="estimate">{{ __("Estimate") }}</label>
+                            <label for="estimate">{{ __("Perkiraan Waktu Pembuatan") }}</label>
                             <input
                                 id="estimate"
                                 type="text"
@@ -190,7 +212,7 @@
                         </div>
 
                         <div class="mt-3">
-                            <label for="estimate_price">{{ __("Estimate Price") }}</label>
+                            <label for="estimate_price">{{ __("Perkiraan Harga") }}</label>
                             <input
                                 id="estimate_price"
                                 type="text"
@@ -201,6 +223,7 @@
                                 autocomplete="estimate_price"
                                 autofocus
                             />
+                            <p>*bisa lebih atau kurang dari perkiraan</p>
                             @error("estimate_price")
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -211,7 +234,7 @@
                 </div>
 
                 <div class="mt-3 text-center">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-success">
                         {{ __("Order") }}
                     </button>
                 </div>

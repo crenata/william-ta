@@ -2,12 +2,6 @@
 
 @section("content")
     <div class="container">
-        @if (session("status"))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session("status") }}
-                <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
         @auth()
             @if (!auth()->user()->email_verified_at)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -18,39 +12,91 @@
         @endauth
     </div>
 
-        <img src="{{ asset("tentang.jpg") }}" alt="Logo" width="100%" height="600px">
+		<!-- Start Hero Section -->
+		<div class="hero">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-5">
+						<div class="intro-excerpt">
+							<h1>Vijipi Furniture</h1>
+                            <br>
+							<p class="mb-4"><font size="4">Selalu memberi yang terbaik bagi customer kami, yaitu memproduksi produk berkualitas dengan desain terkini serta pelayanan yang prima</font></p>
+							<br>
+                            <p><a href="{{ route("products") }}" class="btn btn-secondary me-2"><b>Explore</b></a></p>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="hero-img-wrap">
+							<img src="{{ asset("sofa4.png") }}" class="img-fluid">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Hero Section -->
 
-        <div class="container">
-            <h2 class="mt-3 mb-0 text-center fw-bold">Mengapa Memilih Kami?</h2>
-            <ul class="mt-4">
-                <li>
-                    <h4 class="m-0">Desain Terkini (Up to Date)</h4>
-                    <p class="m-0">Desain 3D custome made, dengan model klasik, modern serta minimalis.</p>
-                </li>
-                <li class="mt-2">
-                    <h4 class="m-0">Bahan Baku Terbaik (Raw Material)</h4>
-                    <p class="m-0">Menggunakan bahan baku, pelengkap, dan aksesoris kualitas terbaik.</p>
-                </li>
-                <li class="mt-2">
-                    <h4 class="m-0">Tenaga Profesional</h4>
-                    <p class="m-0">Berpengalaman di bidang Furniture lebih dari 18 tahun.</p>
-                </li>
-                <li class="mt-2">
-                    <h4 class="m-0">Harga terjangkau dan kompetitif</h4>
-                    <p class="m-0">Kami berikan harga terbaik sesuai dengan bahan baku serta kualitas produk.</p>
-                </li>
-                <li class="mt-2">
-                    <h4 class="m-0">Delivery Service</h4>
-                    <p class="m-0">Kami mengutamakan kualitas produk serta ketepatan pengiriman (delivery) produk ke
-                        customer.</p>
-                </li>
-                <li class="mt-2">
-                    <h4 class="m-0">After Sales Service</h4>
-                    <p class="m-0">Produk bergaransi dan kami menerima complain, kritik serta saran demi perbaikan produk
-                        serta pelayanan lebih baik kepada customer setia kami.</p>
-                </li>
-            </ul>
+		<!-- Start Why Choose Us Section -->
+		<div class="why-choose-section">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-6">
+						<h1 class="section-title fw-bold">Why Choose Us</h1>
+						<div class="row my-5">
+							<div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+										<img src="{{ asset("truck.svg") }}" alt="Image" class="imf-fluid">
+									</div>
+									<h3 class="fw-bold"><font size="4">Delivery Service</font></h3>
+									<p><font size="3">Kami mengutamakan kualitas produk serta ketepatan pengiriman (delivery) produk ke customer.</font></p>
+								</div>
+							</div>
 
+							<div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+										<img src="{{ asset("bag.svg") }}" alt="Image" class="imf-fluid">
+									</div>
+									<h3>Easy to Shop</h3>
+									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+								</div>
+							</div>
+
+							<div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+										<img src="{{ asset("support.svg") }}" alt="Image" class="imf-fluid">
+									</div>
+									<h3>24/7 Support</h3>
+									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+								</div>
+							</div>
+
+							<div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+										<img src="{{ asset("return.svg") }}" alt="Image" class="imf-fluid">
+									</div>
+									<h3>Hassle Free Returns</h3>
+									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="col-lg-5">
+						<div class="img-wrap">
+							<img src="{{ asset("why-choose-us-img.jpg") }}" alt="Image" class="img-fluid">
+						</div>
+					</div>
+
+				</div>
+			</div>
+			</div>
+<!-- End Why Choose Us Section -->
+	
+		<div class="container">
             <div class="mt-5">
                 <div class="mt-4">
                     <h3 class="m-0 text-center fw-bold">Recommended Products</h3>
@@ -123,9 +169,38 @@
             </div>
         </div>
 
-        <div class="mt-5">
-            <img src="{{ asset("kelebihan.jpg") }}" alt="Logo" width="100%" height="600px">
-        </div>
+		<!-- Start We Help Section -->
+		<div class="we-help-section">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-7 mb-5 mb-lg-0">
+						<div class="imgs-grid">
+							<div class="grid grid-1"><img src="{{ asset("img-grid-1.jpg") }}" alt="Untree.co"></div>
+							<div class="grid grid-2"><img src="{{ asset("img-grid-2.jpg") }}" alt="Untree.co"></div>
+							<div class="grid grid-3"><img src="{{ asset("img-grid-3.jpg") }}" alt="Untree.co"></div>
+						</div>
+					</div>
+					<div class="col-lg-5 ps-lg-5">
+						<h2 class="section-title fw-bold mb-4">Kelebihan dan Kekurangan Furniture Custom Made</h2>
+						<p><font size="5">Kelebihan Furniture Custom Made:</font></p>
+
+						<ul class="list-unstyled custom-list my-4">
+							<li><font size="3">Model dan style fleksibel sesuai selera dan keinginan</font></li>
+							<li><font size="3">Bahan baku terbaik sesuai dengan pilihan</font></li>
+							<li><font size="3">Sesuai kebutuhan, keinginan, dan ukuran yang ada</font></li>
+						</ul>
+
+                        <p><font size="5">Kekurangan Furniture Custom Made:</font></p>
+
+						<ul class="list-unstyled custom-list my-4">
+							<li><font size="3">Membutuhkan waktu produksi lebih lama</font></li>
+							<li><font size="3">Harga relatif sedikit lebih mahal</font></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End We Help Section -->
 
         <div class="container">
             <div class="mt-5">
