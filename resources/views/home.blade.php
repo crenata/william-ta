@@ -65,20 +65,40 @@
 							<div class="col-6 col-md-6">
 								<div class="feature">
 									<div class="icon">
-										<img src="{{ asset("support.svg") }}" alt="Image" class="imf-fluid">
+										<img src="{{ asset("wood1.svg") }}" alt="Image" class="imf-fluid" width="40" height="40">
 									</div>
-									<h3>24/7 Support</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<h3 class="fw-bold"><font size="4">Bahan Baku Terbaik</font></h3>
+									<p><font size="3">Menggunakan bahan baku, pelengkap, dan aksesoris kualitas terbaik.</font></p>
 								</div>
 							</div>
 
 							<div class="col-6 col-md-6">
 								<div class="feature">
 									<div class="icon">
-										<img src="{{ asset("return.svg") }}" alt="Image" class="imf-fluid">
+                                    <img src="{{ asset("worker.svg") }}" alt="Image" class="imf-fluid" width="40" height="40">
 									</div>
-									<h3>Hassle Free Returns</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<h3 class="fw-bold"><font size="4">Tenaga Profesional</font></h3>
+									<p><font size="3">Berpengalaman di bidang Furniture lebih dari 18 tahun.</font></p>
+								</div>
+							</div>
+
+                            <div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+                                    <img src="{{ asset("garansi.svg") }}" alt="Image" class="imf-fluid" width="40" height="40">
+									</div>
+									<h3 class="fw-bold"><font size="4">After Sales Service</font></h3>
+									<p><font size="3">Produk bergaransi dan kami menerima complain, kritik, serta saran demi perbaikan produk dan pelayanan kami.</font></p>
+								</div>
+							</div>
+
+                            <div class="col-6 col-md-6">
+								<div class="feature">
+									<div class="icon">
+                                    <img src="{{ asset("discount.svg") }}" alt="Image" class="imf-fluid" width="40" height="40">
+									</div>
+									<h3 class="fw-bold"><font size="4">Harga terjangkau dan kompetitif</font></h3>
+									<p><font size="3">Kami berikan harga terbaik sesuai dengan bahan baku serta kualitas produk.</font></p>
 								</div>
 							</div>
 
@@ -87,7 +107,7 @@
 
 					<div class="col-lg-5">
 						<div class="img-wrap">
-							<img src="{{ asset("why-choose-us-img.jpg") }}" alt="Image" class="img-fluid">
+							<img src="{{ asset("whychooseus.jpg") }}" alt="Image" class="img-fluid">
 						</div>
 					</div>
 
