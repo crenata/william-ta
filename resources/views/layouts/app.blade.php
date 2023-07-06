@@ -190,37 +190,31 @@
                                         class="dropdown-item"
                                         href="{{ route("account.index") }}"
                                     >
-                                    <img src="{{ asset("akun.svg") }}" width="30">{{ __("Account") }}
+                                    <img src="{{ asset("akun1.svg") }}" width="30" height="25">{{ __("Account") }}
                                     </a>
                                     <a
                                         class="dropdown-item"
                                         href="{{ route("address.index") }}"
                                     >
-                                        {{ __("Addresses") }}
+                                    <img src="{{ asset("location.svg") }}" width="30" height="25">{{ __("Addresses") }}
                                     </a>
                                     <a
                                         class="dropdown-item"
                                         href="{{ route("wishlist.index") }}"
                                     >
-                                        {{ __("Wishlists") }}
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("cart.index") }}"
-                                    >
-                                        {{ __("Carts") }}
+                                    <img src="{{ asset("love.svg") }}" width="30" height="27">{{ __("Wishlists") }}
                                     </a>
                                     <a
                                         class="dropdown-item"
                                         href="{{ route("transaction-user.index") }}"
                                     >
-                                        {{ __("Transactions") }}
+                                    <img src="{{ asset("order.svg") }}" width="31" height="23">{{ __("Order") }}
                                     </a>
                                     <a
                                         class="dropdown-item"
                                         href="{{ route("custom-user.index") }}"
                                     >
-                                        {{ __("Custom Transactions") }}
+                                    <img src="{{ asset("custom.svg") }}" width="30" height="25">{{ __("Custom Order") }}
                                     </a>
                                     <a
                                         class="dropdown-item"
@@ -230,7 +224,7 @@
                                             document.getElementById('logout-form').submit();
                                         "
                                     >
-                                        {{ __("Logout") }}
+                                    <img src="{{ asset("logout.svg") }}" width="31" height="27">{{ __("Logout") }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route("logout") }}" method="POST" class="d-none">

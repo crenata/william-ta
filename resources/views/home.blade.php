@@ -55,10 +55,10 @@
 							<div class="col-6 col-md-6">
 								<div class="feature">
 									<div class="icon">
-										<img src="{{ asset("bag.svg") }}" alt="Image" class="imf-fluid">
+										<img src="{{ asset("design.svg") }}" alt="Image" class="imf-fluid" width="40" height="40">
 									</div>
-									<h3>Easy to Shop</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<h3 class="fw-bold"><font size="4">Design Up to Date</font></h3>
+									<p><font size="3">Desain 3D custome made, dengan model klasik, modern serta minimalis.</font></p>
 								</div>
 							</div>
 
