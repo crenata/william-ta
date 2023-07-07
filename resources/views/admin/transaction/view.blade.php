@@ -46,7 +46,7 @@
                         <td valign="middle">{{ $transaction->created_at }}</td>
                         <td valign="middle" class="text-end">
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ __("Action") }}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">

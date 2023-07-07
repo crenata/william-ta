@@ -60,10 +60,10 @@
                                 <label class="form-check-label" for="remember">{{ __("Remember Me") }}</label>
             </div>
             <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">{{ __("Login") }}</button>  
+                            <button type="submit" class="btn btn-success">{{ __("Log in") }}</button>  
                             <br><br>
                             <a href="{{ route("admin.login") }}">
-                                    {{ __("Login as Admin?") }}
+                                    {{ __("Log in as Admin?") }}
                             </a>                               
                             @if (Route::has("password.request"))
                                 <a class="btn btn-link" href="{{ route("password.request") }}">

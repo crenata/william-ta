@@ -163,7 +163,7 @@
                         @guest
                             @if (Route::has("login"))
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route("login") }}">{{ __("Login") }}</a>
+                                    <a class="nav-link text-white" href="{{ route("login") }}">{{ __("Log in") }}</a>
                                 </li>
                             @endif
 
@@ -173,6 +173,12 @@
                                 </li>
                             @endif
                         @else
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route("wishlist.index") }}">
+                                        <img src="{{ asset("love.png") }}" width="29" height="29">
+                                    </a>
+                                </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route("cart.index") }}">
@@ -197,12 +203,6 @@
                                         href="{{ route("address.index") }}"
                                     >
                                     <img src="{{ asset("location.svg") }}" width="30" height="25">{{ __("Addresses") }}
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route("wishlist.index") }}"
-                                    >
-                                    <img src="{{ asset("love.svg") }}" width="30" height="27">{{ __("Wishlists") }}
                                     </a>
                                     <a
                                         class="dropdown-item"
@@ -273,8 +273,7 @@
             <br>
             <br>
             <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.025);">
-                &copy; 2023 Copyright:
-                <a>Vijipi Furniture</a>
+                <a><font size="3">Vijipi Furniture</font></a>
             </div>
         </footer>
 

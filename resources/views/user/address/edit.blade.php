@@ -1,10 +1,11 @@
 @extends("layouts.app")
 
 @section("content")
+<br>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
-            <h4 class="">{{ __("Manage Address") }}</h4>
+            <h3 class="fw-bold">{{ __("Manage Address") }}</h3>
 
             <div class="mt-4">
                 <form method="POST" action="{{ route("address.update", $address->id) }}">

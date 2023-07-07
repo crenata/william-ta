@@ -10,22 +10,23 @@
             </div>
         @endif
 
+        <br>
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="">{{ __("Custom Transactions") }}</h4>
+            <h3 class="fw-bold">{{ __("Custom Transactions") }}</h3>
         </div>
 
         <div class="table-responsive mt-4" style="height: 75vh;">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Address</th>
-                    <th>Name</th>
-                    <th>Invoice Number</th>
-                    <th class="text-end">Quantity</th>
-                    <th class="text-end">Gross Amount</th>
-                    <th>Status</th>
-                    <th>Purchased At</th>
-                    <th class="text-end">Action</th>
+                    <th><font size="3">Address</font></th>
+                    <th><font size="3">Name</font></th>
+                    <th><font size="3">Invoice Number</font></th>
+                    <th class="text-end"><font size="3">Quantity</font></th>
+                    <th class="text-end"><font size="3">Gross Amount</font></th>
+                    <th><font size="3">Status</font></th>
+                    <th><font size="3">Purchased At</font></th>
+                    <th class="text-end"><font size="3">Action</font></th>
                 </tr>
                 </thead>
                 <tbody>

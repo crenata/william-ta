@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm nav-admin">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">
-                    <img src="{{ asset("logo.png") }}" alt="Logo" width="120">
+                    <img src="{{ asset("logo.png") }}" alt="Logo" width="164">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __("Toggle navigation") }}">
                     <span class="navbar-toggler-icon"></span>
@@ -86,7 +86,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <img src="{{ asset("user.svg") }}">&nbsp;&nbsp;{{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -98,7 +98,7 @@
                                             document.getElementById('logout-form').submit();
                                         "
                                     >
-                                        {{ __("Logout") }}
+                                    <img src="{{ asset("logout.svg") }}" width="31" height="27">{{ __("Logout") }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route("logout") }}" method="POST" class="d-none">
@@ -146,8 +146,7 @@
             <br>
             <br>
             <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.025);">
-                © 2023 Copyright:
-                <a>Vijipi Furniture</a>
+                <a><font size="3">Vijipi Furniture</font></a>
             </div>
         </footer>
 </body>

@@ -32,9 +32,38 @@
             @endforeach
         </div>
 
-        <div class="mt-5">
-        <img src="{{ asset("kelebihan.jpg") }}" alt="Logo" width="100%">
-        </div>
+        <!-- Start We Help Section -->
+		<div class="we-help-section">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-7 mb-5 mb-lg-0">
+						<div class="imgs-grid">
+							<div class="grid grid-1"><img src="{{ asset("img-grid-1.jpg") }}" alt="Untree.co"></div>
+							<div class="grid grid-2"><img src="{{ asset("img-grid-2.jpg") }}" alt="Untree.co"></div>
+							<div class="grid grid-3"><img src="{{ asset("img-grid-3.jpg") }}" alt="Untree.co"></div>
+						</div>
+					</div>
+					<div class="col-lg-5 ps-lg-5">
+						<h2 class="section-title fw-bold mb-4">Kelebihan dan Kekurangan Furniture Custom Made</h2>
+						<p><font size="5">Kelebihan Furniture Custom Made:</font></p>
+
+						<ul class="list-unstyled custom-list my-4">
+							<li><font size="3">Model dan style fleksibel sesuai selera dan keinginan</font></li>
+							<li><font size="3">Bahan baku terbaik sesuai dengan pilihan</font></li>
+							<li><font size="3">Sesuai kebutuhan, keinginan, dan ukuran yang ada</font></li>
+						</ul>
+
+                        <p><font size="5">Kekurangan Furniture Custom Made:</font></p>
+
+						<ul class="list-unstyled custom-list my-4">
+							<li><font size="3">Membutuhkan waktu produksi lebih lama</font></li>
+							<li><font size="3">Harga relatif sedikit lebih mahal</font></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End We Help Section -->
 
         <div class="mt-5">
             <h2 class="m-0 text-center fw-bold">Pemesanan Custom</h2>

@@ -10,27 +10,28 @@
             </div>
         @endif
 
+        <br>
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="">{{ __("Manage Wishlist") }}</h4>
+            <h3 class="fw-bold">{{ __("Manage Wishlist") }}</h3>
         </div>
 
         <div class="table-responsive mt-4" style="height: 75vh;">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th class="text-end">Action</th>
+                    <th><font size="4">Image</font></th>
+                    <th><font size="4">Name</font></th>
+                    <th class="text-end"><font size="4">Action</font></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($wishlists as $wishlist)
                     <tr>
                         <td valign="middle">
-                            <img src="{{ $wishlist->product->images[0]->image }}" alt="" width="40" height="40" style="object-fit: cover;">
+                            <img src="{{ $wishlist->product->images[0]->image }}" alt="" width="150" height="150" style="object-fit: cover;">
                         </td>
                         <td valign="middle">
-                            <a href="{{ route("product", $wishlist->product->id) }}" class="text-decoration-none text-body">{{ $wishlist->product->name }}</a>
+                            <a href="{{ route("product", $wishlist->product->id) }}" class="text-decoration-none text-body"><font size="4">{{ $wishlist->product->name }}</font></a>
                         </td>
                         <td valign="middle" class="text-end">
                             <div class="dropdown">

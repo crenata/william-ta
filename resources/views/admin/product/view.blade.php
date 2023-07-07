@@ -12,7 +12,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <h4 class="">{{ __("Manage Product") }}</h4>
-            <a class="btn btn-sm btn-primary" href="{{ route("product.create") }}">
+            <a class="btn btn-sm btn-success" href="{{ route("product.create") }}">
                 {{ __("Add") }}
             </a>
         </div>
@@ -41,7 +41,7 @@
                         <td valign="middle" class="text-end">{{ number_format($product->total_purchased) }}</td>
                         <td valign="middle" class="text-end">
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ __("Action") }}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">

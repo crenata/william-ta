@@ -1,10 +1,11 @@
 @extends("layouts.app")
 
 @section("content")
+<br>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
-            <h4 class="">{{ __("Manage Address") }}</h4>
+            <h3 class="fw-bold">{{ __("Manage Address") }}</h3>
 
             <div class="mt-4">
                 <form method="POST" action="{{ route("address.store") }}">
@@ -138,10 +139,10 @@
                     />
 
                     <div class="mt-3 text-center">
-                        <a href="{{ route("address.index") }}" class="btn btn-secondary">
+                        <a href="{{ route("address.index") }}" class="btn btn-danger">
                             {{ __("Cancel") }}
                         </a>
-                        <button type="submit" class="btn btn-primary ms-3">
+                        <button type="submit" class="btn btn-success ms-3">
                             {{ __("Add") }}
                         </button>
                     </div>

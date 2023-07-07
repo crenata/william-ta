@@ -11,7 +11,7 @@
         @endif
 
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="">{{ __("Transactions") }}</h4>
+            <h4 class="">{{ __("Custom Transactions") }}</h4>
         </div>
 
         <div class="table-responsive mt-4" style="height: 75vh;">
@@ -46,7 +46,7 @@
                         <td valign="middle">{{ $transaction->created_at }}</td>
                         <td valign="middle" class="text-end">
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ __("Action") }}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">

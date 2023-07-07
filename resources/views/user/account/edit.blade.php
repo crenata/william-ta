@@ -1,6 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
+<br>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
@@ -11,7 +12,7 @@
                 </div>
             @endif
 
-            <h4 class="">{{ __("Account") }}</h4>
+            <h3 class="fw-bold">{{ __("My Account") }}</h3>
 
             <div class="mt-4">
                 <form method="POST" action="{{ route("account.update", $account->id) }}">
@@ -140,10 +141,10 @@
                     </div>
 
                     <div class="mt-3 text-center">
-                        <a href="{{ route("account.index") }}" class="btn btn-secondary">
+                        <a href="{{ route("account.index") }}" class="btn btn-danger">
                             {{ __("Cancel") }}
                         </a>
-                        <button type="submit" class="btn btn-primary ms-3">
+                        <button type="submit" class="btn btn-success ms-3">
                             {{ __("Edit") }}
                         </button>
                     </div>

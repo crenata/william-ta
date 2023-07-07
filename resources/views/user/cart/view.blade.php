@@ -10,28 +10,29 @@
             </div>
         @endif
 
+        <br>
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="">{{ __("Manage Cart") }}</h4>
+            <h3 class="fw-bold">{{ __("Manage Cart") }}</h3>
         </div>
 
         <div class="table-responsive mt-4" style="height: 75vh;">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th class="text-end">Action</th>
+                    <th><font size="4">Image</font></th>
+                    <th><font size="4">Name</font></th>
+                    <th><font size="4">Quantity</font></th>
+                    <th class="text-end"><font size="4">Action</font></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($carts as $cart)
                     <tr>
                         <td valign="middle">
-                            <img src="{{ $cart->product->images[0]->image }}" alt="" width="40" height="40" style="object-fit: cover;">
+                            <img src="{{ $cart->product->images[0]->image }}" alt="" width="150" height="150" style="object-fit: cover;">
                         </td>
                         <td valign="middle">
-                            <a href="{{ route("product", $cart->product->id) }}" class="text-decoration-none text-body">{{ $cart->product->name }}</a>
+                            <a href="{{ route("product", $cart->product->id) }}" class="text-decoration-none text-body"><font size="4">{{ $cart->product->name }}</font></a>
                         </td>
                         <td valign="middle">{{ number_format($cart->quantity) }}</td>
                         <td valign="middle" class="text-end">

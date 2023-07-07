@@ -25,7 +25,7 @@
     <div class="">
         <div class="row mt-3">
             <div class="col-12 col-md-3">
-                <label for="categoryId">{{ __("Category") }}</label>
+                <label for="categoryId"><font size="4">{{ __("Category") }}</font></label>
                 <select
                     id="categoryId"
                     class="form-select"

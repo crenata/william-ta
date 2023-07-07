@@ -10,8 +10,9 @@
             </div>
         @endif
 
+        <br>
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="">{{ __("Manage Address") }}</h4>
+            <h3 class="fw-bold">{{ __("Manage Address") }}</h3>
             <a class="btn btn-sm btn-primary" href="{{ route("address.create") }}">
                 {{ __("Add") }}
             </a>
@@ -21,12 +22,12 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Province</th>
-                    <th>City</th>
-                    <th>Area</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th class="text-end">Action</th>
+                    <th><font size="4">Province</font></th>
+                    <th><font size="4">City</font></th>
+                    <th><font size="4">Area</font></th>
+                    <th><font size="4">Name</font></th>
+                    <th><font size="4">Address</font></th>
+                    <th class="text-end"><font size="4">Action</font></th>
                 </tr>
                 </thead>
                 <tbody>
