@@ -47,7 +47,7 @@
             @foreach($products as $key => $product)
                 <div class="col-12 col-md-3 {{ $key > 0 ? "mt-3 mt-md-0" : "" }}">
                     <a href="{{ route("product", $product->id) }}" class="card text-decoration-none text-body">
-                        <img src="{{ $product->images[0]->image }}" class="card-img-top" style="max-height: 200px" alt="{{ $product->name }}">
+                        <img src="{{ $product->images[0]->image }}" class="card-img-top" alt="{{ $product->name }}" width="250px" height="250px">
                         <div class="card-body">
                             <h4 class="card-title">{{ $product->name }}</h4>
                             <h5 class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</h5>

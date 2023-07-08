@@ -40,7 +40,7 @@
 			<div class="container">
 				<div class="row justify-content-between">
 					<div class="col-lg-6">
-						<h1 class="section-title fw-bold">Why Choose Us</h1>
+						<h1 class="section-title fw-bold">Why Choose Us?</h1>
 						<div class="row my-5">
 							<div class="col-6 col-md-6">
 								<div class="feature">
@@ -119,7 +119,7 @@
 		<div class="container">
             <div class="mt-5">
                 <div class="mt-4">
-                    <h3 class="m-0 text-center fw-bold">Recommended Products</h3>
+                    <h2 class="m-0 text-center fw-bold">Recommended Products</h2>
                     <div id="recommended-products-carousel" class="carousel slide multi-carousel mt-4"
                          data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
@@ -154,7 +154,7 @@
                 </div>
                 <br>
                 <div class="mt-4">
-                    <h3 class="m-0 text-center fw-bold">New Products</h3>
+                    <h2 class="m-0 text-center fw-bold">New Products</h2>
                     <div id="new-products-carousel" class="carousel slide multi-carousel mt-4" data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
                             @foreach($newProducts as $key => $product)
