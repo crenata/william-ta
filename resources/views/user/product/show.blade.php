@@ -11,7 +11,7 @@
     @endif
 
     <div class="row">
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 offset-md-2">
             <img
                 src="{{ $product->images[0]->image }}"
                 alt="{{ $product->name }}"
@@ -33,7 +33,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-3">
             <h3 class="m-0 fw-bold">{{ $product->name }}</h3>
             <div class="mt-2">
                 <h5 class="m-0 fw-semibold {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp{{ number_format($product->price) }}</h5>
@@ -57,50 +57,46 @@
                     required
                 />
 
-                <div class="row mt-3">
-                    <div class="col-12 col-md-4">
-                        <div class="">
-                            <label for="user_address_id">{{ __("Address") }}</label>
-                            <select
-                                id="user_address_id"
-                                class="form-select @error("user_address_id") is-invalid @enderror"
-                                name="user_address_id"
-                                required
-                                autocomplete="user_address_id"
-                                autofocus
-                            >
-                                <option>Choose Address</option>
-                                @foreach($userAddresses as $userAddress)
-                                    <option value="{{ $userAddress->id }}" {{ $userAddress->id === old("user_address_id") ? "selected" : "" }}>{{ $userAddress->name }} (Rp{{ number_format($userAddress->area->fee) }})</option>
-                                @endforeach
-                            </select>
-                            @error("user_address_id")
-                            <span class="invalid-feedback" role="alert">
+                <div class="mt-3">
+                    <label for="user_address_id">{{ __("Address") }}</label>
+                    <select
+                        id="user_address_id"
+                        class="form-select @error("user_address_id") is-invalid @enderror"
+                        name="user_address_id"
+                        required
+                        autocomplete="user_address_id"
+                        autofocus
+                    >
+                        <option>Choose Address</option>
+                        @foreach($userAddresses as $userAddress)
+                            <option value="{{ $userAddress->id }}" {{ $userAddress->id === old("user_address_id") ? "selected" : "" }}>{{ $userAddress->name }} (Rp{{ number_format($userAddress->area->fee) }})</option>
+                        @endforeach
+                    </select>
+                    @error("user_address_id")
+                    <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
-                        </div>
+                    @enderror
+                </div>
 
-                        <div class="mt-3">
-                            <label for="quantity">{{ __("Quantity") }}</label>
-                            <input
-                                id="quantity"
-                                type="number"
-                                class="form-control @error("quantity") is-invalid @enderror"
-                                name="quantity"
-                                value="{{ old("quantity") }}"
-                                autocomplete="quantity"
-                                autofocus
-                                min="1"
-                                required
-                            />
-                            @error("quantity")
-                            <span class="invalid-feedback" role="alert">
+                <div class="mt-3">
+                    <label for="quantity">{{ __("Quantity") }}</label>
+                    <input
+                        id="quantity"
+                        type="number"
+                        class="form-control @error("quantity") is-invalid @enderror"
+                        name="quantity"
+                        value="{{ old("quantity") }}"
+                        autocomplete="quantity"
+                        autofocus
+                        min="1"
+                        required
+                    />
+                    @error("quantity")
+                    <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
-                        </div>
-                    </div>
+                    @enderror
                 </div>
 
                 <div class="mt-3">
