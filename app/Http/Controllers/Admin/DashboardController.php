@@ -25,7 +25,7 @@ class DashboardController extends Controller {
             ->selectRaw("detail_data.id, detail_data.status")
             ->toSql();
         $selects = [
-            "date_format(created_at, '%M') as label",
+            "to_char(created_at, 'Mon') as label",
             "extract(month from created_at) as month",
             "extract(year from created_at) as year",
             "sum(gross_amount) as total"
@@ -36,8 +36,8 @@ class DashboardController extends Controller {
         $orderBy = "month";
         if ($request->filter === "weekly") {
             $selects = [
-                "week(created_at) as label",
-                "week(created_at) as week",
+                "to_char(created_at, 'W') as label",
+                "to_char(created_at, 'W') as week",
                 "extract(month from created_at) as month",
                 "sum(gross_amount) as total"
             ];
@@ -48,7 +48,7 @@ class DashboardController extends Controller {
         }
         if ($request->filter === "daily") {
             $selects = [
-                "date_format(created_at, '%d') as label",
+                "to_char(created_at, 'DD') as label",
                 "extract(day from created_at) as day",
                 "extract(month from created_at) as month",
                 "sum(gross_amount) as total"

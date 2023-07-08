@@ -21,7 +21,7 @@ class TransactionController extends Controller {
         $detailData = DB::table("transaction_histories as detail_data")
             ->selectRaw("detail_data.id, detail_data.status")
             ->toSql();
-        $transactions = Transaction::with("latestHistory", "histories", "user", "userAddress")
+        $transactions = Transaction::with("latestHistory", "histories", "images", "attachments", "user", "userAddress")
             ->select("transactions.*")
             ->leftJoinSub(
                 $detailIds,

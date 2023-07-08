@@ -62,6 +62,9 @@ Route::middleware(["auth", "verified"])->group(function () {
     Route::resource("wishlist", \App\Http\Controllers\User\WishlistController::class);
     Route::resource("cart", \App\Http\Controllers\User\CartController::class);
     Route::resource("review", \App\Http\Controllers\User\ReviewController::class);
+    Route::resource("custom-review", \App\Http\Controllers\User\CustomReviewController::class);
+    Route::resource("refund", \App\Http\Controllers\User\RefundController::class);
+    Route::resource("custom-refund", \App\Http\Controllers\User\CustomRefundController::class);
     Route::resource("transaction", \App\Http\Controllers\User\TransactionController::class)->names("transaction-user");
     Route::resource("custom", \App\Http\Controllers\User\CustomController::class)->names("custom-user");
 });

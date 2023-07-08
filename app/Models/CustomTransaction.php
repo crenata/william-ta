@@ -25,10 +25,15 @@ class CustomTransaction extends Model {
         "color",
         "material",
         "quantity",
+        "reason",
         "created_at",
         "updated_at",
         "deleted_at"
     ];
+
+    public function getIsReviewedAttribute() {
+        return $this->hasOne(ProductReview::class, "custom_transaction_id")->exists();
+    }
 
     public function user() {
         return $this->belongsTo(User::class, "user_id");
@@ -44,6 +49,10 @@ class CustomTransaction extends Model {
 
     public function images() {
         return $this->hasMany(CustomTransactionImage::class, "custom_transaction_id");
+    }
+
+    public function attachments() {
+        return $this->hasMany(CustomTransactionAttachment::class, "custom_transaction_id");
     }
 
     public function histories() {

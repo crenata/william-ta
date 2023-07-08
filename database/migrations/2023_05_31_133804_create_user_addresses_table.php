@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->unsignedBigInteger("area_id");
             $table->string("name");
             $table->longText("address");
-            $table->unsignedDouble("latitude");
-            $table->unsignedDouble("longitude");
+            $table->double("latitude", 11, 8);
+            $table->double("longitude", 11, 8);
             $table->timestamps();
             $table->softDeletes();
 

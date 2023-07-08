@@ -24,6 +24,7 @@ class Transaction extends Model {
         "invoice_number",
         "gross_amount",
         "snap_url",
+        "reason",
         "created_at",
         "updated_at",
         "deleted_at"
@@ -47,6 +48,10 @@ class Transaction extends Model {
 
     public function images() {
         return $this->hasMany(TransactionImage::class, "transaction_id");
+    }
+
+    public function attachments() {
+        return $this->hasMany(TransactionAttachment::class, "transaction_id");
     }
 
     public function histories() {

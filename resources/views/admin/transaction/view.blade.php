@@ -77,6 +77,17 @@
                                             data-tx="{{ $transaction }}"
                                         >{{ __("Edit Status") }}</a>
                                     </li>
+                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::REQUEST_RETURN)
+                                        <li>
+                                            <a
+                                                class="dropdown-item refund"
+                                                href="javascript:void(0)"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#refund-modal"
+                                                data-tx="{{ $transaction }}"
+                                            >{{ __("View Refund") }}</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </td>
@@ -100,6 +111,27 @@
                             <table class="table table-borderless">
                                 <tbody id="transaction-detail-tracking"></tbody>
                             </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="refund-modal" tabindex="-1" aria-labelledby="refund-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="refund-modal-label">Modal title</h1>
+                        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="m-0 fw-bold">Reason :</h4>
+                        <p class="m-0" id="reason"></p>
+                        <div class="mt-3">
+                            <h4 class="m-0 fw-bold">Attachments</h4>
+                            <div id="attachments" class="row"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -183,6 +215,9 @@
         let currentStatus = document.getElementById("current-status");
         let transactions = document.getElementsByClassName("transaction-detail");
         let statuses = document.getElementsByClassName("transaction-status");
+        let refunds = document.getElementsByClassName("refund");
+        let reason = document.getElementById("reason");
+        let attachments = document.getElementById("attachments");
         const getStatus = status => {
             switch (status) {
                 case {{ \App\Constants\MidtransStatusConstant::SETTLEMENT }}:
@@ -291,6 +326,33 @@
                 let data = JSON.parse(this.getAttribute("data-tx"));
                 transactionId.value = data.id;
                 currentStatus.textContent = getStatusName(data.latest_history.status);
+            }
+        }
+        for (let i = 0; i < refunds.length; i++) {
+            let refund = refunds[i];
+            refund.onclick = function () {
+                let data = JSON.parse(this.getAttribute("data-tx"));
+                reason.textContent = data.reason;
+                attachments.innerHTML = "";
+                data.attachments.forEach(value => {
+                    let content = "";
+                    let ext = value.attachment.split(".").pop().toLowerCase();
+                    if (["png", "jpg", "jpeg"].includes(ext)) {
+                        content = `<img src="${value.attachment}" alt="Attachment" class="w-100">`;
+                    } else {
+                        content = `
+                            <video width="100%" controls>
+                                <source src="${value.attachment}" type="video/${ext}">
+                                Your browser does not support the video tag.
+                            </video>
+                        `;
+                    }
+                    attachments.insertAdjacentHTML("afterbegin", `
+                        <div class="col-12 col-md-3">
+                            ${content}
+                        </div>
+                    `);
+                });
             }
         }
     </script>

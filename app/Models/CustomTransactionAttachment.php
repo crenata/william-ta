@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TransactionImage extends Model {
+class CustomTransactionAttachment extends Model {
     use HasFactory, SoftDeletes;
 
     /**
@@ -15,18 +15,18 @@ class TransactionImage extends Model {
      * @var array<int, string>
      */
     protected $fillable = [
-        "transaction_id",
-        "image",
+        "custom_transaction_id",
+        "attachment",
         "created_at",
         "updated_at",
         "deleted_at"
     ];
 
-    public function getImageAttribute() {
-        return env("APP_URL") . "/storage/products/" . $this->attributes["image"];
+    public function getAttachmentAttribute() {
+        return env("APP_URL") . "/storage/transactions/customs/attachments/" . $this->attributes["attachment"];
     }
 
     public function transaction() {
-        return $this->belongsTo(Transaction::class, "transaction_id");
+        return $this->belongsTo(Transaction::class, "custom_transaction_id");
     }
 }

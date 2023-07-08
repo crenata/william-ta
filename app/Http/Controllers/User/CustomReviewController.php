@@ -6,11 +6,11 @@ use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\ProductReview;
 use App\Models\ProductReviewAttachment;
-use App\Models\Transaction;
+use App\Models\CustomTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ReviewController extends Controller {
+class CustomReviewController extends Controller {
     /**
      * Store a newly created resource in storage.
      * @param Request $request
@@ -26,10 +26,10 @@ class ReviewController extends Controller {
         ]);
 
         return DB::transaction(function () use ($request) {
-            $transaction = Transaction::findOrFail($request->transaction_id);
+            $transaction = CustomTransaction::findOrFail($request->transaction_id);
             $review = ProductReview::create([
                 "user_id" => auth()->id(),
-                "transaction_id" => $transaction->id,
+                "custom_transaction_id" => $transaction->id,
                 "product_id" => $transaction->product_id,
                 "review" => $request->review
             ]);

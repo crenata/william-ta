@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string("color");
             $table->string("material");
             $table->unsignedBigInteger("quantity");
+            $table->longText("reason")->nullable();
             $table->timestamps();
             $table->softDeletes();
 

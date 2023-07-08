@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string("invoice_number");
             $table->unsignedBigInteger("gross_amount");
             $table->string("snap_url");
+            $table->longText("reason")->nullable();
             $table->timestamps();
             $table->softDeletes();
 

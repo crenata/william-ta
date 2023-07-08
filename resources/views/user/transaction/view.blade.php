@@ -64,7 +64,7 @@
                                             >{{ __("Pay") }}</a>
                                         </li>
                                     @endif
-                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::ARRIVED && !$transaction->is_reviewed)
+                                    @if($transaction->latestHistory->status >= \App\Constants\MidtransStatusConstant::ARRIVED && !$transaction->is_reviewed)
                                         <li>
                                             <a
                                                 class="dropdown-item review"
@@ -73,6 +73,17 @@
                                                 data-bs-target="#review-modal"
                                                 data-tx="{{ $transaction }}"
                                             >{{ __("Review") }}</a>
+                                        </li>
+                                    @endif
+                                    @if($transaction->latestHistory->status === \App\Constants\MidtransStatusConstant::ARRIVED)
+                                        <li>
+                                            <a
+                                                class="dropdown-item refund"
+                                                href="javascript:void(0)"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#refund-modal"
+                                                data-tx="{{ $transaction }}"
+                                            >{{ __("Refund") }}</a>
                                         </li>
                                     @endif
                                 </ul>
@@ -173,6 +184,73 @@
                 </div>
             </form>
         </div>
+        <div class="modal fade" id="refund-modal" tabindex="-1" aria-labelledby="refund-modal-label" aria-hidden="true">
+            <form method="POST" action="{{ route("refund.store") }}" enctype="multipart/form-data" class="modal-dialog">
+                @csrf
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Refund</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input
+                            id="tx_id"
+                            type="number"
+                            class="form-control d-none"
+                            name="tx_id"
+                            value=""
+                            required
+                            autocomplete="tx_id"
+                            autofocus
+                        />
+
+                        <div class="">
+                            <label for="reason">{{ __("Reason") }}</label>
+                            <input
+                                id="reason"
+                                type="text"
+                                class="form-control @error("reason") is-invalid @enderror"
+                                name="reason"
+                                value="{{ old("reason") }}"
+                                required
+                                autocomplete="reason"
+                                autofocus
+                            />
+                            @error("reason")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mt-3">
+                            <label for="attachments">{{ __("Attachments") }}</label>
+                            <input
+                                id="attachments"
+                                type="file"
+                                class="form-control @error("attachments") is-invalid @enderror"
+                                name="attachments[]"
+                                value=""
+                                required
+                                autocomplete="attachments"
+                                accept="image/*,video/*"
+                                multiple
+                            />
+                            @error("attachments")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -180,7 +258,9 @@
         let tracking = document.getElementById("transaction-detail-tracking");
         let transactions = document.getElementsByClassName("transaction-detail");
         let reviews = document.getElementsByClassName("review");
+        let refunds = document.getElementsByClassName("refund");
         let transactionId = document.getElementById("transaction_id");
+        let txId = document.getElementById("tx_id");
         const getStatus = status => {
             switch (status) {
                 case {{ \App\Constants\MidtransStatusConstant::SETTLEMENT }}:
@@ -238,6 +318,13 @@
             review.onclick = function () {
                 let data = JSON.parse(this.getAttribute("data-tx"));
                 transactionId.value = data.id;
+            }
+        }
+        for (let i = 0; i < refunds.length; i++) {
+            let refund = refunds[i];
+            refund.onclick = function () {
+                let data = JSON.parse(this.getAttribute("data-tx"));
+                txId.value = data.id;
             }
         }
     </script>
