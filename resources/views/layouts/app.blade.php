@@ -114,7 +114,7 @@
 </head>
 <body>
     <div id="app">
-    <nav class="custom-navbar navbar navbar navbar-expand-md navbar-light bg-success fixed-top nav-user" arial-label="Furni navigation bar">
+    <nav class="navbar navbar-expand-md navbar-light bg-success fixed-top nav-user">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">
                     <img src="{{ asset("logo.png") }}" alt="Logo" width="164">

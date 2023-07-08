@@ -1,25 +1,9 @@
 @extends("layouts.app")
 
 @section("content")
-<!-- Start Hero Section -->
-<div class="hero">
-			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-lg-5">
-						<div class="intro-excerpt">
-							<h1>Frequently Asked <span class="d-block">Questions</span></h1>
-							<br><br><br><br><br><br>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="hero-img-wrap">
-							<img src="{{ asset("sofa4.png") }}" class="img-fluid">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Hero Section -->
+<div class="img-wrap">
+    <img src="{{ asset("faq.jpg") }}" alt="Image" class="img-fluid">
+</div>
 <br>
     <div class="container">
         <div class="accordion mt-4" id="accordionFaq">
@@ -31,7 +15,7 @@
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFaq">
                     <div class="accordion-body">
-                        <li><font size="4">Untuk melacak pesanan anda dapat klik logo user di sebelah kanan atas -> klik transaksi -> klik lacak</li>
+                        <li><font size="4">Untuk melacak pesanan anda dapat klik logo user di sebelah kanan atas -> klik "order" -> klik "action" pada pesanan yang ingin ada lihat -> klik "track"</li>
                     </div>
                 </div>
             </div>

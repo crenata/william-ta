@@ -2,27 +2,12 @@
 
 @section("content")
 <!-- Start Hero Section -->
-<div class="hero">
-			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-lg-5">
-						<div class="intro-excerpt">
-							<h1>ABOUT <span class="d-block">US</span></h1>
-							<br><br><br><br><br><br>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="hero-img-wrap">
-							<img src="{{ asset("sofa4.png") }}" class="img-fluid">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Hero Section -->
+<div class="img-wrap">
+    <img src="{{ asset("about.jpg") }}" alt="Image" class="img-fluid">
+</div>
     <div class="container">
         <div class="mt-4 text-center">
-		<img align="middle" src="{{ asset("logo.png") }}" alt="Logo" width="400">
+		<img align="middle" src="{{ asset("logo.png") }}" alt="Logo" width="350">
             <h4 class="mt-3 mb-0 px-5 ">Vijipi Furniture adalah Merk Furniture dan Aksesoris di Indonesia, di mana kami memproduksi produk-produk furniture dan aksesoris yang berkualitas bagi keluarga Indonesia.</h4>
             <br>
             <br>

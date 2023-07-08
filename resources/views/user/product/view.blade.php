@@ -1,28 +1,10 @@
 @extends("layouts.app")
 
 @section("content")
-<!-- Start Hero Section -->
-        <div class="hero">
-			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-lg-5">
-						<div class="intro-excerpt">
-							<h1>ALL <span class="d-block">{{ empty($category) ? (Route::is("products") ? "PRODUCTS" : "PROMO") : $category->name }}</span></h1>
-							<br><br><br><br><br><br>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="hero-img-wrap">
-							<img src="{{ asset("sofa4.png") }}" class="img-fluid">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Hero Section -->
 <br>
 <div class="container">
     <div class="">
+    <h2 class="m-0 text-center fw-bold">ALL {{ empty($category) ? (Route::is("products") ? "PRODUCT" : "PROMO") : $category->name }}</h2>
         <div class="row mt-3">
             <div class="col-12 col-md-3">
                 <label for="categoryId"><font size="4">{{ __("Category") }}</font></label>

@@ -32,7 +32,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm nav-admin">
+        <nav class="navbar navbar-expand-md navbar-light bg-success nav-admin">
             <div class="container">
                 <a class="navbar-brand" href="{{ url("/") }}">
                     <img src="{{ asset("logo.png") }}" alt="Logo" width="164">

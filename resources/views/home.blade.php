@@ -12,28 +12,9 @@
         @endauth
     </div>
 
-		<!-- Start Hero Section -->
-		<div class="hero">
-			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-lg-5">
-						<div class="intro-excerpt">
-							<h1>Vijipi Furniture</h1>
-                            <br>
-							<p class="mb-4"><font size="4">Selalu memberi yang terbaik bagi customer kami, yaitu memproduksi produk berkualitas dengan desain terkini serta pelayanan yang prima</font></p>
-							<br>
-                            <p><a href="{{ route("products") }}" class="btn btn-secondary me-2"><b>Explore</b></a></p>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="hero-img-wrap">
-							<img src="{{ asset("sofa4.png") }}" class="img-fluid">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Hero Section -->
+    <div class="img-wrap">
+        <img src="{{ asset("sofa.jpg") }}" alt="Image" class="img-fluid">
+	</div>
 
 		<!-- Start Why Choose Us Section -->
 		<div class="why-choose-section">

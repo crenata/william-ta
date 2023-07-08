@@ -1,25 +1,9 @@
 @extends("layouts.app")
 
 @section("content")
-<!-- Start Hero Section -->
-        <div class="hero">
-			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-lg-5">
-						<div class="intro-excerpt">
-							<h1>Return <span class="d-block">Policy</span></h1>
-							<br><br><br><br><br><br>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="hero-img-wrap">
-							<img src="{{ asset("sofa4.png") }}" class="img-fluid">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-<!-- End Hero Section -->
+<div class="img-wrap">
+    <img src="{{ asset("return.jpg") }}" alt="Image" class="img-fluid">
+</div>
 <br>
     <div class="container">
         <ul class="mt-4">
