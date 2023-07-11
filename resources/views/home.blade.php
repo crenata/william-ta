@@ -5,7 +5,7 @@
         @auth()
             @if (!auth()->user()->email_verified_at)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Please verify email first!
+                    We have sent you verification link to your email, please verify email first!
                     <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif

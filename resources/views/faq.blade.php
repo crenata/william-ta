@@ -55,7 +55,7 @@
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
                     <div class="accordion-body">
-                        <li><font size="4">Anda dapat mengisi form di status pesanan saya -> ajukan pengembalian. Untuk pengembalian maksimal 30 hari kerja semenjak form anda terkirim</font></li>
+                        <li><font size="4">Anda dapat mengisi form di klik order -> klik action pada pesanan -> klik return. Untuk pengembalian maksimal 30 hari kerja semenjak form anda terkirim</font></li>
                     </div>
                 </div>
             </div>

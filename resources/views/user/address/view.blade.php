@@ -12,8 +12,8 @@
 
         <br>
         <div class="d-flex align-items-center justify-content-between">
-            <h3 class="fw-bold">{{ __("Manage Address") }}</h3>
-            <a class="btn btn-sm btn-primary" href="{{ route("address.create") }}">
+            <h3 class="fw-bold">{{ __("Address") }}</h3>
+            <a class="btn btn-sm btn-success" href="{{ route("address.create") }}">
                 {{ __("Add") }}
             </a>
         </div>

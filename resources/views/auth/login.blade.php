@@ -62,11 +62,11 @@
             <div class="mt-3">
                             <button type="submit" class="btn btn-success">{{ __("Log in") }}</button>  
                             <br><br>
-                            <a href="{{ route("admin.login") }}">
+                            <a style="text-decoration:none" href="{{ route("admin.login") }}">
                                     {{ __("Log in as Admin?") }}
                             </a>                               
                             @if (Route::has("password.request"))
-                                <a class="btn btn-link" href="{{ route("password.request") }}">
+                                <a style="text-decoration:none" class="btn btn-link" href="{{ route("password.request") }}">
                                     {{ __("Forgot Your Password?") }}
                                 </a>
                             @endif 

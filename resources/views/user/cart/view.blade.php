@@ -12,7 +12,7 @@
 
         <br>
         <div class="d-flex align-items-center justify-content-between">
-            <h3 class="fw-bold">{{ __("Manage Cart") }}</h3>
+            <h3 class="fw-bold">{{ __("Cart") }}</h3>
         </div>
 
         <div class="table-responsive mt-4" style="height: 75vh;">

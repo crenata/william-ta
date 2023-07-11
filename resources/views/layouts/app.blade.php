@@ -142,13 +142,13 @@
                             <a class="nav-link text-white" href="{{ route("faq") }}">{{ __("FAQ") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("about") }}">{{ __("About Us") }}</a>
+                            <a class="nav-link text-white" href="{{ route("about") }}">{{ __("About") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("contact") }}">{{ __("Contact Us") }}</a>
+                            <a class="nav-link text-white" href="{{ route("contact") }}">{{ __("Contact") }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route("return-policy") }}">{{ __("Return Policy") }}</a>
+                            <a class="nav-link text-white" href="{{ route("return-policy") }}">{{ __("Return") }}</a>
                         </li>
                     </ul>
 
@@ -208,13 +208,13 @@
                                         class="dropdown-item"
                                         href="{{ route("transaction-user.index") }}"
                                     >
-                                    <img src="{{ asset("order.svg") }}" width="31" height="23">{{ __("Order") }}
+                                    <img src="{{ asset("order.svg") }}" width="31" height="23">{{ __("Transaction") }}
                                     </a>
                                     <a
                                         class="dropdown-item"
                                         href="{{ route("custom-user.index") }}"
                                     >
-                                    <img src="{{ asset("custom.svg") }}" width="30" height="25">{{ __("Custom Order") }}
+                                    <img src="{{ asset("custom.svg") }}" width="30" height="25">{{ __("Custom Transaction") }}
                                     </a>
                                     <a
                                         class="dropdown-item"
@@ -246,7 +246,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-3">
-                        <img src="{{ asset("logo.png") }}" alt="Logo" width="200">
+                        <img src="{{ asset("logo.png") }}" alt="Logo" width="170">
                     </div>
                     <div class="col-12 col-md-3 mt-3 mt-md-0">
                         <h4>Alamat Workshop</h4>
@@ -257,14 +257,14 @@
                         <h4>Hubungi Kami</h4>
                         <br>
                         <p class="m-0">
-                        <a href="https://wa.me/6285217906821">0852-1790-6821</a>
+                        <a href="https://wa.me/6285217906821" class="text-reset">0852-1790-6821</a>
                         </p>
                     </div>
                     <div class="col-12 col-md-3 mt-3 mt-md-0">
                         <h4>Ikuti Kami</h4>
                         <br>
                         <p class="m-0">
-                        <a href="https://www.instagram.com/vijipifurniture">@vijipifurniture</a>
+                        <a href="https://www.instagram.com/vijipifurniture" class="text-reset">@vijipifurniture</a>
                         </p>
                     </div>
                 </div>

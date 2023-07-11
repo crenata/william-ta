@@ -12,7 +12,7 @@
                 </div>
             @endif
 
-            <h3 class="fw-bold">{{ __("My Account") }}</h3>
+            <h3 class="text-center fw-bold">{{ __("My Account") }}</h3>
 
             <div class="mt-4">
                 <form method="POST" action="{{ route("account.update", $account->id) }}">

@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
-            <h3 class="fw-bold">{{ __("Manage Address") }}</h3>
+            <h3 class="text-center fw-bold">{{ __("Edit Address") }}</h3>
 
             <div class="mt-4">
                 <form method="POST" action="{{ route("address.update", $address->id) }}">

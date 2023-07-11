@@ -141,12 +141,14 @@
     </div>
 
     <div class="mt-4">
-        <h3 class="m-0 fw-bold">Description :</h3>
+        <h3 class="m-0 fw-bold">Description</h3>
+        <br>
         <p class="m-0">{!! $product->description !!}</p>
     </div>
 
         <div class="mt-4">
-            <h3 class="m-0 fw-bold">Reviews :</h3>
+            <h3 class="m-0 fw-bold">Reviews</h3>
+            <br>
             @foreach($product->reviews as $review)
                 <div class="border rounded p-3 mt-3">
                     <p class="m-0 fw-bold">{{ $review->user->name }}</p>

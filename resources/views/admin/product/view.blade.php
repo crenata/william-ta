@@ -21,6 +21,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Category</th>
                     <th>Name</th>
                     <th class="text-end">Price</th>
@@ -33,6 +34,9 @@
                 <tbody>
                 @foreach($products as $product)
                     <tr>
+                        <td valign="middle">
+                            <img src="{{ $product->images[0]->image }}" alt="" width="130" height="130" style="object-fit: cover;">
+                        </td>
                         <td valign="middle">{{ $product->category->name }}</td>
                         <td valign="middle">{{ $product->name }}</td>
                         <td valign="middle" class="text-end">Rp {{ number_format($product->price) }}</td>
