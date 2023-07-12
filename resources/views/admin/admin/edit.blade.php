@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
-            <h4 class="">{{ __("Manage Admin") }}</h4>
+            <h3 class="text-center fw-bold">{{ __("Edit Admin") }}</h3>
 
             <div class="mt-4">
                 <form method="POST" action="{{ route("admin.update", $admin->id) }}">
@@ -81,10 +81,10 @@
                     </div>
 
                     <div class="mt-3 text-center">
-                        <a href="{{ route("admin.index") }}" class="btn btn-secondary">
+                        <a href="{{ route("admin.index") }}" class="btn btn-danger">
                             {{ __("Cancel") }}
                         </a>
-                        <button type="submit" class="btn btn-primary ms-3">
+                        <button type="submit" class="btn btn-success ms-3">
                             {{ __("Edit") }}
                         </button>
                     </div>
@@ -93,4 +93,18 @@
         </div>
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 @endsection

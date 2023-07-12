@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
-            <h4 class="">{{ __("Manage Category") }}</h4>
+            <h3 class="text-center fw-bold">{{ __("Add Category") }}</h3>
 
             <div class="mt-4">
                 <form method="POST" action="{{ route("category.store") }}" enctype="multipart/form-data">
@@ -64,10 +64,10 @@
                     </div>
 
                     <div class="mt-3 text-center">
-                        <a href="{{ route("category.index") }}" class="btn btn-secondary">
+                        <a href="{{ route("category.index") }}" class="btn btn-danger">
                             {{ __("Cancel") }}
                         </a>
-                        <button type="submit" class="btn btn-primary ms-3">
+                        <button type="submit" class="btn btn-success ms-3">
                             {{ __("Add") }}
                         </button>
                     </div>

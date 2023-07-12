@@ -100,17 +100,17 @@
                 </div>
 
                 <div class="mt-3">
-                    <a href="{{ route("wishlist.show", $product->id) }}" class="btn btn-secondary">
-                        {{ __("Wishlist") }}
+                    <a href="{{ route("wishlist.show", $product->id) }}" class="btn btn-primary">
+                    <img src="{{ asset("love.png") }}" width="23" height="23">
                     </a>
                     <button
                         onclick="
                             document.getElementById('product-form').setAttribute('action', '{{ route("cart.store") }}');
                             document.getElementById('product-form').submit();
                         "
-                        class="btn btn-info ms-3"
+                        class="btn btn-primary ms-3"
                     >
-                        {{ __("Cart") }}
+                    <img src="{{ asset("cart.svg") }}" width="23" height="23">
                     </button>
                     <button
                         onclick="
@@ -120,19 +120,19 @@
                             document.getElementById('product-form').setAttribute('action', '{{ route("buy") }}');
                             document.getElementById('product-form').submit();
                             "
-                        class="btn btn-primary ms-3"
+                        class="btn btn-success ms-3"
                     >
                         {{ __("Buy") }}
                     </button>
                 </div>
                 <div class="mt-3">
-                    <a href="https://twitter.com/intent/tweet?text={{ url()->current() }}">
+                    <a style="text-decoration:none" href="https://twitter.com/intent/tweet?text={{ url()->current() }}">
                         <i class="fa-brands fa-square-twitter fa-2xl"></i>
                     </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" class="ms-3">
+                    <a style="text-decoration:none" href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" class="ms-3">
                         <i class="fa-brands fa-square-facebook fa-2xl"></i>
                     </a>
-                    <a href="https://wa.me/?text={{ url()->current() }}" class="ms-3">
+                    <a style="text-decoration:none" href="https://wa.me/?text={{ url()->current() }}" class="ms-3">
                         <i class="fa-brands fa-square-whatsapp fa-2xl"></i>
                     </a>
                 </div>
@@ -143,21 +143,21 @@
     <div class="mt-4">
         <h3 class="m-0 fw-bold">Description</h3>
         <br>
-        <p class="m-0">{!! $product->description !!}</p>
+        <h5 class="m-0">{!! $product->description !!}</h5>
     </div>
 
         <div class="mt-4">
             <h3 class="m-0 fw-bold">Reviews</h3>
-            <br>
             @foreach($product->reviews as $review)
                 <div class="border rounded p-3 mt-3">
-                    <p class="m-0 fw-bold">{{ $review->user->name }}</p>
-                    <p class="m-0">{{ $review->review }}</p>
+                    <h4 class="m-0 fw-bold"><img src="{{ asset("user.png") }}">{{ $review->user->name }}</h4>
+                    <br>
+                    <h5 class="m-0">{{ $review->review }}</h5>
                     <div class="row mt-3">
                         @foreach($review->attachments as $attachment)
                             <div class="col-12 col-md-2">
                                 @if(in_array(strtolower(pathinfo($attachment->attachment, PATHINFO_EXTENSION)), ["png", "jpg", "jpeg"]))
-                                    <img src="{{ $attachment->attachment }}" alt="Attachment" class="w-100">
+                                    <img src="{{ $attachment->attachment }}" alt="Attachment" width="200" height="200">
                                 @else
                                     <video width="100%" controls>
                                         <source src="{{ $attachment->attachment }}" type="video/{{ pathinfo($attachment->attachment, PATHINFO_EXTENSION) }}">
