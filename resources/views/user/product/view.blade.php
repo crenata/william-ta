@@ -36,6 +36,7 @@
                             <h4 class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp {{ number_format($product->offer_price) }}</h4>
                         </div>
                     </a>
+                    <br>
                 </div>
             @endforeach
         </div>
