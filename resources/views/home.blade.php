@@ -3,6 +3,16 @@
 @section("content")
     <div class="container">
         @auth()
+            @if (auth()->user())
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Selamat datang di Vijipi Furniture!
+                    <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        @endauth
+    </div>
+    <div class="container">
+        @auth()
             @if (!auth()->user()->email_verified_at)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     We have sent you verification link to your email, please verify email first!
