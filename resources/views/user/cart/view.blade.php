@@ -46,6 +46,15 @@
                                         @method("DELETE")
                                         <li><button class="dropdown-item" type="submit">{{ __("Delete") }}</button></li>
                                     </form>
+                                    <li>
+                                        <a
+                                            class="dropdown-item buy"
+                                            href="javascript:void(0)"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#buy-modal"
+                                            data-cart="{{ $cart }}"
+                                        >{{ __("Buy") }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
@@ -57,5 +66,90 @@
 
         {{ $carts->links() }}
     </div>
+
+    <div class="modal fade" id="buy-modal" tabindex="-1" aria-labelledby="buy-modal-label" aria-hidden="true">
+        <form method="POST" action="{{ route("buy") }}" class="modal-dialog">
+            @csrf
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Buy</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input
+                        id="product_id"
+                        type="number"
+                        class="form-control d-none"
+                        name="product_id"
+                        value=""
+                        required
+                        autocomplete="product_id"
+                        autofocus
+                    />
+                    <input
+                        id="quantity"
+                        type="number"
+                        class="form-control d-none"
+                        name="quantity"
+                        value=""
+                        required
+                        autocomplete="quantity"
+                        autofocus
+                    />
+                    <input
+                        id="is_cart"
+                        type="number"
+                        class="form-control d-none"
+                        name="is_cart"
+                        value="1"
+                        required
+                        autocomplete="is_cart"
+                        autofocus
+                    />
+
+                    <div class="">
+                        <label for="user_address_id">{{ __("Address") }}</label>
+                        <select
+                            id="user_address_id"
+                            class="form-select @error("user_address_id") is-invalid @enderror"
+                            name="user_address_id"
+                            required
+                            autocomplete="user_address_id"
+                            autofocus
+                        >
+                            <option>Choose Address</option>
+                            @foreach($userAddresses as $userAddress)
+                                <option value="{{ $userAddress->id }}" {{ $userAddress->id === old("user_address_id") ? "selected" : "" }}>{{ $userAddress->name }} (Rp{{ number_format($userAddress->area->fee) }})</option>
+                            @endforeach
+                        </select>
+                        @error("user_address_id")
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let buys = document.getElementsByClassName("buy");
+        let productId = document.getElementById("product_id");
+        let quantity = document.getElementById("quantity");
+        for (let i = 0; i < buys.length; i++) {
+            let buy = buys[i];
+            buy.onclick = function () {
+                let data = JSON.parse(this.getAttribute("data-cart"));
+                productId.value = data.product_id;
+                quantity.value = data.quantity;
+            }
+        }
+    </script>
 </div>
 @endsection

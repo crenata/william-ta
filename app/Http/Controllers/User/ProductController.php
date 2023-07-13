@@ -6,6 +6,7 @@ use App\Constants\MidtransStatusConstant;
 use App\Helpers\MidtransHelper;
 use App\Http\Controllers\Controller;
 use App\Jobs\Invoice;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\CustomTransaction;
 use App\Models\CustomTransactionHistory;
@@ -68,7 +69,8 @@ class ProductController extends Controller {
         $this->validate($request, [
             "user_address_id" => "required|numeric|exists:user_addresses,id",
             "product_id" => "required|numeric|exists:products,id",
-            "quantity" => "required|numeric|min:1"
+            "quantity" => "required|numeric|min:1",
+            "is_cart" => "nullable|boolean"
         ]);
 
         return DB::transaction(function () use ($request) {
@@ -100,6 +102,10 @@ class ProductController extends Controller {
                         "transaction_id" => $transaction->id,
                         "image" => $image->image
                     ]);
+                }
+
+                if ($request->boolean("is_cart")) {
+                    Cart::where("user_id", auth()->id())->where("product_id", $product->id)->delete();
                 }
 
                 return redirect($midtrans->snap_url);

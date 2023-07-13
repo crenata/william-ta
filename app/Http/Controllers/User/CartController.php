@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
 
 class CartController extends Controller {
@@ -11,8 +12,9 @@ class CartController extends Controller {
      * Display a listing of the resource.
      */
     public function index() {
+        $userAddresses = UserAddress::with("area.city.province")->where("user_id", auth()->id())->get();
         $carts = Cart::where("user_id", auth()->id())->paginate();
-        return view("user.cart.view")->withCarts($carts);
+        return view("user.cart.view")->withCarts($carts)->withUserAddresses($userAddresses);
     }
 
     /**

@@ -146,8 +146,8 @@ class ProductController extends Controller {
      * @param string $id
      */
     public function destroy(string $id) {
-        return DB::transaction(function ($id) {
-            ProductImage::where("product_id", "=", $id)->delete();
+        return DB::transaction(function () use ($id) {
+            ProductImage::where("product_id", $id)->delete();
             Product::findOrFail($id)->delete();
 
             return redirect()->route("product.index")->withStatus("Successfully deleted.");
