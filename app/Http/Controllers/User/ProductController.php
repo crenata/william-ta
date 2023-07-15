@@ -142,7 +142,8 @@ class ProductController extends Controller {
 
             if ($status === MidtransStatusConstant::SETTLEMENT) {
                 $product = Product::findOrFail($transaction->product_id);
-                $product->stock--;
+                $product->stock -= $transaction->quantity;
+                $product->total_purchased++;
                 $product->save();
 
                 dispatch(new Invoice($transaction));
