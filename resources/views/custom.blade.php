@@ -236,7 +236,7 @@
                                 autocomplete="estimate_price"
                                 autofocus
                             />
-                            <p>*bisa lebih atau kurang dari perkiraan</p>
+                            <p>*waktu pembuatan dan harga bisa lebih atau kurang dari perkiraan</p>
                             @error("estimate_price")
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

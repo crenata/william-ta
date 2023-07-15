@@ -31,9 +31,9 @@
                     <a href="{{ route("product", $product->id) }}" class="card text-decoration-none text-body">
                         <img src="{{ $product->images[0]->image }}" class="card-img-top" alt="{{ $product->name }}" width="250px" height="250px">
                         <div class="card-body">
-                            <h4 class="card-title">{{ $product->name }}</h4>
-                            <h5 class="m-0 {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</h5>
-                            <h4 class="m-0 {{ empty($product->offer_price) ? "d-none" : "" }}">Rp {{ number_format($product->offer_price) }}</h4>
+                            <h3 class="card-title text-center">{{ $product->name }}</h3>
+                            <h5 class="text-center {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</h5>
+                            <h4 class="text-center {{ empty($product->offer_price) ? "d-none" : "" }}">Rp {{ number_format($product->offer_price) }}</h4>
                         </div>
                     </a>
                     <br>
