@@ -221,6 +221,24 @@
             </div>
         </div>
 
+        <div class="container">
+            <div class="mt-5">
+                <div class="mt-4">
+                    <h3 class="m-0 text-center fw-bold">Testimoni {{ config("app.name") }}</h3>
+                    <div class="row mt-3">
+                        @foreach(range(1, 3) as $key => $testimoni)
+                            <div class="col-12 col-md-4">
+                                <div class="img-wrap">
+                                    <img src="{{ asset("testimonis/testimoni-$testimoni.jpg") }}" class="img-fluid"
+                                    width="420px" height="600px">                                 
+	                            </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <style>
             @media (max-width: 767px) {
                 .multi-carousel .carousel-inner .carousel-item > div {

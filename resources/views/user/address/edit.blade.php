@@ -140,10 +140,10 @@
                     />
 
                     <div class="mt-3 text-center">
-                        <a href="{{ route("address.index") }}" class="btn btn-secondary">
+                        <a href="{{ route("address.index") }}" class="btn btn-danger">
                             {{ __("Cancel") }}
                         </a>
-                        <button type="submit" class="btn btn-primary ms-3">
+                        <button type="submit" class="btn btn-success ms-3">
                             {{ __("Edit") }}
                         </button>
                     </div>

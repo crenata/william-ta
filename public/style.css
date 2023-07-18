@@ -169,9 +169,7 @@ a {
       position: absolute;
       width: 255px;
       height: 217px;
-      background-image: url("../images/dots-light.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
+      
       right: -100px;
       top: -0px; }
       @media (min-width: 1200px) {
@@ -182,9 +180,7 @@ a {
               position: auto;
       width: auto;
       height: auto;
-      background-image: url("../images/dots-light.svg");
-      background-size: auto;
-      background-repeat: no-repeat;
+      
       right: auto;
       top: auto; } }    
 
@@ -308,9 +304,7 @@ a {
       content: "";
       width: 255px;
       height: 217px;
-      background-image: url("../images/dots-yellow.svg");
-      background-repeat: no-repeat;
-      background-size: contain;
+      
       -webkit-transform: translate(-40%, -40%);
       -ms-transform: translate(-40%, -40%);
       transform: translate(-40%, -40%);
@@ -354,9 +348,7 @@ a {
       content: "";
       width: 255px;
       height: 217px;
-      background-image: url("../images/dots-green.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
+      
       -webkit-transform: translate(-40%, -40%);
       -ms-transform: translate(-40%, -40%);
       transform: translate(-40%, -40%);

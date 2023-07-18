@@ -1,7 +1,6 @@
 @extends("layouts.app")
 
 @section("content")
-<!-- Start Hero Section -->
 <div class="img-wrap">
     <img src="{{ asset("about.jpg") }}" alt="Image" class="img-fluid">
 </div>
