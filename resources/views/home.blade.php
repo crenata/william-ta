@@ -112,7 +112,7 @@
                                             <img src="{{ $product->images[0]->image }}" class="card-img-top"
                                                  style="max-height: 200px" alt="{{ $product->name }}">
                                             <div class="card-body">
-                                                <h4 class="card-title text-center">{{ $product->name }}</h4>
+                                                <h3 class="card-title text-center">{{ $product->name }}</h3>
                                                 <h5 class="text-center {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">
                                                     Rp {{ number_format($product->price) }}</h5>
                                                 <h4 class="text-center {{ empty($product->offer_price) ? "d-none" : "" }}">
@@ -146,7 +146,7 @@
                                             <img src="{{ $product->images[0]->image }}" class="card-img-top"
                                                  style="max-height: 200px" alt="{{ $product->name }}">
                                             <div class="card-body">
-                                                <h4 class="card-title text-center">{{ $product->name }}</h4>
+                                                <h3 class="card-title text-center">{{ $product->name }}</h3>
                                                 <h5 class="text-center {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">
                                                     Rp {{ number_format($product->price) }}</h5>
                                                 <h4 class="text-center {{ empty($product->offer_price) ? "d-none" : "" }}">
