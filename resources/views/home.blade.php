@@ -13,7 +13,7 @@
     </div>
 
     <div class="img-wrap">
-        <img src="{{ asset("sofa.jpg") }}" alt="Image" class="img-fluid">
+        <img src="{{ asset("sofa.jpg") }}" width="1520px" height="700px" alt="Image" class="img-fluid" >
 	</div>
 
 		<!-- Start Why Choose Us Section -->
