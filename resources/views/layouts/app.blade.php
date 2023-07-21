@@ -176,7 +176,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route("wishlist.index") }}">
-                                        <img src="{{ asset("love.png") }}" width="29" height="29">
+                                        <img src="{{ asset("love.png") }}" >
                                     </a>
                                 </li>
 
