@@ -182,13 +182,13 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route("cart.index") }}">
-                                        <img src="{{ asset("cart.svg") }}" width="28" height="28">
+                                        <img src="{{ asset("cart.svg") }}" width="27" height="27">
                                     </a>
                                 </li>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <img src="{{ asset("user.svg") }}" width="28" height="28">&nbsp;&nbsp;{{ Auth::user()->name }}
+                                <img src="{{ asset("user.svg") }}" width="27" height="27">&nbsp;&nbsp;{{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
