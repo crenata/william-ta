@@ -115,7 +115,7 @@
 <body>
     <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-success fixed-top nav-user">
-            <div class="container">
+            <div class="">
                 <a class="navbar-brand" href="{{ url("/") }}">
                     <img src="{{ asset("logo.png") }}" alt="Logo" width="164">
                 </a>
