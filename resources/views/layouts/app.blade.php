@@ -11,7 +11,7 @@
     <title>{{ config("app.name", "Laravel") }}</title>
 
     <!-- Bootstrap CSS -->
-		
+
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 		<link href="{{ asset("style.css") }}" rel="stylesheet">
 
@@ -364,7 +364,7 @@
             }
         });
 
-        window.socket = new WebSocket("ws://localhost:{{ env("WEBSOCKET_PORT") }}");
+        window.socket = new WebSocket("ws://103.82.92.212:{{ env("WEBSOCKET_PORT") }}");
         window.socket.onopen = (event) => {
             console.log("onopen", event);
         };
@@ -386,7 +386,7 @@
         function buy(data, quantity, username) {
             window.socket.send(JSON.stringify({...data, quantity, username}));
         }
-    </script>		
+    </script>
 		<script src="{{ asset("custom.js") }}"></script>
 </body>
 </html>
