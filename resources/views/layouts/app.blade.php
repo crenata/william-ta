@@ -294,7 +294,22 @@
                 <div class="app-chat px-2" id="app-chat">
                     <div class="mt-2 d-flex">
                         <div class="app-chat-content bgc-32CD32 rounded p-2">
-                            <p class="m-0">Selamat datang di Vijipi Furniture! Ada yang bisa kami bantu?</p>
+                            <p class="m-0">Selamat datang di Vijipi Furniture! Silahkan ketik salah satu kata kunci dibawah ini yang sesuai dengan apa yang ingin anda tanyakan!</p>
+                            <ol>
+                                <li>akun saya</li>
+                                <li>melacak pesanan</li>
+                                <li>kontak</li>
+                                <li>pembayaran</li>
+                                <li>pesan custom</li>
+                                <li>pengembalian produk</li>
+                                <li>ongkir</li>
+                                <li>COD</li>
+                                <li>waktu pengiriman</li>
+                                <li>area pengiriman</li>
+                                <li>kuitansi</li>
+                                <li>social media</li>
+                                <li>lokasi</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
