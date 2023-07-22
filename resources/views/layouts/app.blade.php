@@ -127,9 +127,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ url("/") }}">{{ __("Home") }}</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route("products") }}">{{ __("Products") }}</a>
                         </li>
                         <li class="nav-item">
