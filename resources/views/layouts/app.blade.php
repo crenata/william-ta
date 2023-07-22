@@ -364,7 +364,7 @@
             }
         });
 
-        window.socket = new WebSocket("ws://103.82.92.212:{{ env("WEBSOCKET_PORT") }}");
+        window.socket = new WebSocket("wss://103.82.92.212:{{ env("WEBSOCKET_PORT") }}");
         window.socket.onopen = (event) => {
             console.log("onopen", event);
         };
