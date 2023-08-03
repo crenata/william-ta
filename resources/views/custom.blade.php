@@ -78,7 +78,7 @@
                             @enderror
 
                             <div class="mt-2">
-                                <img src="{{ asset("logo.png") }}" id="product-image" alt="Image" class="w-100" style="object-fit: contain; height: 19rem;">
+                                <img src="{{ asset("logo.png") }}" id="product-image" alt="Image" class="w-100" style="object-fit: contain; height: 13.5rem;">
                             </div>
                         </div>
 
@@ -105,27 +105,6 @@
                         </div>
 
                         <div class="mt-3">
-                            <label for="model">{{ __("Model") }}</label>
-                            <input
-                                id="model"
-                                type="text"
-                                class="form-control @error("model") is-invalid @enderror"
-                                name="model"
-                                value="{{ old("model") }}"
-                                required
-                                autocomplete="model"
-                                autofocus
-                                placeholder="Contoh : Modern Minimalis"
-                            />
-                            @error("model")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mt-3 mt-md-0">
-                        <div class="">
                             <label for="size">{{ __("Size") }}</label>
                             <input
                                 id="size"
@@ -144,8 +123,9 @@
                             </span>
                             @enderror
                         </div>
-
-                        <div class="mt-3">
+                    </div>
+                    <div class="col-12 col-md-6 mt-3 mt-md-0">
+                        <div class="">
                             <label for="color">{{ __("Color") }}</label>
                             <input
                                 id="color"

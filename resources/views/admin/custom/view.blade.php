@@ -55,6 +55,15 @@
                                             class="dropdown-item transaction-detail"
                                             href="javascript:void(0)"
                                             data-bs-toggle="modal"
+                                            data-bs-target="#transaction-custom-modal"
+                                            data-tx="{{ $transaction }}"
+                                        >{{ __("View Custom") }}</a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item transaction-detail"
+                                            href="javascript:void(0)"
+                                            data-bs-toggle="modal"
                                             data-bs-target="#transaction-location-modal"
                                             data-tx="{{ $transaction }}"
                                         >{{ __("View Location") }}</a>
@@ -110,6 +119,33 @@
 
         {{ $transactions->links() }}
 
+        <div class="modal fade" id="transaction-custom-modal" tabindex="-1" aria-labelledby="transaction-custom-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="transaction-custom-modal-label">Data Custom</h1>
+                        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <p class="m-0">Size :</p>
+                            <p class="m-0" id="size"></p>
+                        </div>
+                        <div class="mt-2">
+                            <p class="m-0">Color :</p>
+                            <p class="m-0" id="color"></p>
+                        </div>
+                        <div class="mt-2">
+                            <p class="m-0">Material :</p>
+                            <p class="m-0" id="material"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="modal fade" id="transaction-detail-modal" tabindex="-1" aria-labelledby="transaction-detail-modal-label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-xl">
                 <div class="modal-content">
@@ -270,6 +306,9 @@
         let reason = document.getElementById("reason");
         let attachments = document.getElementById("attachments");
         let prices = document.getElementsByClassName("transaction-price");
+        let size = document.getElementById("size");
+        let color = document.getElementById("color");
+        let material = document.getElementById("material");
         const getStatus = status => {
             switch (status) {
                 case {{ \App\Constants\MidtransStatusConstant::SETTLEMENT }}:
@@ -350,6 +389,11 @@
             let tx = transactions[i];
             tx.onclick = function () {
                 let data = JSON.parse(this.getAttribute("data-tx"));
+
+                size.textContent = data.size;
+                color.textContent = data.color;
+                material.textContent = data.material;
+
                 title.textContent = data.name;
                 tracking.innerHTML = "";
                 data.histories.forEach(value => {
