@@ -32,6 +32,16 @@ class MidtransHelper extends Controller {
             "transaction_details" => [
                 "order_id" => $invoiceNumber,
                 "gross_amount" => $grossAmount
+            ],
+            "customer_details" => [
+                "first_name" => auth()->user()->name,
+                "email" => auth()->user()->email,
+                "phone" => auth()->user()->phone,
+                "billing_address" => [
+                    "first_name" => auth()->user()->name,
+                    "email" => auth()->user()->email,
+                    "phone" => auth()->user()->phone
+                ]
             ]
         ]);
 
