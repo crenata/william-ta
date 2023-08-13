@@ -64,7 +64,7 @@
                                             >{{ __("Pay") }}</a>
                                         </li>
                                     @endif
-                                    @if($transaction->latestHistory->status >= \App\Constants\MidtransStatusConstant::ARRIVED && !$transaction->is_reviewed)
+                                    @if($transaction->latestHistory->status >= \App\Constants\MidtransStatusConstant::ARRIVED && $transaction->latestHistory->status !== \App\Constants\MidtransStatusConstant::PRICE_SUBMITTED && !$transaction->is_reviewed)
                                         <li>
                                             <a
                                                 class="dropdown-item review"
