@@ -48,7 +48,7 @@
                         >
                             <option>{{ empty($cities) ? "Choose Province First" : "Choose City" }}</option>
                             @foreach($cities as $city)
-                                <option value="{{ route("address.edit", $address->id) }}?province={{ $provinceId }}&city={{ $city->id }}" {{ $city->id === old("city_id", $address->area->city_id) ? "selected" : "" }}>{{ $city->name }}</option>
+                                <option value="{{ route("address.edit", $address->id) }}?province={{ $provinceId }}&city={{ $city->id }}" {{ $city->id === old("city_id", empty($provinceId) ? $address->area->city_id : $cityId) ? "selected" : "" }}>{{ $city->name }}</option>
                             @endforeach
                         </select>
                         @error("city_id")

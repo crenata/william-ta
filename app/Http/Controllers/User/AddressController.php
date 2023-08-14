@@ -80,7 +80,7 @@ class AddressController extends Controller {
         $provinceId = $address->area->city->province->id;
         $provinces = Province::all();
         $cities = City::where("province_id", empty($request->province) ? $provinceId : $request->province)->get();
-        $areas = Area::where("city_id", empty($request->city) ? $cityId : $request->city)->get();
+        $areas = Area::where("city_id", empty($request->province) ? $cityId : $request->city)->get();
         return view("user.address.edit")
             ->withAddress($address)
             ->withProvinces($provinces)
@@ -97,7 +97,7 @@ class AddressController extends Controller {
      */
     public function update(Request $request, string $id) {
         $this->validate($request, [
-            "area_id" => "required|numeric|exists:cities,id",
+            "area_id" => "required|numeric|exists:areas,id",
             "name" => "required|string",
             "address" => "required|string",
             "latitude" => ["required", "regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/"],
