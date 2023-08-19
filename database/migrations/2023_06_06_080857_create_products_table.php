@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string("name");
             $table->unsignedBigInteger("price");
             $table->unsignedBigInteger("offer_price")->nullable();
+            $table->unsignedBigInteger("gold_price");
             $table->longText("description");
             $table->unsignedBigInteger("stock")->default(0);
             $table->unsignedBigInteger("duration");

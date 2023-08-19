@@ -18,6 +18,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Membership</th>
                     <th>User</th>
                     <th>Phone</th>
                     <th>Address</th>
@@ -33,6 +34,7 @@
                 <tbody>
                 @foreach($transactions as $transaction)
                     <tr>
+                        <td valign="middle">{{ $transaction->product->is_gold ? "Gold" : "Silver" }}</td>
                         <td valign="middle">{{ $transaction->user->name }}</td>
                         <td valign="middle">{{ $transaction->user->phone }}</td>
                         <td valign="middle">{{ $transaction->userAddress->address }}</td>

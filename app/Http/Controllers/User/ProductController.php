@@ -77,7 +77,7 @@ class ProductController extends Controller {
             $userAddress = UserAddress::with("area")->findOrFail($request->user_address_id);
             $product = Product::with("images")->findOrFail($request->product_id);
             if (($product->stock - $request->quantity) >= 0) {
-                $grossAmount = empty($product->offer_price) ? $product->price : $product->offer_price;
+                $grossAmount = $product->is_gold ? $product->gold_price : (empty($product->offer_price) ? $product->price : $product->offer_price);
                 $grossAmount += $userAddress->area->fee;
 
                 $midtrans = MidtransHelper::getSnapUrl($grossAmount);
@@ -104,9 +104,9 @@ class ProductController extends Controller {
                     ]);
                 }
 
-                if ($request->boolean("is_cart")) {
-                    Cart::where("user_id", auth()->id())->where("product_id", $product->id)->delete();
-                }
+                if ($request->boolean("is_cart")) Cart::where("user_id", auth()->id())
+                    ->where("product_id", $product->id)
+                    ->delete();
 
                 return redirect($midtrans->snap_url);
             } else {
