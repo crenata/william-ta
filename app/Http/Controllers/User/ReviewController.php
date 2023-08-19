@@ -20,6 +20,7 @@ class ReviewController extends Controller {
     public function store(Request $request) {
         $this->validate($request, [
             "transaction_id" => "required|numeric|exists:transactions,id",
+            "rating" => "required|numeric|min:1",
             "review" => "required|string",
             "attachments" => "required|array",
             "attachments.*" => "required|file"
@@ -31,7 +32,8 @@ class ReviewController extends Controller {
                 "user_id" => auth()->id(),
                 "transaction_id" => $transaction->id,
                 "product_id" => $transaction->product_id,
-                "review" => $request->review
+                "review" => $request->review,
+                "rating" => $request->rating
             ]);
 
             foreach ($request->file("attachments") as $key => $image) {

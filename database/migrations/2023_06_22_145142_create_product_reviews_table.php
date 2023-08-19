@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("transaction_id")->nullable();
             $table->unsignedBigInteger("custom_transaction_id")->nullable();
             $table->unsignedBigInteger("product_id");
+            $table->unsignedBigInteger("rating");
             $table->longText("review");
             $table->timestamps();
             $table->softDeletes();

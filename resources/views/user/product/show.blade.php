@@ -150,8 +150,16 @@
             <h3 class="m-0 fw-bold">Reviews</h3>
             @foreach($product->reviews as $review)
                 <div class="border rounded p-3 mt-3">
-                    <h4 class="m-0 fw-bold"><img src="{{ asset("user.png") }}">{{ $review->user->name }}</h4>
-                    <br>
+                    <div class="d-flex align-items-center">
+                        @foreach(range(1, 5) as $rating)
+                            @if($rating <= $review->rating)
+                                <i class="fa-solid fa-star"></i>
+                            @else
+                                <i class="fa-regular fa-star"></i>
+                            @endif
+                        @endforeach
+                    </div>
+                    <h4 class="mt-2 mb-0 fw-bold"><img src="{{ asset("user.png") }}"/>{{ $review->user->name }}</h4>
                     <h5 class="m-0">{{ $review->review }}</h5>
                     <div class="row mt-3">
                         @foreach($review->attachments as $attachment)

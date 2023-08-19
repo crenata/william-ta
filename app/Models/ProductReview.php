@@ -19,6 +19,7 @@ class ProductReview extends Model {
         "transaction_id",
         "custom_transaction_id",
         "product_id",
+        "rating",
         "review",
         "created_at",
         "updated_at",

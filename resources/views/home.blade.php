@@ -16,8 +16,8 @@
         <img src="{{ asset("sofas.jpg") }}" alt="Image" class="img-fluid" >
 	</div>
 
-		<!-- Start Why Choose Us Section -->
-		<div class="why-choose-section">
+    <!-- Start Why Choose Us Section -->
+    <div class="why-choose-section">
 			<div class="container">
 				<div class="row justify-content-between">
 					<div class="col-lg-6">
@@ -95,8 +95,8 @@
 				</div>
 			</div>
 			</div>
-<!-- End Why Choose Us Section -->
-	
+    <!-- End Why Choose Us Section -->
+
 		<div class="container">
             <div class="mt-5">
                 <div class="mt-4">
@@ -112,11 +112,20 @@
                                             <img src="{{ $product->images[0]->image }}" class="card-img-top"
                                                  style="max-height: 200px" alt="{{ $product->name }}">
                                             <div class="card-body">
-                                                <h3 class="card-title text-center">{{ $product->name }}</h3>
-                                                <h5 class="text-center {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">
+                                                <h3 class="card-title">{{ $product->name }}</h3>
+                                                <h5 class="{{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">
                                                     Rp {{ number_format($product->price) }}</h5>
-                                                <h4 class="text-center {{ empty($product->offer_price) ? "d-none" : "" }}">
+                                                <h4 class="{{ empty($product->offer_price) ? "d-none" : "" }}">
                                                     Rp {{ number_format($product->offer_price) }}</h4>
+                                                <div class="d-flex align-items-center">
+                                                    @foreach(range(1, 5) as $rating)
+                                                        @if($rating <= (int) $product->reviews()->avg("rating"))
+                                                            <i class="fa-solid fa-star"></i>
+                                                        @else
+                                                            <i class="fa-regular fa-star"></i>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </a>
                                     </div>
@@ -146,11 +155,20 @@
                                             <img src="{{ $product->images[0]->image }}" class="card-img-top"
                                                  style="max-height: 200px" alt="{{ $product->name }}">
                                             <div class="card-body">
-                                                <h3 class="card-title text-center">{{ $product->name }}</h3>
-                                                <h5 class="text-center {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">
+                                                <h3 class="card-title">{{ $product->name }}</h3>
+                                                <h5 class="{{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">
                                                     Rp {{ number_format($product->price) }}</h5>
-                                                <h4 class="text-center {{ empty($product->offer_price) ? "d-none" : "" }}">
+                                                <h4 class="{{ empty($product->offer_price) ? "d-none" : "" }}">
                                                     Rp {{ number_format($product->offer_price) }}</h4>
+                                                <div class="d-flex align-items-center">
+                                                    @foreach(range(1, 5) as $rating)
+                                                        @if($rating <= (int) $product->reviews()->avg("rating"))
+                                                            <i class="fa-solid fa-star"></i>
+                                                        @else
+                                                            <i class="fa-regular fa-star"></i>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </a>
                                     </div>
@@ -230,7 +248,7 @@
                             <div class="col-12 col-md-4">
                                 <div class="img-wrap">
                                     <img src="{{ asset("testimonis/testimoni-$testimoni.jpg") }}" class="img-fluid"
-                                    width="420px" height="600px">                                 
+                                    width="420px" height="600px">
 	                            </div>
                             </div>
                         @endforeach

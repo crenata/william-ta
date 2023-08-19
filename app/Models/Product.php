@@ -31,6 +31,10 @@ class Product extends Model {
         "deleted_at"
     ];
 
+    public function getRatingAttribute() {
+        return $this->reviews()->avg("rating");
+    }
+
     public function category() {
         return $this->belongsTo(Category::class, "category_id")->withTrashed();
     }
