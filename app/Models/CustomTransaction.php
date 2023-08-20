@@ -22,8 +22,7 @@ class CustomTransaction extends Model {
         "gross_amount",
         "snap_url",
         "size",
-        "color",
-        "material",
+        "color_id",
         "quantity",
         "reason",
         "created_at",
@@ -37,6 +36,10 @@ class CustomTransaction extends Model {
 
     public function user() {
         return $this->belongsTo(User::class, "user_id");
+    }
+
+    public function color() {
+        return $this->belongsTo(Color::class, "color_id");
     }
 
     public function userAddress() {

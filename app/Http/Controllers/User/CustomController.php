@@ -27,7 +27,7 @@ class CustomController extends Controller {
         $detailData = DB::table("custom_transaction_histories as detail_data")
             ->selectRaw("detail_data.id, detail_data.status")
             ->toSql();
-        $transactions = CustomTransaction::with("latestHistory", "histories", "userAddress")
+        $transactions = CustomTransaction::with("latestHistory", "histories", "images", "attachments", "user", "userAddress", "color.material")
             ->select("custom_transactions.*")
             ->leftJoinSub(
                 $detailIds,
@@ -60,9 +60,8 @@ class CustomController extends Controller {
         $this->validate($request, [
             "user_address_id" => "required|numeric|exists:user_addresses,id",
             "product_id" => "required|numeric|exists:products,id",
+            "color_id" => "required|numeric|exists:colors,id",
             "size" => "required|string",
-            "color" => "required|string",
-            "material" => "required|string",
             "quantity" => "required|numeric|min:1"
         ]);
 
@@ -85,8 +84,7 @@ class CustomController extends Controller {
                 "invoice_number" => $invoiceNumber,
                 "gross_amount" => $userAddress->area->fee,
                 "size" => $request->size,
-                "color" => $request->color,
-                "material" => $request->material,
+                "color_id" => $request->color_id,
                 "quantity" => $request->quantity
             ]);
             CustomTransactionHistory::create([

@@ -83,6 +83,12 @@
                                 <a class="nav-link text-white" href="{{ route("area.index") }}">{{ __("Areas") }}</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route("material.index") }}">{{ __("Materials") }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route("color.index") }}">{{ __("Colors") }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route("admin.index") }}">{{ __("Manage Admin") }}</a>
                             </li>
                             <li class="nav-item dropdown">

@@ -14,12 +14,11 @@ return new class extends Migration {
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("user_address_id");
             $table->unsignedBigInteger("product_id");
+            $table->unsignedBigInteger("color_id");
             $table->string("invoice_number");
             $table->unsignedBigInteger("gross_amount")->nullable();
             $table->string("snap_url")->nullable();
             $table->string("size");
-            $table->string("color");
-            $table->string("material");
             $table->unsignedBigInteger("quantity");
             $table->longText("reason")->nullable();
             $table->timestamps();
@@ -28,6 +27,7 @@ return new class extends Migration {
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("user_address_id")->references("id")->on("user_addresses")->onDelete("cascade");
             $table->foreign("product_id")->references("id")->on("products")->onDelete("cascade");
+            $table->foreign("color_id")->references("id")->on("colors")->onDelete("cascade");
         });
     }
 

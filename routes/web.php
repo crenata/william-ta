@@ -66,6 +66,7 @@ Route::middleware(["auth", "verified"])->group(function () {
     Route::resource("refund", \App\Http\Controllers\User\RefundController::class);
     Route::resource("custom-refund", \App\Http\Controllers\User\CustomRefundController::class);
     Route::resource("transaction", \App\Http\Controllers\User\TransactionController::class)->names("transaction-user");
+    Route::get("transaction/generate/{id}/{custom}", [\App\Http\Controllers\User\TransactionController::class, "generate"])->name("transaction-user.generate");
     Route::resource("custom", \App\Http\Controllers\User\CustomController::class)->names("custom-user");
 });
 Route::prefix("admin")->group(function () {
@@ -81,5 +82,7 @@ Route::prefix("admin")->group(function () {
         Route::resource("province", \App\Http\Controllers\Admin\ProvinceController::class);
         Route::resource("city", \App\Http\Controllers\Admin\CityController::class);
         Route::resource("area", \App\Http\Controllers\Admin\AreaController::class);
+        Route::resource("material", \App\Http\Controllers\Admin\MaterialController::class);
+        Route::resource("color", \App\Http\Controllers\Admin\ColorController::class);
     });
 });

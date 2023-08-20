@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Color;
+use App\Models\Material;
 use App\Models\Product;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
@@ -19,13 +21,22 @@ class HomeController extends Controller {
         return view("home")->withRecommendedProducts($recommendedProducts)->withNewProducts($newProducts);
     }
 
-    public function custom() {
+    public function custom(Request $request) {
         $userAddresses = UserAddress::where("user_id", auth()->id())->get();
         $categories = Category::where("can_custom", true)->limit(4)->get();
+        $materials = Material::all();
+        $colors = [];
+        if (!empty($request->material)) $colors = Color::where("material_id", $request->material)->get();
         $products = Product::with("images", "reviews")
             ->whereRelation("category", "can_custom", "=", true)
             ->orderBy("name")
             ->get();
-        return view("custom")->withCategories($categories)->withProducts($products)->withUserAddresses($userAddresses);
+        return view("custom")
+            ->withCategories($categories)
+            ->withProducts($products)
+            ->withUserAddresses($userAddresses)
+            ->withMaterials($materials)
+            ->withMaterialId((int) $request->material)
+            ->withColors($colors);
     }
 }

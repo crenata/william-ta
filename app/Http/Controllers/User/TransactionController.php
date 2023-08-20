@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomTransaction;
 use App\Models\Transaction;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -40,5 +42,14 @@ class TransactionController extends Controller {
             ->paginate();
 
         return view("user.transaction.view")->withTransactions($transactions);
+    }
+
+    public function generate(Request $request, $id, $custom = false) {
+        if ($custom) $transaction = CustomTransaction::findOrFail($id);
+        else $transaction = Transaction::findOrFail($id);
+
+        return Pdf::loadView("pdfs.invoice", [
+            "transaction" => $transaction
+        ])->download("{$transaction->invoice_number}.pdf");
     }
 }

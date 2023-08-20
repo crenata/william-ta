@@ -21,7 +21,7 @@ class CustomController extends Controller {
         $detailData = DB::table("custom_transaction_histories as detail_data")
             ->selectRaw("detail_data.id, detail_data.status")
             ->toSql();
-        $transactions = CustomTransaction::with("latestHistory", "histories", "images", "attachments", "user", "userAddress")
+        $transactions = CustomTransaction::with("latestHistory", "histories", "images", "attachments", "user", "userAddress", "color.material")
             ->select("custom_transactions.*")
             ->leftJoinSub(
                 $detailIds,

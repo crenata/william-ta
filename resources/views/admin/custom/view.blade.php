@@ -393,8 +393,8 @@
                 let data = JSON.parse(this.getAttribute("data-tx"));
 
                 size.textContent = data.size;
-                color.textContent = data.color;
-                material.textContent = data.material;
+                color.textContent = data.color.name;
+                material.textContent = data.color.material.name;
 
                 title.textContent = data.name;
                 tracking.innerHTML = "";

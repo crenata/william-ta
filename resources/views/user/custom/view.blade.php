@@ -22,6 +22,8 @@
                     <th><font size="3">Address</font></th>
                     <th><font size="3">Name</font></th>
                     <th><font size="3">Invoice Number</font></th>
+                    <th><font size="3">Material</font></th>
+                    <th><font size="3">Color</font></th>
                     <th class="text-end"><font size="3">Quantity</font></th>
                     <th class="text-end"><font size="3">Gross Amount</font></th>
                     <th><font size="3">Status</font></th>
@@ -37,6 +39,8 @@
                             <a href="{{ route("product", $transaction->product->id) }}" class="text-decoration-none text-body">{{ $transaction->product->name }}</a>
                         </td>
                         <td valign="middle">{{ $transaction->invoice_number }}</td>
+                        <td valign="middle">{{ $transaction->color->material->name }}</td>
+                        <td valign="middle">{{ $transaction->color->name }}</td>
                         <td valign="middle" class="text-end">{{ number_format($transaction->quantity) }}</td>
                         <td valign="middle" class="text-end">Rp{{ number_format($transaction->gross_amount) }}</td>
                         <td valign="middle">{{ ucwords(str_replace("_", " ", strtolower(\App\Constants\MidtransStatusConstant::getNameByValue($transaction->latestHistory->status)))) }}</td>
@@ -84,6 +88,23 @@
                                                 data-bs-target="#refund-modal"
                                                 data-tx="{{ $transaction }}"
                                             >{{ __("Refund") }}</a>
+                                        </li>
+                                    @endif
+                                    @if(in_array($transaction->latestHistory->status, [
+                                        \App\Constants\MidtransStatusConstant::SETTLEMENT,
+                                        \App\Constants\MidtransStatusConstant::PROCESSED,
+                                        \App\Constants\MidtransStatusConstant::DELIVERY,
+                                        \App\Constants\MidtransStatusConstant::ARRIVED,
+                                        \App\Constants\MidtransStatusConstant::REQUEST_RETURN,
+                                        \App\Constants\MidtransStatusConstant::RETURN_REJECTED,
+                                        \App\Constants\MidtransStatusConstant::PROCESS_RETURN,
+                                        \App\Constants\MidtransStatusConstant::RETURNED
+                                    ]))
+                                        <li>
+                                            <a
+                                                class="dropdown-item"
+                                                href="{{ route("transaction-user.generate", ["id" => $transaction->id, "custom" => 1]) }}"
+                                            >{{ __("Download") }}</a>
                                         </li>
                                     @endif
                                 </ul>

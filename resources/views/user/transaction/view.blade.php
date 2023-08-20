@@ -86,6 +86,23 @@
                                             >{{ __("Return") }}</a>
                                         </li>
                                     @endif
+                                    @if(in_array($transaction->latestHistory->status, [
+                                        \App\Constants\MidtransStatusConstant::SETTLEMENT,
+                                        \App\Constants\MidtransStatusConstant::PROCESSED,
+                                        \App\Constants\MidtransStatusConstant::DELIVERY,
+                                        \App\Constants\MidtransStatusConstant::ARRIVED,
+                                        \App\Constants\MidtransStatusConstant::REQUEST_RETURN,
+                                        \App\Constants\MidtransStatusConstant::RETURN_REJECTED,
+                                        \App\Constants\MidtransStatusConstant::PROCESS_RETURN,
+                                        \App\Constants\MidtransStatusConstant::RETURNED
+                                    ]))
+                                        <li>
+                                            <a
+                                                class="dropdown-item"
+                                                href="{{ route("transaction-user.generate", ["id" => $transaction->id, "custom" => 0]) }}"
+                                            >{{ __("Download") }}</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </td>

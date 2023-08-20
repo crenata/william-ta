@@ -78,11 +78,62 @@
                             @enderror
 
                             <div class="mt-2">
-                                <img src="{{ asset("logo.png") }}" id="product-image" alt="Image" class="w-100" style="object-fit: contain; height: 13.5rem;">
+                                <img src="{{ asset("logo.png") }}" id="product-image" alt="Image" class="w-100" style="object-fit: contain; height: 7rem;">
                             </div>
                         </div>
 
                         <div class="mt-3">
+                            <label for="material_id">{{ __("Material") }}</label>
+                            <select
+                                id="material_id"
+                                class="form-select @error("material_id") is-invalid @enderror"
+                                name="material_id"
+                                required
+                                autocomplete="material_id"
+                                autofocus
+                                onchange="location = this.options[this.selectedIndex].value"
+                            >
+                                <option value="{{ route("product.custom") }}">Choose Material</option>
+                                @foreach($materials as $material)
+                                    <option value="{{ route("product.custom", ["material" => $material->id]) }}" {{ $material->id === old("material_id", $materialId) ? "selected" : "" }}>{{ $material->name }}</option>
+                                @endforeach
+                            </select>
+                            @error("material_id")
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                            @enderror
+                        </div>
+
+                        <div class="mt-3">
+                            <label for="color_id">{{ __("Color") }}</label>
+                            <select
+                                id="color_id"
+                                class="form-select @error("color_id") is-invalid @enderror"
+                                name="color_id"
+                                required
+                                autocomplete="color_id"
+                                autofocus
+                                onchange="document.getElementById('color-image').setAttribute('src', this.options[this.selectedIndex].getAttribute('image'))"
+                            >
+                                <option>{{ empty($colors) ? "Choose Material First" : "Choose Color" }}</option>
+                                @foreach($colors as $color)
+                                    <option value="{{ $color->id }}" image="{{ $color->image }}">{{ $color->name }}</option>
+                                @endforeach
+                            </select>
+                            @error("color_id")
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                            @enderror
+
+                            <div class="mt-2">
+                                <img src="{{ asset("logo.png") }}" id="color-image" alt="Image" class="w-100" style="object-fit: contain; height: 7rem;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3 mt-md-0">
+                        <div class="">
                             <label for="user_address_id">{{ __("Address") }}</label>
                             <select
                                 id="user_address_id"
@@ -118,47 +169,6 @@
                                 placeholder="Contoh : 10cm x 20cm x 30cm"
                             />
                             @error("size")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mt-3 mt-md-0">
-                        <div class="">
-                            <label for="color">{{ __("Color") }}</label>
-                            <input
-                                id="color"
-                                type="text"
-                                class="form-control @error("color") is-invalid @enderror"
-                                name="color"
-                                value="{{ old("color") }}"
-                                required
-                                autocomplete="color"
-                                autofocus
-                                placeholder="Contoh : Dark Brown"
-                            />
-                            @error("color")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="mt-3">
-                            <label for="material">{{ __("Material") }}</label>
-                            <input
-                                id="material"
-                                type="text"
-                                class="form-control @error("material") is-invalid @enderror"
-                                name="material"
-                                value="{{ old("material") }}"
-                                required
-                                autocomplete="material"
-                                autofocus
-                                placeholder="Contoh : Kayu Mahoni"
-                            />
-                            @error("material")
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
