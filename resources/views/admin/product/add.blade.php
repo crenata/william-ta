@@ -89,6 +89,25 @@
                     </div>
 
                     <div class="mt-3">
+                        <label for="gold_price">{{ __("Gold Price") }}</label>
+                        <input
+                            id="gold_price"
+                            type="number"
+                            class="form-control @error("gold_price") is-invalid @enderror"
+                            name="gold_price"
+                            value="{{ old("gold_price") }}"
+                            required
+                            autocomplete="gold_price"
+                            autofocus
+                        />
+                        @error("gold_price")
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="mt-3">
                         <label for="description">{{ __("Description") }}</label>
                         <textarea
                             id="description"
