@@ -48,7 +48,8 @@ class Product extends Model {
         $detailData = DB::table("transaction_histories as detail_data")
             ->selectRaw("detail_data.id, detail_data.status")
             ->toSql();
-        $summary = $this->hasMany(Transaction::class, "product_id")
+        $summary = Transaction::with("latestHistory", "histories", "userAddress")
+            ->select("transactions.*")
             ->leftJoinSub(
                 $detailIds,
                 "detail_max",
