@@ -33,8 +33,8 @@
                         <div class="card-body">
                             <h3 class="card-title">{{ $product->name }}</h3>
                             <h5 class="{{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Rp {{ number_format($product->price) }}</h5>
-                            <h4 class="m-0 fw-semibold {{ !empty($product->is_gold) ? "text-decoration-line-through" : (empty($product->offer_price) ? "d-none" : "") }}">Rp{{ number_format($product->offer_price) }}</h4>
-                            <h4 class="m-0 fw-semibold {{ $product->is_gold ? "" : "d-none" }}">Rp{{ number_format($product->gold_price) }}</h4>
+                            <h4 class="m-0 fw-semibold {{ empty($product->offer_price) ? "d-none" : ($product->is_gold ? "text-decoration-line-through" : "") }}">Rp{{ number_format($product->offer_price) }}</h4>
+                            <h4 class="m-0 fw-semibold {{ empty($product->is_gold) ? "d-none" : "" }}">Rp{{ number_format($product->gold_price) }}</h4>
                             <div class="d-flex align-items-center">
                                 @foreach(range(1, 5) as $rating)
                                     @if($rating <= (int) $product->reviews()->avg("rating"))

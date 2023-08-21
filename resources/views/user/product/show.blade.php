@@ -37,8 +37,8 @@
             <h3 class="m-0 fw-bold">{{ $product->name }}</h3>
             <div class="mt-2">
                 <h5 class="m-0 fw-semibold {{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">Normal Price : Rp{{ number_format($product->price) }}</h5>
-                <h4 class="m-0 fw-semibold {{ !empty($product->is_gold) ? "text-decoration-line-through" : (empty($product->offer_price) ? "d-none" : "") }}">Offer Price : Rp{{ number_format($product->offer_price) }}</h4>
-                <h4 class="m-0 fw-semibold {{ $product->is_gold ? "" : "d-none" }}">Gold Price : Rp{{ number_format($product->gold_price) }}</h4>
+                <h4 class="m-0 fw-semibold {{ empty($product->offer_price) ? "d-none" : ($product->is_gold ? "text-decoration-line-through" : "") }}">Offer Price : Rp{{ number_format($product->offer_price) }}</h4>
+                <h4 class="m-0 fw-semibold {{ empty($product->is_gold) ? "d-none" : "" }}">Gold Price : Rp{{ number_format($product->gold_price) }}</h4>
             </div>
             <div class="mt-2">
                 <h5 class="m-0 fw-semibold">Stock : {{ number_format($product->stock) }}</h5>
