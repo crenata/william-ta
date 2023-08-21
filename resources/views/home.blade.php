@@ -113,7 +113,7 @@
                                                  style="max-height: 200px" alt="{{ $product->name }}">
                                             <div class="card-body">
                                                 <h3 class="card-title">{{ $product->name }}</h3>
-                                                <h5 class="{{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">
+                                                <h5 class="{{ $product->is_gold || !empty($product->offer_price) ? "text-decoration-line-through" : "" }}">
                                                     Rp {{ number_format($product->price) }}</h5>
                                                 <h4 class="m-0 fw-semibold {{ empty($product->offer_price) ? "d-none" : ($product->is_gold ? "text-decoration-line-through" : "") }}">Rp{{ number_format($product->offer_price) }}</h4>
                                                 <h4 class="m-0 fw-semibold {{ $product->is_gold ? "" : "d-none" }}">Rp{{ number_format($product->gold_price) }}</h4>
@@ -156,7 +156,7 @@
                                                  style="max-height: 200px" alt="{{ $product->name }}">
                                             <div class="card-body">
                                                 <h3 class="card-title">{{ $product->name }}</h3>
-                                                <h5 class="{{ empty($product->offer_price) ? "" : "text-decoration-line-through" }}">
+                                                <h5 class="{{ $product->is_gold || !empty($product->offer_price) ? "text-decoration-line-through" : "" }}">
                                                     Rp {{ number_format($product->price) }}</h5>
                                                 <h4 class="m-0 fw-semibold {{ empty($product->offer_price) ? "d-none" : ($product->is_gold ? "text-decoration-line-through" : "") }}">Rp{{ number_format($product->offer_price) }}</h4>
                                                 <h4 class="m-0 fw-semibold {{ $product->is_gold ? "" : "d-none" }}">Rp{{ number_format($product->gold_price) }}</h4>
